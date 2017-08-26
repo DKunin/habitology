@@ -9,35 +9,30 @@ const state = {
         {
             id: 0,
             name: 'Drink clean water daily',
-            type: 'count'
+            count: 15
         }
     ],
-    types: [
-        { id: 'count', manipulation: 'addition' },
-        { id: 'boolean', manipulation: 'check' }
-    ],
+    types: [],
     log: [
         {
             id: 0,
             date: '14-01-2017',
             habitId: 0,
-            score: 10
+            amount: 10
         }
     ]
 };
 
 const mutations = {
-    increment(state) {
-        state.count++;
-    },
-    decrement(state) {
-        state.count--;
+    incrementLog(state, payload) {
+        state.log = state.log.concat(payload);
     }
 };
 
 const actions = {
-    increment: ({ commit }) => commit('increment'),
-    decrement: ({ commit }) => commit('decrement'),
+    incrementLog({ commit, state }, payload) {
+        commit('incrementLog', Object.assign({ id: parseInt(Math.random() * 1e10) }, payload));
+    },
     incrementIfOdd({ commit, state }) {
         if ((state.count + 1) % 2 === 0) {
             commit('increment');

@@ -1,24 +1,19 @@
 <template>
   <div>
-    <ul>
-        <input v-model="name" placeholder="Name">
-        <select v-model="type">
-            <option v-for="type in $store.state.types">{{ type.id }}</option>
-        </select>
-    </ul>
+    <input v-model="name" placeholder="Name">
+    <input type="number" v-model="goal" placeholder="Goal">
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
 
-
 export default {
     name: 'main',
     data() {
         return {
             name: 'Default name',
-            type: false
+            goal: 100
         };
     },
     computed: mapGetters([

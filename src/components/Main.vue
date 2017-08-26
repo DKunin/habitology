@@ -2,7 +2,7 @@
   <div>
     <ul>
         <li v-for="habit in $store.state.habits">
-            {{habit.name}} {{habit.count}}
+            {{habit.name}} <button @click="habitLog(habit.id)">log</button> <button @click="habitIncrement(habit.id)">{{habit.count}}</button>
         </li>
     </ul>
     <button @click="newHabit">+</button>
@@ -10,14 +10,6 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
-    // eslint-disable-next-line
-const methods = mapActions([
-    'increment',
-    'decrement',
-    'incrementIfOdd',
-    'incrementAsync'
-]);
 import router from '../router';
 
 export default {
@@ -26,18 +18,22 @@ export default {
         return {
         };
     },
-
-    computed: mapGetters([
-        'evenOrOdd'
-    ]),
-    methods: Object.assign(methods, {
+    methods: {
         newHabit: () => {
-            console.log(this);
-            router.push({ name: 'habit-edit', params: { habitId: 0 }});
+            router.push({ name: 'habit-edit', params: { habitId: null }});
+        },
+        habitIncrement: (habitId) => {
+            router.push({ name: 'habit-increment', params: { habitId }});
+        },
+        habitLog: (habitId) => {
+            router.push({ name: 'habit-log', params: { habitId }});
         }
-    })
+    }
 };
 </script>
 
-<style>
+<style scoped>
+    button {
+        background-color: gray;
+    }
 </style>
