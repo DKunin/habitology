@@ -1,28 +1,28 @@
 <template>
   <div id="app">
-    <header>
-      <span>Habitology</span>
-    </header>
-    <main>
-      <router-view></router-view>
-    </main>
+    <router-view></router-view>
+    <md-bottom-bar>
+      <md-bottom-bar-item @click="gotoMain('main')" md-icon="home" :md-active="$route.name === 'main'">Home</md-bottom-bar-item>
+      <md-bottom-bar-item @click="gotoMain('habit-log')" md-icon="history" :md-active="$route.name === 'habit-log'">Log</md-bottom-bar-item>
+      <md-bottom-bar-item @click="gotoMain('settings')" md-icon="settings" :md-active="$route.name === 'settings'">Settings</md-bottom-bar-item>
+    </md-bottom-bar>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters } from 'vuex';
+import router from './router';
 
 export default {
     name: 'app',
     computed: mapGetters([
         'evenOrOdd'
     ]),
-    methods: mapActions([
-        'increment',
-        'decrement',
-        'incrementIfOdd',
-        'incrementAsync'
-    ])
+    methods: {
+        gotoMain(name) {
+            router.push({ name });
+        }
+    }
 };
 </script>
 
@@ -37,28 +37,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
-
-main {
-  text-align: center;
-  margin-top: 40px;
+html, body, #app {
+  height: 100%;
+  overflow: hidden;
 }
-
-header {
-  margin: 0;
-  height: 56px;
-  padding: 0 16px 0 24px;
-  background-color: #35495E;
-  color: #ffffff;
-}
-
-header span {
-  display: block;
-  position: relative;
-  font-size: 20px;
-  line-height: 1;
-  letter-spacing: .02em;
-  font-weight: 400;
-  box-sizing: border-box;
-  padding-top: 16px;
+.md-fixed {
+  position: fixed;
+  bottom: 0;
 }
 </style>

@@ -1,11 +1,20 @@
 <template>
   <div>
-    <ul>
-        <li v-for="habit in $store.state.habits">
-            {{habit.name}} <button @click="habitLog(habit.id)">log</button> <button @click="habitIncrement(habit.id)">{{habit.count}}</button>
-        </li>
-    </ul>
-    <button @click="newHabit">+</button>
+        <div>
+          <md-list>
+            <md-list-item v-for="habit in $store.state.habits" :key="habit.id">
+                <span>{{habit.name}} {{habit.count}}</span>
+
+                <md-button @click="habitIncrement(habit.id)" class="md-icon-button md-list-action">
+                    <md-icon class="md-primary">note_add</md-icon>
+                </md-button>
+            </md-list-item>
+          </md-list>
+        </div>
+
+        <md-button @click="newHabit" class="md-fab md-primary add-button">
+            <md-icon>add</md-icon>
+        </md-button>
   </div>
 </template>
 
@@ -19,13 +28,13 @@ export default {
         };
     },
     methods: {
-        newHabit: () => {
-            router.push({ name: 'habit-edit', params: { habitId: null }});
+        newHabit() {
+            router.push({ name: 'habit-add' });
         },
-        habitIncrement: (habitId) => {
+        habitIncrement(habitId) {
             router.push({ name: 'habit-increment', params: { habitId }});
         },
-        habitLog: (habitId) => {
+        habitLog(habitId) {
             router.push({ name: 'habit-log', params: { habitId }});
         }
     }
@@ -33,7 +42,9 @@ export default {
 </script>
 
 <style scoped>
-    button {
-        background-color: gray;
+    .add-button {
+        position: fixed;
+        bottom: 70px;
+        right: 15px;
     }
 </style>

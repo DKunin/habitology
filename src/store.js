@@ -10,6 +10,10 @@ const state = {
             id: 0,
             name: 'Drink clean water daily',
             count: 15
+        }, {
+            id: 1,
+            name: 'Do sit ups daily',
+            count: 23
         }
     ],
     types: [],
