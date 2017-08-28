@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="page">
+    <div class="md-title main-title">Edit habit</div>
     <input v-model="name" placeholder="Name">
     <input type="number" v-model="goal" placeholder="Goal">
   </div>

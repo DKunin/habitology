@@ -1,12 +1,24 @@
 <template>
-  <div>
-    <input v-model="name" placeholder="Name">
-    <input type="number" v-model="goal" placeholder="Goal">
+  <div class="page">
+    <div class="md-title main-title">New Habit</div>
+    <md-input-container>
+        <label>Name</label>
+        <md-input v-model="name"></md-input>
+    </md-input-container>
+    <md-input-container>
+        <label>Goal</label>
+        <md-input type="number" v-model="goal"></md-input>
+    </md-input-container>
+    <div class="controls">
+        <md-button @click="update" class="md-raised md-primary">Save</md-button>
+        <md-button @click="cancel" class="md-raised md-accent">Cancel</md-button>
+    </div>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+
+import router from '../router';
 
 export default {
     name: 'habit-add',
@@ -16,17 +28,21 @@ export default {
             goal: 100
         };
     },
-    computed: mapGetters([
-        'evenOrOdd'
-    ]),
-    methods: mapActions([
-        'increment',
-        'decrement',
-        'incrementIfOdd',
-        'incrementAsync'
-    ])
+    methods: {
+        cancel: function() {
+            router.push({ name: 'main' });
+        }
+    }
 };
 </script>
 
 <style>
+.controls {
+    position: absolute;
+    bottom: 80px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+}
 </style>

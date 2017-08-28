@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h2>Settings</h2>
+  <div class="page">
+    <div class="md-title main-title">Settings</div>
   </div>
 </template>
 

@@ -9,20 +9,25 @@ const state = {
         {
             id: 0,
             name: 'Drink clean water daily',
-            count: 15
-        }, {
+            goal: 100
+        },
+        {
             id: 1,
             name: 'Do sit ups daily',
-            count: 23
+            goal: 100
         }
     ],
-    types: [],
     log: [
         {
             id: 0,
-            date: '14-01-2017',
+            date: 1503945432076,
             habitId: 0,
             amount: 10
+        }, {
+            id: 1,
+            date: 1503945432076,
+            habitId: 1,
+            amount: 3
         }
     ]
 };
@@ -35,7 +40,10 @@ const mutations = {
 
 const actions = {
     incrementLog({ commit, state }, payload) {
-        commit('incrementLog', Object.assign({ id: parseInt(Math.random() * 1e10) }, payload));
+        commit(
+            'incrementLog',
+            Object.assign({ id: parseInt(Math.random() * 1e10) }, payload)
+        );
     },
     incrementIfOdd({ commit, state }) {
         if ((state.count + 1) % 2 === 0) {
@@ -43,7 +51,7 @@ const actions = {
         }
     },
     incrementAsync({ commit }) {
-        return new Promise((resolve) => {
+        return new Promise(resolve => {
             setTimeout(() => {
                 commit('increment');
                 resolve();
