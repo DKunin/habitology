@@ -1,15 +1,15 @@
 <template>
   <div class="page">
-    <div class="md-title">Habit Log</div>
+    <div class="md-title">{{ $t("titles.habitLog") }}</div>
     <div v-if="!filtered.length">
       No data
     </div>
     <md-table v-if="filtered.length">
       <md-table-header>
         <md-table-row>
-          <md-table-head>Habit</md-table-head>
-          <md-table-head>Date</md-table-head>
-          <md-table-head md-numeric>Score</md-table-head>
+          <md-table-head>{{ $t("log.habit") }}</md-table-head>
+          <md-table-head>{{ $t("log.date") }}</md-table-head>
+          <md-table-head md-numeric>{{ $t("log.score") }}</md-table-head>
         </md-table-row>
       </md-table-header>
 
@@ -45,10 +45,13 @@ export default {
     },
     methods: {
         formatDate(dateTime) {
-            return fecha.format(new Date(dateTime), 'DD.MM.YY HH:mm');
+            return fecha.format(new Date(dateTime), 'DD.MM.YY');
         },
         getHabitName(habitId) {
             const habit = this.$store.state.habits[habitId];
+            if (!habit) {
+                return '';
+            }
             return habit.name;
         },
         editHabitIncrement(logId) {

@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    
     <router-view></router-view>
     <md-bottom-bar>
       <md-bottom-bar-item @click="gotoMain('main')" md-icon="home" :md-active="$route.name === 'main'"></md-bottom-bar-item>

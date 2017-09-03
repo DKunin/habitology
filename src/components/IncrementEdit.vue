@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <div class="md-title">Edit log item</div>
+    <div class="md-title">{{ $t("titles.editLog") }}</div>
     <span class="md-subheading">{{showHabitName(habitId)}}</span>
     <input type="hidden" v-model="id">
     <input type="hidden" v-model="habitId">
@@ -16,9 +16,9 @@
         <md-input v-model="amount" type="number"></md-input>
     </md-input-container>
     <div class="controls">
-        <md-button @click="update" class="md-raised md-primary">Save</md-button>
-        <md-button @click="cancel" class="md-raised md-accent">Cancel</md-button>
-        <md-button @click="remove" class="md-raised md-accent">Remove</md-button>
+        <md-button @click="update" class="md-raised md-primary">{{ $t("actions.save") }}</md-button>
+        <md-button @click="cancel" class="md-raised md-accent">{{ $t("actions.cancel") }}</md-button>
+        <md-button @click="remove" class="md-raised md-accent">{{ $t("actions.remove") }}</md-button>
     </div>
   </div>
 </template>

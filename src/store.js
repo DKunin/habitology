@@ -1,5 +1,8 @@
+'use strict';
+
 import Vue from 'vue';
 import Vuex from 'vuex';
+import persistPlugin from './utils/persistPlugin';
 
 Vue.use(Vuex);
 
@@ -7,20 +10,8 @@ const randomId = () => parseInt(Math.random() * 1e10);
 
 const state = {
     habits: {},
-    log: []
-};
-
-const persistPlugin = store => {
-    const history = JSON.parse(localStorage.getItem('habitologyState') || '{"habits":{}, "log": []}');
-
-
-    if (history) {
-        store.commit('restoreState', history);
-    }
-
-    store.subscribe(() => {
-        localStorage.setItem('habitologyState', JSON.stringify(store.state, null, 4));
-    });
+    log: [],
+    locale: 'ru'
 };
 
 const mutations = {
@@ -34,7 +25,9 @@ const mutations = {
         state.habits[payload.id] = payload;
     },
     removeHabit(state, habitId) {
-        const newHabits =  Object.keys(state.habits).reduce((newHabits, singleHabitKey) => {
+        const newHabits = Object.keys(
+            state.habits
+        ).reduce((newHabits, singleHabitKey) => {
             const habit = state.habits[singleHabitKey];
             if (habit.id === parseInt(habitId)) {
                 return newHabits;
@@ -42,6 +35,9 @@ const mutations = {
             newHabits[habit.id] = habit;
             return newHabits;
         }, {});
+        state.log = state.log.filter(singleLogItem => {
+            return singleLogItem.habitId !== habitId;
+        });
         state.habits = newHabits;
     },
     updateLogItem(state, payload) {
@@ -60,6 +56,15 @@ const mutations = {
     restoreState(state, payload) {
         state.habits = payload.habits;
         state.log = payload.log;
+        state.locale = payload.locale;
+
+        setTimeout(() => {
+            window.i18n.locale = payload.locale;
+        }, 200);
+    },
+    localeSet(state, newLocale) {
+        state.locale = newLocale;
+        window.i18n.locale = newLocale;
     }
 };
 
@@ -79,23 +84,26 @@ const actions = {
     removeLogItem({ commit }, logItemId) {
         commit('removeLogItem', logItemId);
     },
-    incrementAsync({ commit }) {
-        return new Promise(resolve => {
-            setTimeout(() => {
-                commit('increment');
-                resolve();
-            }, 1000);
-        });
+    localeSet({ commit }, newLocale) {
+        commit('localeSet', newLocale);
     }
+    // ,
+    // incrementAsync({ commit }) {
+    //     return new Promise(resolve => {
+    //         setTimeout(() => {
+    //             commit('increment');
+    //             resolve();
+    //         }, 1000);
+    //     });
+    // }
 };
 
-const getters = {
-    evenOrOdd: state => (state.count % 2 === 0 ? 'even' : 'odd')
-};
+// const getters = {
+//     evenOrOdd: state => (state.count % 2 === 0 ? 'even' : 'odd')
+// };
 
 export default new Vuex.Store({
     state,
-    getters,
     actions,
     mutations,
     plugins: [persistPlugin]

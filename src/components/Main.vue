@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <div class="md-title">Habits</div>
+    <div class="md-title">{{ $t("titles.habits") }}</div>
     
     <md-list>
         <md-list-item v-for="habit in $store.state.habits" :key="habit.id" @click="getHabitLog(habit.id)">

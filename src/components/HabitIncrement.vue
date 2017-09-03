@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <div class="md-title">Add Habitscore</div>
+    <div class="md-title">{{ $t("titles.addHabitScore") }}</div>
     <span class="md-subheading">{{showHabitName(habitId)}}</span>
     <input type="hidden" v-model="habitId">
 
@@ -15,8 +15,8 @@
         <md-input v-model="amount" type="number"></md-input>
     </md-input-container>
     <div class="controls">
-        <md-button @click="update" class="md-raised md-primary">Save</md-button>
-        <md-button @click="cancel" class="md-raised md-accent">Cancel</md-button>
+        <md-button @click="update" class="md-raised md-primary">{{ $t("actions.save") }}</md-button>
+        <md-button @click="cancel" class="md-raised md-accent">{{ $t("actions.cancel") }}</md-button>
     </div>
   </div>
 </template>
@@ -41,7 +41,6 @@ export default {
     },
     methods: Object.assign(actions, {
         update: function() {
-            console.log(this.date);
             const newObject = {
                 date: new Date(this.date),
                 amount: parseInt(this.amount || 0),
