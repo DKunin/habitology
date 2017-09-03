@@ -32,11 +32,13 @@ export default {
         };
     },
     mounted() {
-        const editMode = this.$store.state.habits[this.$route.query.habitId];
-        if (editMode) {
-            this.$set(this, 'goal', editMode.goal);
-            this.$set(this, 'id', editMode.id);
-            this.$set(this, 'name', editMode.name);
+        if (this.$route.query.habitId) {
+            const editMode = this.$store.state.habits[this.$route.query.habitId];
+            if (editMode) {
+                this.$set(this, 'goal', editMode.goal);
+                this.$set(this, 'id', editMode.id);
+                this.$set(this, 'name', editMode.name);
+            }
         }
     },
     methods: {

@@ -6,14 +6,12 @@ Vue.use(Vuex);
 const randomId = () => parseInt(Math.random() * 1e10);
 
 const state = {
-    habits: {
-    },
-    log: [
-    ]
+    habits: {},
+    log: []
 };
 
 const persistPlugin = store => {
-    const history = JSON.parse(localStorage.getItem('habitologyState') || '{}');
+    const history = JSON.parse(localStorage.getItem('habitologyState') || '{"habits":{}, "log": []}');
 
 
     if (history) {
@@ -30,6 +28,9 @@ const mutations = {
         state.log = state.log.concat(payload);
     },
     updateHabit(state, payload) {
+        if (!state.habits) {
+            state.habits = {};
+        }
         state.habits[payload.id] = payload;
     },
     removeHabit(state, habitId) {
