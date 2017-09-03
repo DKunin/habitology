@@ -1,17 +1,20 @@
 <template>
   <div class="page">
-    <div class="md-title main-title">Habits</div>
-    <div>
-      <md-list>
-        <md-list-item v-for="habit in $store.state.habits" :key="habit.id">
-            <span @click="getHabitLog(habit.id)">{{habit.name}} {{countHabit(habit.id)}} ({{ countPercent(countHabit(habit.id),habit.goal) }}%) </span>
+    <div class="md-title">Habits</div>
+    <div v-if="!$store.state.habits.length">No habits</div>
+    
+    <md-list v-if="$store.state.habits.length">
+        <md-list-item v-for="habit in $store.state.habits" :key="habit.id" @click="getHabitLog(habit.id)">
+            <div >{{habit.name}} {{countHabit(habit.id)}} ({{ countPercent(countHabit(habit.id), habit.goal) }}%) </div>
+            <md-button @click="editHabit(habit.id)" class="md-icon-button md-list-action">
+                <md-icon class="md-primary">create</md-icon>
+            </md-button>
 
             <md-button @click="habitIncrement(habit.id)" class="md-icon-button md-list-action">
                 <md-icon class="md-primary">note_add</md-icon>
             </md-button>
         </md-list-item>
-      </md-list>
-    </div>
+    </md-list>
 
     <md-button @click="newHabit" class="md-fab md-primary add-button">
         <md-icon>add</md-icon>
@@ -41,10 +44,13 @@ export default {
             }, 0);
         },
         countPercent(current, goal) {
-            return current * 100 / goal;
+            return Math.ceil(current * 100 / goal);
         },
         habitIncrement(habitId) {
             router.push({ name: 'habit-increment', params: { habitId }});
+        },
+        editHabit(habitId) {
+            router.push({ name: 'habit-add', query: { habitId } });
         },
         getHabitLog(habitId) {
             router.push({ name: 'habit-log', query: { habitId }});

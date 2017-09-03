@@ -1,11 +1,11 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Main from '@/components/Main';
-import HabitEdit from '@/components/HabitEdit';
 import HabitIncrement from '@/components/HabitIncrement';
 import HabitLog from '@/components/HabitLog';
 import HabitAdd from '@/components/HabitAdd';
 import Settings from '@/components/Settings';
+import IncrementEdit from '@/components/IncrementEdit';
 
 Vue.use(Router);
 
@@ -15,11 +15,6 @@ export default new Router({
             path: '/',
             name: 'main',
             component: Main
-        },
-        {
-            path: '/habit-edit/:habitId',
-            name: 'habit-edit',
-            component: HabitEdit
         },
         {
             path: '/habit-increment/:habitId',
@@ -40,6 +35,11 @@ export default new Router({
             path: '/settings',
             name: 'settings',
             component: Settings
+        },
+        {
+            path: '/increment-edit',
+            name: 'increment-edit',
+            component: IncrementEdit
         }
     ]
 });

@@ -1,7 +1,10 @@
 <template>
   <div class="page">
-    <div class="md-title main-title">Habit Log</div>
-    <md-table v-once>
+    <div class="md-title">Habit Log</div>
+    <div v-if="!filtered.length">
+      No data
+    </div>
+    <md-table v-if="filtered.length">
       <md-table-header>
         <md-table-row>
           <md-table-head>Habit</md-table-head>
@@ -14,7 +17,7 @@
         <md-table-row v-for="(log, index) in filtered" :key="index">
           <md-table-cell>{{ getHabitName(log.habitId) }}</md-table-cell>
           <md-table-cell>{{ formatDate(log.date) }}</md-table-cell>
-          <md-table-cell>{{ log.amount }}</md-table-cell>
+          <md-table-cell><a @click="editHabitIncrement(log.id)">{{ log.amount }}</a></md-table-cell>
         </md-table-row>
       </md-table-body>
     </md-table>
@@ -23,6 +26,7 @@
 
 <script>
 import fecha from 'fecha';
+import router from '../router';
 
 export default {
     name: 'habit-log',
@@ -41,12 +45,14 @@ export default {
     },
     methods: {
         formatDate(dateTime) {
-            return fecha.format(dateTime, 'DD.MM.YY HH:mm');
+            return fecha.format(new Date(dateTime), 'DD.MM.YY HH:mm');
         },
         getHabitName(habitId) {
-            const habit = this.$store.state.habits.find(({ id }) => id === habitId);
-
+            const habit = this.$store.state.habits[habitId];
             return habit.name;
+        },
+        editHabitIncrement(logId) {
+            router.push({ name: 'increment-edit', query: { logId } });
         }
     }
 };

@@ -1,9 +1,14 @@
 <template>
   <div class="page">
-    <div class="md-title main-title">Add Habitscore</div>
-    <div class="md-display-3 main-date" @click="toggleDateComponent">{{formatDate(date)}}</div>
-    <input class="hidden date" type="date" @change="processDate">
+    <div class="md-title">Add Habitscore</div>
+    <span class="md-subheading">{{showHabitName(habitId)}}</span>
     <input type="hidden" v-model="habitId">
+
+    <md-input-container>
+        <md-icon>event</md-icon>
+        <label>Date</label>
+        <md-input v-model="date" type="date"></md-input>
+    </md-input-container>
     <md-input-container>
         <md-icon>star</md-icon>
         <label>Rating</label>
@@ -29,19 +34,17 @@ export default {
     name: 'habitIncrement',
     data() {
         return {
-            date: new Date().getTime(),
+            date: fecha.format(new Date(), 'YYYY-MM-DD'),
             amount: null,
             habitId: this.$route.params.habitId
         };
     },
     methods: Object.assign(actions, {
-        processDate: function(event) {
-            this.$set(this, 'date', new Date(event.target.value));
-        },
         update: function() {
+            console.log(this.date);
             const newObject = {
-                date: this.date,
-                amount: parseInt(this.amount),
+                date: new Date(this.date),
+                amount: parseInt(this.amount || 0),
                 habitId: parseInt(this.habitId)
             };
             this.incrementLog(newObject);
@@ -56,8 +59,8 @@ export default {
         cancel: function() {
             router.push({ name: 'main' });
         },
-        toggleDateComponent: function() {
-            this.$el.querySelector('.date').click();
+        showHabitName: function(id) {
+            return this.$store.state.habits[id].name;
         }
     })
 };
@@ -72,7 +75,6 @@ export default {
 
 .main-date {
     user-select: none;
-    text-align: center;
 }
 
 .controls {
