@@ -7,27 +7,13 @@ const randomId = () => parseInt(Math.random() * 1e10);
 
 const state = {
     habits: {
-        0: {
-            id: 0,
-            name: 'Drink clean water daily',
-            goal: 100
-        },
-        1: {
-            id: 1,
-            name: 'Do sit ups daily',
-            goal: 100
-        }
     },
     log: [
-//     amount:0
-// date:"2017-09-09T00:00:00.000Z"
-// habitId:6944978395
-// id:3366100355
     ]
 };
 
 const persistPlugin = store => {
-    const history = JSON.parse(localStorage.getItem('habitologyState'));
+    const history = JSON.parse(localStorage.getItem('habitologyState') || {});
 
     if (history) {
         store.commit('restoreState', history);

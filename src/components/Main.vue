@@ -1,9 +1,8 @@
 <template>
   <div class="page">
     <div class="md-title">Habits</div>
-    <div v-if="!$store.state.habits.length">No habits</div>
     
-    <md-list v-if="$store.state.habits.length">
+    <md-list>
         <md-list-item v-for="habit in $store.state.habits" :key="habit.id" @click="getHabitLog(habit.id)">
             <div >{{habit.name}} {{countHabit(habit.id)}} ({{ countPercent(countHabit(habit.id), habit.goal) }}%) </div>
             <md-button @click="editHabit(habit.id)" class="md-icon-button md-list-action">
