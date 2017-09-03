@@ -13,7 +13,8 @@ const state = {
 };
 
 const persistPlugin = store => {
-    const history = JSON.parse(localStorage.getItem('habitologyState') || {});
+    const history = JSON.parse(localStorage.getItem('habitologyState') || '{}');
+
 
     if (history) {
         store.commit('restoreState', history);
