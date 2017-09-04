@@ -1,6 +1,5 @@
 <template>
   <div class="page">
-    <div class="md-title">{{ $t("titles.habitLog") }}</div>
     <div v-if="!filtered.length">
       No data
     </div>
