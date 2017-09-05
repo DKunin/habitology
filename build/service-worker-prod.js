@@ -21,7 +21,7 @@
             navigator.serviceWorker
                 .register('service-worker.js', { scope: './' })
                 .then(function(registration) {
-                    if(window.location.search === '?update=force') {
+                    if (window.location.search === '?update=force') {
                         registration.update();
                         console.log('Service Worker Registered forcefully');
                     }
