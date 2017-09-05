@@ -1,7 +1,8 @@
 export default {
     en: {
         titles: {
-            habits: 'Habits',
+            main: 'Habits',
+            menu: 'Menu',
             newHabit: 'New Habit',
             settings: 'Settings',
             addHabitScore: 'Add habit score',
@@ -11,7 +12,8 @@ export default {
         actions: {
             save: 'Save',
             cancel: 'Cancel',
-            remove: 'Remove'
+            remove: 'Remove',
+            addHabit: 'Add habit'
         },
         log: {
             habit: 'Habit',
@@ -21,7 +23,8 @@ export default {
     },
     ru: {
         titles: {
-            habits: 'Привычки',
+            main: 'Привычки',
+            menu: 'Меню',
             newHabit: 'Новая привычка',
             settings: 'Настройки',
             addHabitScore: 'Добавить оценку',
@@ -31,7 +34,8 @@ export default {
         actions: {
             save: 'Сохранить',
             cancel: 'Отмена',
-            remove: 'Удалить'
+            remove: 'Удалить',
+            addHabit: 'Добавить привычку'
         },
         log: {
             habit: 'Привычка',

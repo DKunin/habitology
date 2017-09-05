@@ -1,11 +1,55 @@
 <template>
-  <div id="app">
+  <div class="app">
+
+    <md-sidenav md-swipeable class="md-left" ref="leftSidenav">
+      <md-toolbar class="md-small">
+        <div class="md-toolbar-container">
+          <h3 class="md-title">{{ $t('titles.menu') }}</h3>
+        </div>
+      </md-toolbar>
+
+        <md-list>
+          <md-list-item @click="gotoMain('main')" class="md-primary">
+            <md-icon>home</md-icon> <span>{{ $t('titles.main') }}</span>
+          </md-list-item>
+          <md-list-item @click="gotoMain('habit-add')" class="md-primary">
+            <md-icon>add</md-icon> <span>{{ $t('actions.addHabit') }}</span>
+          </md-list-item>
+
+          <md-list-item @click="gotoMain('habit-log')" class="md-primary">
+            <md-icon>history</md-icon> <span>{{ $t('titles.habitLog') }}</span>
+          </md-list-item>
+
+          <md-list-item @click="gotoMain('settings')" class="md-primary">
+            <md-icon>settings</md-icon> <span>{{ $t('titles.settings') }}</span>
+          </md-list-item>
+
+        </md-list>
+    </md-sidenav>
+
+    <md-toolbar>
+      <md-button @click="toggleLeftSidenav" class="md-icon-button">
+        <md-icon >menu</md-icon>
+      </md-button>
+
+      <h2 class="md-title" style="flex: 1">{{ $t(`titles.${$route.name}`) }}</h2>
+      <md-menu md-size="4">
+          <md-button class="md-icon-button" md-menu-trigger>
+            <md-icon>more_vert</md-icon>
+          </md-button>
+
+          <md-menu-content>
+            <md-menu-item @click="newHabit">
+              <md-icon>add</md-icon>
+              <span>{{ $t('actions.addHabit') }}</span>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
+
+    </md-toolbar>
+
     <router-view></router-view>
-    <md-bottom-bar>
-      <md-bottom-bar-item @click="gotoMain('main')" md-icon="home" :md-active="$route.name === 'main'"></md-bottom-bar-item>
-      <md-bottom-bar-item @click="gotoMain('habit-log')" md-icon="history" :md-active="$route.name === 'habit-log'"></md-bottom-bar-item>
-      <md-bottom-bar-item @click="gotoMain('settings')" md-icon="settings" :md-active="$route.name === 'settings'"></md-bottom-bar-item>
-    </md-bottom-bar>
+
   </div>
 </template>
 
@@ -16,41 +60,35 @@ export default {
     name: 'app',
     methods: {
         gotoMain(name) {
+            this.$refs.leftSidenav.close();
             router.push({ name });
+        },
+        toggleLeftSidenav() {
+            this.$refs.leftSidenav.toggle();
+        },
+        newHabit() {
+            router.push({ name: 'habit-add' });
         }
     }
 };
 </script>
 
 <style>
-body {
-  margin: 0;
+.app, body, html {
+  height: 100%;
+  overflow: hidden;
 }
 
-#app {
+.app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
 
-html, body, #app {
-  height: 100%;
-  overflow: hidden;
-}
-
-.md-fixed {
-  position: fixed;
-  bottom: 0;
-}
-
-.page {
-    padding: 8px 16px;
+  .page {
     overflow: auto;
-    height: 100%;
-}
+    height: 90%;
+  }
 
-.main-title {
-    padding: 10px 15px;
-}
 </style>

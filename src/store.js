@@ -59,7 +59,7 @@ const mutations = {
         state.locale = payload.locale;
 
         setTimeout(() => {
-            window.i18n.locale = payload.locale;
+            window.i18n.locale = payload.locale || 'ru';
         }, 200);
     },
     localeSet(state, newLocale) {
