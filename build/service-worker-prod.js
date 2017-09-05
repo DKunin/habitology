@@ -21,6 +21,11 @@
             navigator.serviceWorker
                 .register('service-worker.js', { scope: './' })
                 .then(function(registration) {
+                    if(window.location.search === '?update=force') {
+                        registration.update();
+                        console.log('Service Worker Registered forcefully');
+                    }
+                    console.log('Service Worker Registered');
                     // updatefound is fired if service-worker.js changes.
                     registration.onupdatefound = function() {
                         // updatefound is also fired the very first time the SW is installed,
