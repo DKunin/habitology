@@ -1,19 +1,28 @@
 <template>
   <div class="page">
-    <div class="md-title">{{ $t("titles.newHabit") }}</div>
     <input type="hidden" v-model="id">
-    <md-input-container>
-        <label>Name</label>
-        <md-input v-model="name"></md-input>
-    </md-input-container>
-    <md-input-container>
-        <label>Goal</label>
-        <md-input type="number" v-model="goal"></md-input>
-    </md-input-container>
-    <div class="controls">
+    <md-list class="md-double-line">
+        <md-list-item>
+            <md-input-container>
+                <label>Name</label>
+                <md-input v-model="name"></md-input>
+            </md-input-container>
+        </md-list-item>
+        <md-list-item>
+            <md-input-container>
+                <label>Goal</label>
+                <md-input type="number" v-model="goal"></md-input>
+            </md-input-container>
+        </md-list-item>
+        <md-list-item>
+            <md-button @click="update" class="md-raised md-primary">{{ $t("actions.save") }}</md-button>
+        </md-list-item>
+    </md-list>
+
+    <div class="controls" v-if="false">
         <md-button @click="update" class="md-raised md-primary">{{ $t("actions.save") }}</md-button>
-        <md-button @click="cancel" class="md-raised md-accent">{{ $t("actions.cancel") }}</md-button>
-        <md-button @click="remove" class="md-raised md-accent">{{ $t("actions.remove") }}</md-button>
+        <md-button v-if="false" @click="cancel" class="md-raised md-accent">{{ $t("actions.cancel") }}</md-button>
+        <md-button v-if="id" @click="remove" class="md-raised md-accent">{{ $t("actions.remove") }}</md-button>
     </div>
   </div>
 </template>
@@ -67,12 +76,5 @@ export default {
 </script>
 
 <style>
-.controls {
-    position: absolute;
-    bottom: 80px;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-}
+
 </style>

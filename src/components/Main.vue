@@ -15,6 +15,7 @@
             <md-icon class="md-primary">note_add</md-icon>
         </md-button>
       </md-card-actions>
+      <md-progress :md-progress="countPercent(countHabit(habit.id), habit.goal)"></md-progress>
     </md-card>
 
     <md-button v-if="false" @click="newHabit" class="md-fab md-primary add-button">

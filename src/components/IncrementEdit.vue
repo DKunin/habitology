@@ -1,25 +1,31 @@
 <template>
   <div class="page">
-    <div class="md-title">{{ $t("titles.editLog") }}</div>
-    <span class="md-subheading">{{showHabitName(habitId)}}</span>
+
     <input type="hidden" v-model="id">
     <input type="hidden" v-model="habitId">
-
-    <md-input-container>
-        <md-icon>event</md-icon>
-        <label>Date</label>
-        <md-input v-model="date" type="date"></md-input>
-    </md-input-container>
-    <md-input-container>
-        <md-icon>star</md-icon>
-        <label>Rating</label>
-        <md-input v-model="amount" type="number"></md-input>
-    </md-input-container>
-    <div class="controls">
-        <md-button @click="update" class="md-raised md-primary">{{ $t("actions.save") }}</md-button>
-        <md-button @click="cancel" class="md-raised md-accent">{{ $t("actions.cancel") }}</md-button>
-        <md-button @click="remove" class="md-raised md-accent">{{ $t("actions.remove") }}</md-button>
-    </div>
+        <md-list class="md-double-line">
+            <md-list-item>
+                <span class="md-subheading">{{showHabitName(habitId)}}</span>
+            </md-list-item>
+            <md-list-item>
+                <md-input-container>
+                    <md-icon>event</md-icon>
+                    <label>Date</label>
+                    <md-input v-model="date" type="date"></md-input>
+                </md-input-container>
+            </md-list-item>
+            <md-list-item>
+                <md-input-container>
+                    <md-icon>star</md-icon>
+                    <label>Rating</label>
+                    <md-input v-model="amount" type="number"></md-input>
+                </md-input-container>
+            </md-list-item>
+            <md-list-item>
+                <md-button @click="update" class="md-raised md-primary">{{ $t("actions.save") }}</md-button>
+                <md-button @click="remove" class="md-raised md-accent">{{ $t("actions.remove") }}</md-button>
+            </md-list-item>
+        </md-list>
   </div>
 </template>
 
@@ -79,12 +85,5 @@ export default {
 </script>
 
 <style>
-.controls {
-    position: absolute;
-    bottom: 80px;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-}
+
 </style>

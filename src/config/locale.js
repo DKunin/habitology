@@ -3,44 +3,50 @@ export default {
         titles: {
             main: 'Habits',
             menu: 'Menu',
-            newHabit: 'New Habit',
+            'habit-add': 'New Habit',
             settings: 'Settings',
-            addHabitScore: 'Add habit score',
-            editLog: 'Edit score',
-            habitLog: 'Habit Log'
+            'habit-increment': 'Add habit score',
+            'increment-edit': 'Edit score',
+            'habit-log': 'Habit Log'
         },
         actions: {
             save: 'Save',
             cancel: 'Cancel',
             remove: 'Remove',
-            addHabit: 'Add habit'
+            addHabit: 'Habit'
         },
         log: {
             habit: 'Habit',
             date: 'Date',
             score: 'Score'
+        },
+        settings: {
+            locale: 'Locale'
         }
     },
     ru: {
         titles: {
             main: 'Привычки',
             menu: 'Меню',
-            newHabit: 'Новая привычка',
+            'habit-add': 'Новая привычка',
             settings: 'Настройки',
-            addHabitScore: 'Добавить оценку',
-            editLog: 'Редактировать оценку',
-            habitLog: 'Журнал привычек'
+            'habit-increment': 'Добавить оценку',
+            'increment-edit': 'Редактировать оценку',
+            'habit-log': 'Журнал привычек'
         },
         actions: {
             save: 'Сохранить',
             cancel: 'Отмена',
             remove: 'Удалить',
-            addHabit: 'Добавить привычку'
+            addHabit: 'Привычка'
         },
         log: {
             habit: 'Привычка',
             date: 'Дата',
             score: 'Счет'
+        },
+        settings: {
+            locale: 'Язык'
         }
     }
 };

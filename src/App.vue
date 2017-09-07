@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-
+    
     <md-sidenav md-swipeable class="md-left" ref="leftSidenav">
       <md-toolbar class="md-small">
         <div class="md-toolbar-container">
@@ -9,15 +9,12 @@
       </md-toolbar>
 
         <md-list>
-          <md-list-item @click="gotoMain('main')" class="md-primary">
-            <md-icon>home</md-icon> <span>{{ $t('titles.main') }}</span>
-          </md-list-item>
           <md-list-item @click="gotoMain('habit-add')" class="md-primary">
             <md-icon>add</md-icon> <span>{{ $t('actions.addHabit') }}</span>
           </md-list-item>
 
           <md-list-item @click="gotoMain('habit-log')" class="md-primary">
-            <md-icon>history</md-icon> <span>{{ $t('titles.habitLog') }}</span>
+            <md-icon>history</md-icon> <span>{{ $t('titles.habit-log') }}</span>
           </md-list-item>
 
           <md-list-item @click="gotoMain('settings')" class="md-primary">
@@ -28,8 +25,11 @@
     </md-sidenav>
 
     <md-toolbar>
-      <md-button @click="toggleLeftSidenav" class="md-icon-button">
+      <md-button @click="toggleLeftSidenav" v-if="$route.name === 'main'" class="md-icon-button">
         <md-icon >menu</md-icon>
+      </md-button>
+      <md-button @click="goBack" v-if="$route.name !== 'main'" class="md-icon-button">
+        <md-icon >arrow_back</md-icon>
       </md-button>
 
       <h2 class="md-title" style="flex: 1">{{ $t(`titles.${$route.name}`) }}</h2>
@@ -68,6 +68,9 @@ export default {
         },
         newHabit() {
             router.push({ name: 'habit-add' });
+        },
+        goBack() {
+            router.back();
         }
     }
 };
@@ -89,6 +92,11 @@ export default {
   .page {
     overflow: auto;
     height: 90%;
+  }
+  .md-toolbar .md-title,
+  .md-toolbar .md-button
+   {
+    text-shadow: 1px 1px 0 rgba(0,0,0, .3);
   }
 
 </style>
