@@ -1,9 +1,24 @@
 <template>
   <div class="page">
-    <div v-if="!filtered.length">
-      No data
+    <div v-if="!filtered.length" class="no-data-screen">
+        <div>
+            <md-icon class="md-size-4x">update</md-icon>
+        </div>
+        <div>{{ $t("text.nolog") }}</div>
     </div>
-    <md-table v-if="filtered.length">
+    <md-list v-if="filtered.length">
+
+        <md-list-item v-for="(log, index) in filtered" :key="index">
+            <md-avatar>
+                <div class="log-item" @click="editHabitIncrement(log.id)">{{ log.amount }}</div>
+            </md-avatar>
+            <div class="md-list-text-container">
+                <span>{{getHabitName(log.habitId)}}</span>
+                <p>{{ formatDate(log.date) }}</p>
+            </div>
+        </md-list-item>
+    </md-list>
+    <md-table v-if="false">
       <md-table-header>
         <md-table-row>
           <md-table-head>{{ $t("log.habit") }}</md-table-head>
@@ -35,10 +50,11 @@ export default {
     },
     computed: {
         filtered() {
-            const queryHabit = this.$route.query.habitId;
+            let queryHabit = this.$route.query.habitId;
             if (queryHabit === undefined || queryHabit === null) {
                 return this.$store.state.log;
             }
+            queryHabit = parseInt(queryHabit);
             return this.$store.state.log.filter(({ habitId }) => queryHabit === habitId);
         }
     },
@@ -60,5 +76,13 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.md-avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.log-item {
+    font-size: 30px;
+}
 </style>

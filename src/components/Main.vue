@@ -1,19 +1,25 @@
 <template>
-  <div class="page">
-    <md-card v-for="habit in $store.state.habits" :key="habit.id">
+  <div class="page colored">
+      <div v-if="!Object.keys($store.state.habits).length" class="no-data-screen">
+        <div @click="newHabit">
+            <md-icon class="md-size-4x">add_circle_outline</md-icon>
+        </div>
+        <div>{{ $t("text.nohabits") }}</div>
+    </div>
+    <md-card v-if="$store.state.habits" v-for="habit in $store.state.habits" :key="habit.id">
       <md-card-header>
         <div class="md-title" @click="getHabitLog(habit.id)">
             {{habit.name}}
         </div>
-        <div class="md-subhead">{{countHabit(habit.id)}} ({{ countPercent(countHabit(habit.id), habit.goal) }}%)</div>
+        <div class="md-subhead">
+            {{countHabit(habit.id)}} ({{ countPercent(countHabit(habit.id), habit.goal) }}%) 
+                <a @click="editHabit(habit.id)"><md-icon class="md-primary">create</md-icon></a>
+        </div>
       </md-card-header>
-        <md-card-actions>
-        <md-button @click="editHabit(habit.id)" class="md-icon-button md-list-action">
-            <md-icon class="md-primary">create</md-icon>
-        </md-button>
-        <md-button @click="habitIncrement(habit.id)" class="md-icon-button md-list-action">
-            <md-icon class="md-primary">note_add</md-icon>
-        </md-button>
+      <md-card-actions>
+            <md-button @click="habitIncrement(habit.id)" class="md-icon-button md-list-action">
+                <md-icon>note_add</md-icon>
+            </md-button>
       </md-card-actions>
       <md-progress :md-progress="countPercent(countHabit(habit.id), habit.goal)"></md-progress>
     </md-card>
@@ -76,5 +82,22 @@ export default {
         right: 0;
         top: 0;
         bottom: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .md-card .md-title {
+        max-width: 90%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .md-card .md-card-actions .md-button + .md-button {
+        margin: 0;
+    }
+    .md-subhead .md-icon {
+        font-size: 20px;
     }
 </style>

@@ -4,13 +4,13 @@
     <md-list class="md-double-line">
         <md-list-item>
             <md-input-container>
-                <label>Name</label>
+                <label>{{ $t("titles.name") }}</label>
                 <md-input v-model="name"></md-input>
             </md-input-container>
         </md-list-item>
         <md-list-item>
             <md-input-container>
-                <label>Goal</label>
+                <label>{{ $t("titles.goal") }}</label>
                 <md-input type="number" v-model="goal"></md-input>
             </md-input-container>
         </md-list-item>
@@ -29,8 +29,11 @@ import router from '../router';
 export default {
     name: 'habit-add',
     data() {
+        const amountOfCustomNames = this.$t('titles.defaultHabit').length - 1;
+        const randomBetween = Math.floor(Math.random() * (amountOfCustomNames - 0 + 1) + 0);
+        console.log(randomBetween);
         return {
-            name: 'Default name',
+            name: this.$t(`titles.defaultHabit[${randomBetween}]`),
             goal: 1000,
             id: null
         };

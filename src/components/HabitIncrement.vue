@@ -9,18 +9,18 @@
         <md-list-item>
             <md-input-container>
                 <md-icon>event</md-icon>
-                <label>Date</label>
+                <label>{{ $t("titles.date") }}</label>
                 <md-input v-model="date" type="date"></md-input>
             </md-input-container>
         </md-list-item>
         <md-list-item>
             <md-input-container>
                 <md-icon>star</md-icon>
-                <label>Rating</label>
+                <label>{{ $t("titles.rating") }}</label>
                 <md-input v-model="amount" type="number"></md-input>
             </md-input-container>
         </md-list-item>
-        <md-list-item>
+        <md-list-item class="center">
             <md-button @click="update" class="md-raised md-primary">{{ $t("actions.save") }}</md-button>
         </md-list-item>
     </md-list>
@@ -71,23 +71,5 @@ export default {
 };
 </script>
 
-<style scoped>
-.hidden {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.main-date {
-    user-select: none;
-}
-
-.controls {
-    position: absolute;
-    bottom: 80px;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-}
+<style>
 </style>

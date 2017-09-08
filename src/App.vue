@@ -86,25 +86,54 @@ export default {
 
 <style>
 .app, body, html {
-  height: 100%;
-  overflow: hidden;
+    height: 100%;
+    overflow: hidden;
 }
 
 .app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+    font-family: Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color: #2c3e50;
 }
 
-  .page {
+.page {
     overflow: auto;
     height: 90%;
-  }
-  .md-toolbar .md-title,
-  .md-toolbar .md-button
-   {
-    text-shadow: 1px 1px 0 rgba(0,0,0, .3);
-  }
+}
 
+.md-toolbar .md-title,
+.md-toolbar .md-button
+{
+    text-shadow: 1px 1px 0 rgba(0,0,0, .3);
+}
+ 
+.center.md-list-item > .md-list-item-container {
+    justify-content: center;
+}
+.no-data-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    opacity: .3;
+    z-index: 1;
+}
+.no-data-screen div {
+    max-width: 60%;
+    text-align: center;
+}
+.md-toolbar {
+    z-index: 2;
+}
+.colored .no-data-screen {
+    color: white;
+}
+.md-list-item-container .md-button {
+    margin: 0;
+}
 </style>
