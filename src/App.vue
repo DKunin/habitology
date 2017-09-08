@@ -69,9 +69,9 @@ export default {
         newHabit() {
             Notification.requestPermission(function(permission) {
                 if (permission === 'granted') {
-                  setTimeout(() => {
-                    new Notification('Hi there!');
-                  }, 5000)
+                    setTimeout(() => {
+                        new Notification('Hi there!');
+                    }, 5000);
                 }
             });
 
