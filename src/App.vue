@@ -67,13 +67,13 @@ export default {
             this.$refs.leftSidenav.toggle();
         },
         newHabit() {
-            Notification.requestPermission(function(permission) {
-                if (permission === 'granted') {
-                    setTimeout(() => {
-                        new Notification('Hi there!');
-                    }, 5000);
-                }
-            });
+            // Notification.requestPermission(function(permission) {
+            //     if (permission === 'granted') {
+            //         setTimeout(() => {
+            //             new Notification('Hi there!');
+            //         }, 5000);
+            //     }
+            // });
 
             router.push({ name: 'habit-add' });
         },

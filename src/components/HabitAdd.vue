@@ -16,14 +16,9 @@
         </md-list-item>
         <md-list-item>
             <md-button @click="update" class="md-raised md-primary">{{ $t("actions.save") }}</md-button>
+            <md-button v-if="id" @click="remove" class="md-raised md-accent">{{ $t("actions.remove") }}</md-button>
         </md-list-item>
     </md-list>
-
-    <div class="controls" v-if="false">
-        <md-button @click="update" class="md-raised md-primary">{{ $t("actions.save") }}</md-button>
-        <md-button v-if="false" @click="cancel" class="md-raised md-accent">{{ $t("actions.cancel") }}</md-button>
-        <md-button v-if="id" @click="remove" class="md-raised md-accent">{{ $t("actions.remove") }}</md-button>
-    </div>
   </div>
 </template>
 
@@ -36,7 +31,7 @@ export default {
     data() {
         return {
             name: 'Default name',
-            goal: 100,
+            goal: 1000,
             id: null
         };
     },
