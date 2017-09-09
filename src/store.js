@@ -3,6 +3,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import persistPlugin from './utils/persistPlugin';
+import timeStampPlugin from './utils/timeStampPlugin';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
@@ -75,6 +76,13 @@ const mutations = {
         config.apiKey = payload.apiKey;
         firebase.initializeApp(config);
         window.firebase = firebase;
+        if (payload.user.uid) {
+            var starCountRef = firebase.database().ref('users/' + payload.user.uid);
+            starCountRef.on('value', function() {
+                // Should restore from server:
+                // console.log(snapshot.val());
+            });
+        }
         setTimeout(() => {
             window.i18n.locale = payload.locale || 'ru';
         }, 200);
@@ -85,7 +93,8 @@ const mutations = {
     },
     getUser(state, newUser) {
         state.user = {
-            email: newUser.email
+            email: newUser.email,
+            uid: newUser.uid
         };
     },
     setUser(state, newUser) {
@@ -93,6 +102,9 @@ const mutations = {
     },
     saveSettings(state, newSettings) {
         state.apiKey = newSettings.apiKey;
+    },
+    timeStamp(state, newTimeStamp) {
+        state.timeStamp = newTimeStamp;
     }
 };
 
@@ -116,7 +128,7 @@ const actions = {
         commit('localeSet', newLocale);
     },
     getUser({ commit }, user) {
-        console.log(commit, user);
+        commit('getUser', user);
     },
     logOut({ commit }) {
         commit('setUser', {});
@@ -127,21 +139,12 @@ const actions = {
     saveSettings({ commit }, newSettings) {
         commit('saveSettings', newSettings);
     }
-    // ,
-    // incrementAsync({ commit }) {
-    //     return new Promise(resolve => {
-    //         setTimeout(() => {
-    //             commit('increment');
-    //             resolve();
-    //         }, 1000);
-    //     });
-    // }
 };
 const store = new Vuex.Store({
     state,
     actions,
     mutations,
-    plugins: [persistPlugin]
+    plugins: [persistPlugin, timeStampPlugin]
 });
 
 export default store;

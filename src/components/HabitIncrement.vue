@@ -1,6 +1,5 @@
 <template>
   <div class="page">
-
     <input type="hidden" v-model="habitId">
     <md-list class="md-double-line">
         <md-list-item>
@@ -47,8 +46,11 @@ export default {
     },
     methods: Object.assign(actions, {
         update: function() {
+            const date = new Date(this.date);
+            date.setHours(new Date().getHours());
+            date.setMinutes(new Date().getMinutes());
             const newObject = {
-                date: new Date(this.date),
+                date,
                 amount: parseInt(this.amount || 0),
                 habitId: parseInt(this.habitId)
             };

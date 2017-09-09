@@ -7,39 +7,21 @@
         <div>{{ $t("text.nolog") }}</div>
     </div>
     <md-list v-if="filtered.length">
-
         <md-list-item v-for="(log, index) in filtered" :key="index">
             <md-avatar>
                 <div class="log-item" @click="editHabitIncrement(log.id)">{{ log.amount }}</div>
             </md-avatar>
             <div class="md-list-text-container">
-                <span>{{getHabitName(log.habitId)}}</span>
+                <span>{{ getHabitName(log.habitId) }}</span>
                 <p>{{ formatDate(log.date) }}</p>
             </div>
         </md-list-item>
     </md-list>
-    <md-table v-if="false">
-      <md-table-header>
-        <md-table-row>
-          <md-table-head>{{ $t("log.habit") }}</md-table-head>
-          <md-table-head>{{ $t("log.date") }}</md-table-head>
-          <md-table-head md-numeric>{{ $t("log.score") }}</md-table-head>
-        </md-table-row>
-      </md-table-header>
-
-      <md-table-body>
-        <md-table-row v-for="(log, index) in filtered" :key="index">
-          <md-table-cell>{{ getHabitName(log.habitId) }}</md-table-cell>
-          <md-table-cell>{{ formatDate(log.date) }}</md-table-cell>
-          <md-table-cell><a @click="editHabitIncrement(log.id)">{{ log.amount }}</a></md-table-cell>
-        </md-table-row>
-      </md-table-body>
-    </md-table>
   </div>
 </template>
 
 <script>
-import fecha from 'fecha';
+import moment from 'moment';
 import router from '../router';
 
 export default {
@@ -55,12 +37,19 @@ export default {
                 return this.$store.state.log;
             }
             queryHabit = parseInt(queryHabit);
-            return this.$store.state.log.filter(({ habitId }) => queryHabit === habitId);
+            return this.$store.state.log
+                .filter(({ habitId }) => queryHabit === habitId)
+                .sort((a, b) => {
+                    return new Date(b.date) - new Date(a.date);
+                });
         }
+    },
+    mounted() {
+        moment.locale(this.$store.state.locale);
     },
     methods: {
         formatDate(dateTime) {
-            return fecha.format(new Date(dateTime), 'DD.MM.YY');
+            return moment(new Date(dateTime)).calendar();
         },
         getHabitName(habitId) {
             const habit = this.$store.state.habits[habitId];
@@ -83,6 +72,6 @@ export default {
     align-items: center;
 }
 .log-item {
-    font-size: 30px;
+    font-size: 25px;
 }
 </style>
