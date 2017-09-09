@@ -3,15 +3,28 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import persistPlugin from './utils/persistPlugin';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/database';
 
 Vue.use(Vuex);
 
 const randomId = () => parseInt(Math.random() * 1e10);
 
+let config = {
+    authDomain: 'habitology-ffa70.firebaseapp.com',
+    databaseURL: 'https://habitology-ffa70.firebaseio.com',
+    projectId: 'habitology-ffa70',
+    storageBucket: 'habitology-ffa70.appspot.com',
+    messagingSenderId: '127457719546'
+};
+
 const state = {
     habits: {},
     log: [],
-    locale: 'ru'
+    user: {},
+    locale: 'ru',
+    apiKey: ''
 };
 
 const mutations = {
@@ -56,8 +69,12 @@ const mutations = {
     restoreState(state, payload) {
         state.habits = payload.habits;
         state.log = payload.log;
+        state.user = payload.user;
         state.locale = payload.locale;
-
+        state.apiKey = payload.apiKey;
+        config.apiKey = payload.apiKey;
+        firebase.initializeApp(config);
+        window.firebase = firebase;
         setTimeout(() => {
             window.i18n.locale = payload.locale || 'ru';
         }, 200);
@@ -65,6 +82,17 @@ const mutations = {
     localeSet(state, newLocale) {
         state.locale = newLocale;
         window.i18n.locale = newLocale;
+    },
+    getUser(state, newUser) {
+        state.user = {
+            email: newUser.email
+        };
+    },
+    setUser(state, newUser) {
+        state.user = newUser;
+    },
+    saveSettings(state, newSettings) {
+        state.apiKey = newSettings.apiKey;
     }
 };
 
@@ -86,6 +114,18 @@ const actions = {
     },
     localeSet({ commit }, newLocale) {
         commit('localeSet', newLocale);
+    },
+    getUser({ commit }, user) {
+        console.log(commit, user);
+    },
+    logOut({ commit }) {
+        commit('setUser', {});
+    },
+    logIn({ commit }, newUser) {
+        commit('getUser', newUser);
+    },
+    saveSettings({ commit }, newSettings) {
+        commit('saveSettings', newSettings);
     }
     // ,
     // incrementAsync({ commit }) {
@@ -97,14 +137,15 @@ const actions = {
     //     });
     // }
 };
-
-// const getters = {
-//     evenOrOdd: state => (state.count % 2 === 0 ? 'even' : 'odd')
-// };
-
-export default new Vuex.Store({
+const store = new Vuex.Store({
     state,
     actions,
     mutations,
     plugins: [persistPlugin]
 });
+
+export default store;
+
+// setTimeout(function() {
+//     store.commit('getUser', firebase.auth().currentUser || {});
+// }, 500);

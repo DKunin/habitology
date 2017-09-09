@@ -2,7 +2,7 @@
 
 const persistPlugin = store => {
     const history = JSON.parse(
-        localStorage.getItem('habitologyState') || '{"habits":{}, "log": []}'
+        localStorage.getItem('habitologyState') || '{"habits":{}, "log": [], "user": {}, "apiKey": ""}'
     );
 
     if (history) {
