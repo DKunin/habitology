@@ -25,7 +25,8 @@ const state = {
     log: [],
     user: {},
     locale: 'ru',
-    apiKey: ''
+    apiKey: '',
+    timeStamp: 0
 };
 
 const mutations = {
@@ -71,6 +72,7 @@ const mutations = {
         state.habits = payload.habits;
         state.log = payload.log;
         state.user = payload.user;
+        state.timeStamp = payload.timeStamp;
         state.locale = payload.locale;
         state.apiKey = payload.apiKey;
         config.apiKey = payload.apiKey;
@@ -78,9 +80,18 @@ const mutations = {
         window.firebase = firebase;
         if (payload.user.uid) {
             var starCountRef = firebase.database().ref('users/' + payload.user.uid);
-            starCountRef.on('value', function() {
-                // Should restore from server:
-                // console.log(snapshot.val());
+            starCountRef.on('value', (snapshot) => {
+                const severState = snapshot.val();
+                if (state.timeStamp < severState.timeStamp) {
+                    state.habits = Object.assign({}, severState.habits, state.habits);
+                    state.log = severState.log;
+                    state.user = severState.user;
+                    state.locale = severState.locale;
+                } else if (state.timeStamp > severState.timeStamp) {
+                    state.habits = Object.assign({}, state.habits, severState.habits);
+                    state.log = severState.log;
+                    state.locale = severState.locale;
+                }
             });
         }
         setTimeout(() => {
