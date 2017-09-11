@@ -20,7 +20,8 @@ let config = {
     messagingSenderId: '127457719546'
 };
 
-const state = {
+const basicState = {
+    syncingState: 'cloud_off',
     habits: {},
     log: [],
     user: {},
@@ -72,28 +73,13 @@ const mutations = {
         state.habits = payload.habits;
         state.log = payload.log;
         state.user = payload.user;
-        state.timeStamp = payload.timeStamp;
         state.locale = payload.locale;
+
+        state.timeStamp = payload.timeStamp;
         state.apiKey = payload.apiKey;
         config.apiKey = payload.apiKey;
         firebase.initializeApp(config);
         window.firebase = firebase;
-        if (payload.user.uid) {
-            var starCountRef = firebase.database().ref('users/' + payload.user.uid);
-            starCountRef.on('value', (snapshot) => {
-                const severState = snapshot.val();
-                if (state.timeStamp < severState.timeStamp) {
-                    state.habits = Object.assign({}, severState.habits, state.habits);
-                    state.log = severState.log;
-                    state.user = severState.user;
-                    state.locale = severState.locale;
-                } else if (state.timeStamp > severState.timeStamp) {
-                    state.habits = Object.assign({}, state.habits, severState.habits);
-                    state.log = severState.log;
-                    state.locale = severState.locale;
-                }
-            });
-        }
         setTimeout(() => {
             window.i18n.locale = payload.locale || 'ru';
         }, 200);
@@ -113,9 +99,40 @@ const mutations = {
     },
     saveSettings(state, newSettings) {
         state.apiKey = newSettings.apiKey;
+        state.locale = newSettings.locale;
     },
     timeStamp(state, newTimeStamp) {
         state.timeStamp = newTimeStamp;
+    },
+    syncWithCloud(state) {
+        if (!firebase || !state.user || !state.user.uid) {
+            return;
+        }
+        state.syncingState = 'cloud_download';
+        const ref = 'users/' + state.user.uid;
+        firebase.database().ref(ref).once('value').then(function(snapshot) {
+            const { habits, locale, log, timeStamp } = state;
+            const localState = {
+                habits,
+                locale,
+                log,
+                timeStamp: timeStamp || 0
+            };
+            const serverState = snapshot.val();
+            let mergedState;
+            if (localState.timeStamp > serverState.timeStamp) {
+                mergedState = Object.assign(basicState, serverState, localState);
+            } else {
+                mergedState = Object.assign(basicState, localState, serverState);
+            }
+            firebase.database().ref('users/' + state.user.uid).update(mergedState);
+
+            state.habits = mergedState.habits;
+            state.log = mergedState.log;
+            state.user = mergedState.user;
+            state.locale = mergedState.locale;
+            state.syncingState = 'cloud_done';
+        });
     }
 };
 
@@ -149,17 +166,16 @@ const actions = {
     },
     saveSettings({ commit }, newSettings) {
         commit('saveSettings', newSettings);
+    },
+    syncWithCloud({ commit }) {
+        commit('syncWithCloud');
     }
 };
 const store = new Vuex.Store({
-    state,
+    state: basicState,
     actions,
     mutations,
     plugins: [persistPlugin, timeStampPlugin]
 });
 
 export default store;
-
-// setTimeout(function() {
-//     store.commit('getUser', firebase.auth().currentUser || {});
-// }, 500);

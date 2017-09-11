@@ -12,6 +12,7 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "deep-diff": "0.3.8",
     "fecha": "2.3.1",
     "firebase": "4.3.1",
     "gh-pages": "1.0.0",

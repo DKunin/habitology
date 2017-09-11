@@ -31,7 +31,6 @@ export default {
     data() {
         const amountOfCustomNames = this.$t('titles.defaultHabit').length - 1;
         const randomBetween = Math.floor(Math.random() * (amountOfCustomNames - 0 + 1) + 0);
-        console.log(randomBetween);
         return {
             name: this.$t(`titles.defaultHabit[${randomBetween}]`),
             goal: 1000,

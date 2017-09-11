@@ -36,19 +36,22 @@
                     <label>ApiKey</label>
                     <md-input v-model="apiKey"></md-input>
                 </md-input-container>
-                <md-button @click="saveSettings()" class="md-raised md-primary">
-                    Save
-                </md-button>
             </md-list-item>
 
             <md-list-item>
                 <md-input-container>
                     <label for="locale">{{ $t("settings.locale") }}</label>
-                    <md-select name="locale" id="locale" v-model="locale" @change="handleChange">
+                    <md-select name="locale" id="locale" v-model="locale">
                         <md-option value="ru">Русский</md-option>
                         <md-option value="en">English</md-option>
                     </md-select>
                 </md-input-container>
+            </md-list-item>
+
+            <md-list-item>
+                <md-button @click="saveSettings" type="button" class="md-raised md-primary">
+                    Save
+                </md-button>
             </md-list-item>
 
         </md-list>
@@ -98,12 +101,10 @@ export default {
                     console.log(error, error.message);
                 });
         },
-        handleChange() {
-            this.$store.dispatch('localeSet', this.locale);
-        },
         saveSettings() {
             this.$store.dispatch('saveSettings', {
-                apiKey: this.apiKey
+                apiKey: this.apiKey,
+                locale: this.locale
             });
             setTimeout(() => {
                 window.location.reload();

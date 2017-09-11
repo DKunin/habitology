@@ -4,7 +4,7 @@
     <md-sidenav md-swipeable class="md-left" ref="leftSidenav">
       <md-toolbar class="md-small">
         <div class="md-toolbar-container">
-          <h3 class="md-title">{{ $t('titles.menu') }}</h3>
+          <h3 class="md-title"><Logo /> {{ $t('titles.menu') }}</h3>
         </div>
       </md-toolbar>
 
@@ -33,6 +33,9 @@
       </md-button>
 
       <h2 class="md-title" style="flex: 1">{{ $t(`titles.${$route.name}`) }}</h2>
+      <md-button class="md-icon-button" @click="syncWithCloud">
+        <md-icon>{{ $store.state.syncingState }}</md-icon>
+      </md-button>
       <md-menu md-size="4">
           <md-button class="md-icon-button" md-menu-trigger>
             <md-icon>more_vert</md-icon>
@@ -55,9 +58,13 @@
 
 <script>
 import router from './router';
+import Logo from '@/components/Logo';
 
 export default {
     name: 'app',
+    components: {
+        Logo
+    },
     methods: {
         gotoMain(name) {
             this.$refs.leftSidenav.close();
@@ -79,6 +86,9 @@ export default {
         },
         goBack() {
             router.back();
+        },
+        syncWithCloud() {
+            this.$store.dispatch('syncWithCloud');
         }
     }
 };
