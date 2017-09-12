@@ -6,7 +6,7 @@
         </div>
         <div>{{ $t("text.nohabits") }}</div>
     </div>
-    <md-card v-if="$store.state.habits" v-for="habit in $store.state.habits" :key="habit.id">
+    <md-card v-if="$store.state.habits && !habit.destroy " v-for="habit in $store.state.habits" :key="habit.id">
       <md-card-header>
         <div class="md-title" @click="getHabitLog(habit.id)">
             {{habit.name}}

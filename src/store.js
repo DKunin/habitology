@@ -7,6 +7,7 @@ import timeStampPlugin from './utils/timeStampPlugin';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
+import merge from 'deepmerge';
 
 Vue.use(Vuex);
 
@@ -46,7 +47,8 @@ const mutations = {
         ).reduce((newHabits, singleHabitKey) => {
             const habit = state.habits[singleHabitKey];
             if (habit.id === parseInt(habitId)) {
-                return newHabits;
+                newHabits[habit.id] = habit;
+                newHabits[habit.id].destroy = true;
             }
             newHabits[habit.id] = habit;
             return newHabits;
@@ -119,18 +121,22 @@ const mutations = {
                 timeStamp: timeStamp || 0
             };
             const serverState = snapshot.val();
-            let mergedState;
-            if (localState.timeStamp > serverState.timeStamp) {
-                mergedState = Object.assign(basicState, serverState, localState);
-            } else {
-                mergedState = Object.assign(basicState, localState, serverState);
-            }
-            firebase.database().ref('users/' + state.user.uid).update(mergedState);
+            let mergedState = {};
+            mergedState.habits = merge(localState.habits, serverState.habits || {});
+
+            const cleanedHabits = Object.keys(mergedState.habits).reduce((newState, singleHabit) => {
+                if (mergedState.habits[singleHabit].destroy) {
+                    return newState;
+                }
+                newState[singleHabit] = mergedState.habits[singleHabit];
+                return newState;
+            }, {});
+            firebase.database().ref('users/' + state.user.uid).update({ habits: cleanedHabits });
 
             state.habits = mergedState.habits;
-            state.log = mergedState.log;
-            state.user = mergedState.user;
-            state.locale = mergedState.locale;
+            // state.log = mergedState.log;
+            // state.user = mergedState.user;
+            // state.locale = mergedState.locale;
             state.syncingState = 'cloud_done';
         });
     }
