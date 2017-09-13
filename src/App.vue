@@ -33,7 +33,7 @@
       </md-button>
 
       <h2 class="md-title" style="flex: 1">{{ $t(`titles.${$route.name}`) }}</h2>
-      <md-button class="md-icon-button" @click="syncWithCloud">
+      <md-button v-if="$store.state.user.uid" class="md-icon-button" @click="syncWithCloud">
         <md-icon>{{ $store.state.syncingState }}</md-icon>
       </md-button>
       <md-menu md-size="4">

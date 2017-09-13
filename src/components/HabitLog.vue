@@ -34,10 +34,11 @@ export default {
         filtered() {
             let queryHabit = this.$route.query.habitId;
             if (queryHabit === undefined || queryHabit === null) {
-                return this.$store.state.log;
+                return this.$store.state.log.filter(({ destroy }) => !destroy);
             }
             queryHabit = parseInt(queryHabit);
             return this.$store.state.log
+                .filter(({ destroy }) => !destroy)
                 .filter(({ habitId }) => queryHabit === habitId)
                 .sort((a, b) => {
                     return new Date(b.date) - new Date(a.date);

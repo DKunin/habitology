@@ -3,12 +3,11 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import persistPlugin from './utils/persistPlugin';
-import timeStampPlugin from './utils/timeStampPlugin';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
 import merge from 'deepmerge';
-
+import { SYNC_PROGRESS, SYNC_DONE, SYNC_OFF } from './config/syncStates';
 Vue.use(Vuex);
 
 const randomId = () => parseInt(Math.random() * 1e10);
@@ -22,41 +21,47 @@ let config = {
 };
 
 const basicState = {
-    syncingState: 'cloud_off',
+    syncingState: SYNC_OFF,
     habits: {},
     log: [],
     user: {},
     locale: 'ru',
-    apiKey: '',
-    timeStamp: 0
+    apiKey: ''
 };
 
 const mutations = {
     incrementLog(state, payload) {
         state.log = state.log.concat(payload);
+        state.syncingState = SYNC_OFF;
     },
     updateHabit(state, payload) {
         if (!state.habits) {
             state.habits = {};
         }
         state.habits[payload.id] = payload;
+        state.syncingState = SYNC_OFF;
     },
     removeHabit(state, habitId) {
-        const newHabits = Object.keys(
+        state.habits = Object.keys(
             state.habits
-        ).reduce((newHabits, singleHabitKey) => {
+        ).reduce((newHabitsArray, singleHabitKey) => {
             const habit = state.habits[singleHabitKey];
             if (habit.id === parseInt(habitId)) {
-                newHabits[habit.id] = habit;
-                newHabits[habit.id].destroy = true;
+                newHabitsArray[habit.id] = habit;
+                newHabitsArray[habit.id].destroy = true;
             }
-            newHabits[habit.id] = habit;
-            return newHabits;
+            newHabitsArray[habit.id] = habit;
+            return newHabitsArray;
         }, {});
-        state.log = state.log.filter(singleLogItem => {
-            return singleLogItem.habitId !== habitId;
-        });
-        state.habits = newHabits;
+
+        state.log = state.log.reduce((newLog, singleLogItem) => {
+            if (parseInt(singleLogItem.habitId) === parseInt(habitId)) {
+                singleLogItem.destroy = true;
+            }
+            return newLog.concat(singleLogItem);
+        }, []);
+
+        state.syncingState = SYNC_OFF;
     },
     updateLogItem(state, payload) {
         state.log = state.log.map(singleLogItem => {
@@ -65,11 +70,15 @@ const mutations = {
             }
             return singleLogItem;
         });
+        state.syncingState = SYNC_OFF;
     },
     removeLogItem(state, logItemId) {
-        state.log = state.log.filter(singleLogItem => {
-            return singleLogItem.id !== logItemId;
-        });
+        state.log = state.log.reduce((newLog, singleLogItem) => {
+            if (parseInt(singleLogItem.id) === parseInt(logItemId)) {
+                singleLogItem.destroy = true;
+            }
+            return newLog.concat(singleLogItem);
+        }, []);
     },
     restoreState(state, payload) {
         state.habits = payload.habits;
@@ -77,7 +86,6 @@ const mutations = {
         state.user = payload.user;
         state.locale = payload.locale;
 
-        state.timeStamp = payload.timeStamp;
         state.apiKey = payload.apiKey;
         config.apiKey = payload.apiKey;
         firebase.initializeApp(config);
@@ -99,30 +107,33 @@ const mutations = {
     setUser(state, newUser) {
         state.user = newUser;
     },
+    logOut(state) {
+        state.user = {};
+        state.habits = {};
+        state.log = [];
+        state.syncingState = SYNC_OFF;
+    },
     saveSettings(state, newSettings) {
         state.apiKey = newSettings.apiKey;
         state.locale = newSettings.locale;
-    },
-    timeStamp(state, newTimeStamp) {
-        state.timeStamp = newTimeStamp;
     },
     syncWithCloud(state) {
         if (!firebase || !state.user || !state.user.uid) {
             return;
         }
-        state.syncingState = 'cloud_download';
+        state.syncingState = SYNC_PROGRESS;
         const ref = 'users/' + state.user.uid;
         firebase.database().ref(ref).once('value').then(function(snapshot) {
-            const { habits, locale, log, timeStamp } = state;
+            const { habits, log } = state;
             const localState = {
                 habits,
-                locale,
-                log,
-                timeStamp: timeStamp || 0
+                log
             };
-            const serverState = snapshot.val();
+            const serverState = snapshot.val() || {};
             let mergedState = {};
-            mergedState.habits = merge(localState.habits, serverState.habits || {});
+            mergedState.habits = merge(serverState.habits || {}, localState.habits);
+
+            mergedState.log = merge(serverState.log || [], localState.log || []);
 
             const cleanedHabits = Object.keys(mergedState.habits).reduce((newState, singleHabit) => {
                 if (mergedState.habits[singleHabit].destroy) {
@@ -131,13 +142,14 @@ const mutations = {
                 newState[singleHabit] = mergedState.habits[singleHabit];
                 return newState;
             }, {});
-            firebase.database().ref('users/' + state.user.uid).update({ habits: cleanedHabits });
 
+            const cleanedLogs = mergedState.log.filter(singleLogItem => {
+                return !singleLogItem.destroy;
+            }, {});
+            firebase.database().ref('users/' + state.user.uid).update({ habits: cleanedHabits, log: cleanedLogs });
             state.habits = mergedState.habits;
-            // state.log = mergedState.log;
-            // state.user = mergedState.user;
-            // state.locale = mergedState.locale;
-            state.syncingState = 'cloud_done';
+            state.log = cleanedLogs;
+            state.syncingState = SYNC_DONE;
         });
     }
 };
@@ -165,7 +177,7 @@ const actions = {
         commit('getUser', user);
     },
     logOut({ commit }) {
-        commit('setUser', {});
+        commit('logOut');
     },
     logIn({ commit }, newUser) {
         commit('getUser', newUser);
@@ -181,7 +193,7 @@ const store = new Vuex.Store({
     state: basicState,
     actions,
     mutations,
-    plugins: [persistPlugin, timeStampPlugin]
+    plugins: [persistPlugin]
 });
 
 export default store;

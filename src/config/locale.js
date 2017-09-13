@@ -33,7 +33,13 @@ export default {
             score: 'Score'
         },
         settings: {
-            locale: 'Locale'
+            locale: 'Locale',
+            login: 'Log in',
+            logout: 'Log out',
+            signup: 'Sign Up',
+            save: 'Save',
+            email: 'email',
+            password: 'password'
         },
         text: {
             nolog: 'Add rating to a habit and it\'ll appear right here.',
@@ -74,7 +80,13 @@ export default {
             score: 'Счет'
         },
         settings: {
-            locale: 'Язык'
+            locale: 'Язык',
+            login: 'Войти',
+            logout: 'Выйти',
+            signup: 'Регистрация',
+            save: 'Сохранить',
+            email: 'email',
+            password: 'пароль'
         },
         text: {
             nolog: 'Добавьте оценку к привычке и она появится здесь',

@@ -4,30 +4,30 @@
             <md-list-item v-if="$store.state.user && $store.state.user.email">
                 <div>{{$store.state.user.email}}</div>
                 <md-button @click="logOut()" class="md-raised md-primary">
-                    Log out
+                    {{ $t("settings.logout") }}
                 </md-button>
             </md-list-item>
 
             <md-list-item v-if="!$store.state.user.email">
                 <md-input-container>
-                    <label>email</label>
+                    <label>{{ $t("settings.email") }}</label>
                     <md-input v-model="email"></md-input>
                 </md-input-container>
             </md-list-item>
 
             <md-list-item v-if="!$store.state.user.email">
               <md-input-container md-has-password>
-                <label>Password</label>
+                <label>{{ $t("settings.password") }}</label>
                 <md-input v-model="password" type="password"></md-input>
               </md-input-container>
             </md-list-item>
 
             <md-list-item v-if="!$store.state.user.email">
                 <md-button @click="signIn()" class="md-raised md-primary">
-                    Sign in
+                    {{ $t("settings.login") }}
                 </md-button>
-                <md-button @click="signUp()" class="md-raised md-primary">
-                    Sign up
+                <md-button @click="signUp()" class="md-raised">
+                    {{ $t("settings.signup") }}
                 </md-button>
             </md-list-item>
 
@@ -50,7 +50,7 @@
 
             <md-list-item>
                 <md-button @click="saveSettings" type="button" class="md-raised md-primary">
-                    Save
+                    {{ $t("settings.save") }}
                 </md-button>
             </md-list-item>
 
