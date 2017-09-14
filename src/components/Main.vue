@@ -1,5 +1,5 @@
 <template>
-  <div class="page colored">
+   <div class="page colored">
       <div v-if="!Object.keys($store.state.habits).length" class="no-data-screen">
         <div @click="newHabit">
             <md-icon class="md-size-4x">add_circle_outline</md-icon>
@@ -17,11 +17,19 @@
         </div>
       </md-card-header>
       <md-card-actions>
-            <md-button @click="habitIncrement(habit.id)" class="md-icon-button md-list-action">
-                <md-icon>note_add</md-icon>
-            </md-button>
+        <md-button @click="habitIncrement(habit.id)" class="md-icon-button md-list-action">
+            <md-icon>note_add</md-icon>
+        </md-button>
       </md-card-actions>
       <md-progress :md-progress="countPercent(countHabit(habit.id), habit.goal)"></md-progress>
+    </md-card>
+
+    <md-card v-if="$store.state.habits" class="empty-card" >
+        <md-card-content >
+            <div @click="newHabit">
+                <md-icon class="md-size-2x">add_circle_outline</md-icon>
+            </div>
+        </md-card-content>
     </md-card>
 
     <md-button v-if="false" @click="newHabit" class="md-fab md-primary add-button">
@@ -101,5 +109,14 @@ export default {
     }
     .md-subhead .md-icon {
         font-size: 20px;
+    }
+    .empty-card {
+        opacity: .05;
+        text-align: center;
+        cursor: pointer;
+    }
+    .empty-card .md-card-content {
+        padding: 10px;
+        border: 2px dashed black;
     }
 </style>

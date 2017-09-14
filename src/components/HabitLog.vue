@@ -12,11 +12,19 @@
                 <div class="log-item" @click="editHabitIncrement(log.id)">{{ log.amount }}</div>
             </md-avatar>
             <div class="md-list-text-container">
-                <span>{{ getHabitName(log.habitId) }}</span>
+                <span>{{ getHabitName(log.habitId) }} <a class="edit-log" @click="editHabitIncrement(log.id)"><md-icon class="md-primary">create</md-icon></a></span>
                 <p>{{ formatDate(log.date) }}</p>
+                
             </div>
         </md-list-item>
     </md-list>
+    <md-card v-if="$route.query.habitId" class="empty-card" >
+        <md-card-content >
+            <div @click="addHabitIncrement($route.query.habitId)">
+                <md-icon class="md-size-2x">add_circle_outline</md-icon>
+            </div>
+        </md-card-content>
+    </md-card>
   </div>
 </template>
 
@@ -61,6 +69,9 @@ export default {
         },
         editHabitIncrement(logId) {
             router.push({ name: 'increment-edit', query: { logId } });
+        },
+        addHabitIncrement(habitId) {
+            router.push({ name: 'habit-increment', params: { habitId }});
         }
     }
 };
@@ -74,5 +85,19 @@ export default {
 }
 .log-item {
     font-size: 25px;
+}
+.empty-card {
+    opacity: .05;
+    text-align: center;
+    cursor: pointer;
+    margin: 20px;
+}
+.empty-card .md-card-content {
+    padding: 10px;
+    border: 2px dashed black;
+}
+.edit-log {
+    float: right;
+    opacity: .4;
 }
 </style>
