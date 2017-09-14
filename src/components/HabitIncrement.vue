@@ -19,7 +19,7 @@
                 <md-input v-model="amount" type="number"></md-input>
             </md-input-container>
         </md-list-item>
-        <md-list-item class="center">
+        <md-list-item class="right">
             <md-button @click="update" class="md-raised md-primary">{{ $t("actions.save") }}</md-button>
         </md-list-item>
     </md-list>

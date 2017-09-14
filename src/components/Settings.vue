@@ -23,19 +23,12 @@
             </md-list-item>
 
             <md-list-item v-if="!$store.state.user.email">
-                <md-button @click="signIn()" class="md-raised md-primary">
-                    {{ $t("settings.login") }}
-                </md-button>
                 <md-button @click="signUp()" class="md-raised">
                     {{ $t("settings.signup") }}
                 </md-button>
-            </md-list-item>
-
-            <md-list-item>
-                <md-input-container>
-                    <label>ApiKey</label>
-                    <md-input v-model="apiKey"></md-input>
-                </md-input-container>
+                <md-button @click="signIn()" class="md-raised md-primary">
+                    {{ $t("settings.login") }}
+                </md-button>
             </md-list-item>
 
             <md-list-item>
@@ -55,19 +48,26 @@
             </md-list-item>
 
         </md-list>
+        <md-snackbar md-position="bottom center" ref="snackbar" :md-duration="4000">
+          <span>{{ $t(`serverErrorMessages.${errorCode}`) }}</span>
+          <md-button class="md-accent" md-theme="default" @click="$refs.snackbar.close()">Close</md-button>
+        </md-snackbar>
+        <div class="version">{{ version }}</div>
     </div>
 </template>
 
 <script>
+import packageJson from '../../package.json';
 
 export default {
     name: 'settings',
     data() {
         return {
             locale: this.$store.state.locale,
-            apiKey: this.$store.state.apiKey,
-            email: null,
-            password: null
+            email: '',
+            password: '',
+            errorCode: 'noerror',
+            version: packageJson.version
         };
     },
     mounted() {
@@ -79,8 +79,9 @@ export default {
                 .then(user => {
                     this.$store.dispatch('logIn', user);
                 })
-                .catch(function(error) {
-                    console.log(error, error.message);
+                .catch((error) => {
+                    this.$set(this, 'errorCode', error.code.replace('auth/', ''));
+                    this.$refs.snackbar.open();
                 });
         },
         logOut() {
@@ -97,13 +98,12 @@ export default {
                 })
                 .catch(function(error) {
                     // const errorCode = error.code;
-                    // const errorMessage = error.message;
+                    // const errorCode = error.message;
                     console.log(error, error.message);
                 });
         },
         saveSettings() {
             this.$store.dispatch('saveSettings', {
-                apiKey: this.apiKey,
                 locale: this.locale
             });
             setTimeout(() => {
@@ -114,5 +114,13 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+    .version {
+        position: fixed;
+        bottom: 20px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        opacity: .3;
+    }
 </style>

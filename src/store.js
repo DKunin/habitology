@@ -13,6 +13,7 @@ Vue.use(Vuex);
 const randomId = () => parseInt(Math.random() * 1e10);
 
 let config = {
+    apiKey: 'AIzaSyD8-mtgEl3_PrD9mZe2iwPARtRDLen7nu4',
     authDomain: 'habitology-ffa70.firebaseapp.com',
     databaseURL: 'https://habitology-ffa70.firebaseio.com',
     projectId: 'habitology-ffa70',
@@ -21,12 +22,11 @@ let config = {
 };
 
 const basicState = {
-    syncingState: SYNC_OFF,
+    syncingState: SYNC_DONE,
     habits: {},
     log: [],
     user: {},
-    locale: 'ru',
-    apiKey: ''
+    locale: 'ru'
 };
 
 const mutations = {
@@ -85,9 +85,6 @@ const mutations = {
         state.log = payload.log;
         state.user = payload.user;
         state.locale = payload.locale;
-
-        state.apiKey = payload.apiKey;
-        config.apiKey = payload.apiKey;
         firebase.initializeApp(config);
         window.firebase = firebase;
         setTimeout(() => {
@@ -114,7 +111,6 @@ const mutations = {
         state.syncingState = SYNC_OFF;
     },
     saveSettings(state, newSettings) {
-        state.apiKey = newSettings.apiKey;
         state.locale = newSettings.locale;
     },
     syncWithCloud(state) {
@@ -123,34 +119,58 @@ const mutations = {
         }
         state.syncingState = SYNC_PROGRESS;
         const ref = 'users/' + state.user.uid;
-        firebase.database().ref(ref).once('value').then(function(snapshot) {
-            const { habits, log } = state;
-            const localState = {
-                habits,
-                log
-            };
-            const serverState = snapshot.val() || {};
-            let mergedState = {};
-            mergedState.habits = merge(serverState.habits || {}, localState.habits);
+        firebase
+            .database()
+            .ref(ref)
+            .once('value')
+            .then(function(snapshot) {
+                const { habits, log } = state;
+                const localState = {
+                    habits,
+                    log
+                };
+                const serverState = snapshot.val() || {};
+                let mergedState = {};
+                mergedState.habits = merge(
+                    serverState.habits || {},
+                    localState.habits
+                );
 
-            mergedState.log = merge(serverState.log || [], localState.log || []);
+                mergedState.log = merge(
+                    serverState.log || [],
+                    localState.log || []
+                );
 
-            const cleanedHabits = Object.keys(mergedState.habits).reduce((newState, singleHabit) => {
-                if (mergedState.habits[singleHabit].destroy) {
+                const cleanedHabits = Object.keys(
+                    mergedState.habits
+                ).reduce((newState, singleHabit) => {
+                    if (mergedState.habits[singleHabit].destroy) {
+                        return newState;
+                    }
+                    newState[singleHabit] = mergedState.habits[singleHabit];
                     return newState;
-                }
-                newState[singleHabit] = mergedState.habits[singleHabit];
-                return newState;
-            }, {});
+                }, {});
 
-            const cleanedLogs = mergedState.log.filter(singleLogItem => {
-                return !singleLogItem.destroy;
-            }, {});
-            firebase.database().ref('users/' + state.user.uid).update({ habits: cleanedHabits, log: cleanedLogs });
-            state.habits = mergedState.habits;
-            state.log = cleanedLogs;
-            state.syncingState = SYNC_DONE;
-        });
+                const cleanedLogs = mergedState.log.filter(singleLogItem => {
+                    return !singleLogItem.destroy;
+                }, {});
+                firebase
+                    .database()
+                    .ref('users/' + state.user.uid)
+                    .update({ habits: cleanedHabits, log: cleanedLogs });
+
+                state.habits = mergedState.habits;
+                state.log = cleanedLogs;
+                state.syncingState = SYNC_DONE;
+                localStorage.setItem(
+                    'habitologyState',
+                    JSON.stringify(
+                        { log: cleanedLogs, habits: mergedState.habits, user: state.user },
+                        null,
+                        4
+                    )
+                );
+            });
     }
 };
 

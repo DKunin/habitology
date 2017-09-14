@@ -53,7 +53,6 @@
     </md-toolbar>
 
     <router-view></router-view>
-
   </div>
 </template>
 
@@ -65,6 +64,8 @@ export default {
     name: 'app',
     components: {
         Logo
+    },
+    mounted() {
     },
     methods: {
         gotoMain(name) {
@@ -93,6 +94,7 @@ export default {
         }
     }
 };
+
 </script>
 
 <style>
@@ -112,7 +114,7 @@ export default {
 
 .page {
     overflow: auto;
-    height: 90%;
+    height: 100%;
 }
 
 .md-toolbar .md-title,
@@ -121,9 +123,10 @@ export default {
     text-shadow: 1px 1px 0 rgba(0,0,0, .3);
 }
  
-.center.md-list-item > .md-list-item-container {
-    justify-content: center;
+.right.md-list-item > .md-list-item-container {
+    justify-content: flex-end;
 }
+
 .no-data-screen {
     position: absolute;
     top: 0;

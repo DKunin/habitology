@@ -36,8 +36,14 @@ export default {
             password: 'password'
         },
         text: {
-            nolog: 'Add rating to a habit and it\'ll appear right here.',
-            nohabits: 'Add new habit and it\'ll appear here.'
+            nolog: "Add rating to a habit and it'll appear right here.",
+            nohabits: "Add new habit and it'll appear here."
+        },
+        serverErrorMessages: {
+            noerror: '',
+            'user-not-found': 'User not found',
+            'invalid-email': 'Email is badly formatted',
+            'wrong-password': 'User not found, maybe you should register'
         }
     },
     ru: {
@@ -79,6 +85,12 @@ export default {
         text: {
             nolog: 'Добавьте оценку к привычке и она появится здесь',
             nohabits: 'Добавьте новую привычку и она появится здесь'
+        },
+        serverErrorMessages: {
+            noerror: '',
+            'user-not-found': 'Пользователь не найден',
+            'invalid-email': 'Email неверный или некорректно сформирован',
+            'wrong-password': 'Неверный пароль'
         }
     }
 };
