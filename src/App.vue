@@ -137,7 +137,7 @@ export default {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    opacity: .3;
+    opacity: .8;
     z-index: 1;
 }
 .no-data-screen div {

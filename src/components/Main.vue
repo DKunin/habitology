@@ -24,7 +24,7 @@
       <md-progress :md-progress="countPercent(countHabit(habit.id), habit.goal)"></md-progress>
     </md-card>
 
-    <md-card v-if="$store.state.habits" class="empty-card" >
+    <md-card v-if="Object.keys($store.state.habits).length" class="empty-card" >
         <md-card-content >
             <div @click="newHabit">
                 <md-icon class="md-size-2x">add_circle_outline</md-icon>
@@ -111,12 +111,13 @@ export default {
         font-size: 20px;
     }
     .empty-card {
-        opacity: .05;
+        opacity: .4;
         text-align: center;
         cursor: pointer;
+        box-shadow: none;
     }
     .empty-card .md-card-content {
         padding: 10px;
-        border: 2px dashed black;
+        border: 2px dashed #607D8B;
     }
 </style>

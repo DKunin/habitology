@@ -18,7 +18,7 @@
             </div>
         </md-list-item>
     </md-list>
-    <md-card v-if="$route.query.habitId" class="empty-card" >
+    <md-card v-if="$route.query.habitId" class="empty-card">
         <md-card-content >
             <div @click="addHabitIncrement($route.query.habitId)">
                 <md-icon class="md-size-2x">add_circle_outline</md-icon>
@@ -87,14 +87,15 @@ export default {
     font-size: 25px;
 }
 .empty-card {
-    opacity: .05;
+    opacity: .4;
     text-align: center;
     cursor: pointer;
+    box-shadow: none;
     margin: 20px;
 }
 .empty-card .md-card-content {
     padding: 10px;
-    border: 2px dashed black;
+    border: 2px dashed #607D8B;
 }
 .edit-log {
     float: right;

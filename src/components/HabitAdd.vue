@@ -30,7 +30,7 @@ export default {
     name: 'habit-add',
     data() {
         return {
-            name: this.$t('titles.defaultHabitName'),
+            name: '',
             goal: 1000,
             id: null
         };
