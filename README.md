@@ -2,6 +2,8 @@
 
 > Simple app to work on habits
 
+![Logo](./static/img/icons/icon-144.png)
+
 ## Build Setup
 
 ``` bash

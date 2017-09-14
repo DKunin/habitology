@@ -1,6 +1,17 @@
 'use strict';
 
-const mutationsToSaveOn = ['incrementLog', 'updateHabit', 'removeHabit', 'updateLogItem', 'removeLogItem', 'restoreState', 'saveSettings', 'logIn', 'logOut', 'getUser'];
+const mutationsToSaveOn = [
+    'incrementLog',
+    'updateHabit',
+    'removeHabit',
+    'updateLogItem',
+    'removeLogItem',
+    'restoreState',
+    'saveSettings',
+    'logIn',
+    'logOut',
+    'getUser'
+];
 
 const persistPlugin = store => {
     let syncTimeout;
@@ -13,13 +24,13 @@ const persistPlugin = store => {
         store.commit('restoreState', history);
     }
 
-    store.subscribe((mutation) => {
+    store.subscribe(mutation => {
         console.log(mutation.type);
         if (mutationsToSaveOn.includes(mutation.type)) {
             clearTimeout(syncTimeout);
             syncTimeout = setTimeout(() => {
                 store.commit('syncWithCloud');
-            }, 5000);
+            }, 3000);
             localStorage.setItem(
                 'habitologyState',
                 JSON.stringify(store.state, null, 4)

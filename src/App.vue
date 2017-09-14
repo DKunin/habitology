@@ -4,7 +4,7 @@
     <md-sidenav md-swipeable class="md-left" ref="leftSidenav">
       <md-toolbar class="md-small">
         <div class="md-toolbar-container">
-          <h3 class="md-title"><Logo /> {{ $t('titles.menu') }}</h3>
+          <h3 class="md-title"><Logo /></h3>
         </div>
       </md-toolbar>
 
