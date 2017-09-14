@@ -36,18 +36,19 @@
       <md-button v-if="$store.state.user.uid" class="md-icon-button" @click="syncWithCloud">
         <md-icon>{{ $store.state.syncingState }}</md-icon>
       </md-button>
-      <md-menu md-size="4">
-          <md-button class="md-icon-button" md-menu-trigger>
-            <md-icon>more_vert</md-icon>
-          </md-button>
+      
+      <md-menu md-size="4" v-if="false">
+        <md-button class="md-icon-button" md-menu-trigger>
+          <md-icon>more_vert</md-icon>
+        </md-button>
 
-          <md-menu-content>
-            <md-menu-item @click="newHabit">
-              <md-icon>add</md-icon>
-              <span>{{ $t('actions.addHabit') }}</span>
-            </md-menu-item>
-          </md-menu-content>
-        </md-menu>
+        <md-menu-content>
+          <md-menu-item @click="newHabit">
+            <md-icon>add</md-icon>
+            <span>{{ $t('actions.addHabit') }}</span>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
 
     </md-toolbar>
 
@@ -95,6 +96,9 @@ export default {
 </script>
 
 <style>
+.page {
+    background-color: #eeeeee;
+}
 .app, body, html {
     height: 100%;
     overflow: hidden;
@@ -141,7 +145,7 @@ export default {
     z-index: 2;
 }
 .colored .no-data-screen {
-    color: white;
+    color: #78909C;
 }
 .md-list-item-container .md-button {
     margin: 0;

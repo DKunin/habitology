@@ -68,12 +68,14 @@ export default {
 </script>
 
 <style scoped>
-    .page {
-        background-color: #172369;
-    }
     .md-card {
         margin: 15px;
     }
+    .md-card .md-card-header {
+        background-color: #607D8B;
+        color: white;
+    }
+    
     .md-card .md-card-header .md-title {
         margin-top: 0 !important;
     }

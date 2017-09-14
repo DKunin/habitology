@@ -29,10 +29,8 @@ import router from '../router';
 export default {
     name: 'habit-add',
     data() {
-        const amountOfCustomNames = this.$t('titles.defaultHabit').length - 1;
-        const randomBetween = Math.floor(Math.random() * (amountOfCustomNames - 0 + 1) + 0);
         return {
-            name: this.$t(`titles.defaultHabit[${randomBetween}]`),
+            name: this.$t('titles.defaultHabitName'),
             goal: 1000,
             id: null
         };

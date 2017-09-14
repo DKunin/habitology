@@ -13,13 +13,7 @@ export default {
             rating: 'Rating',
             goal: 'Goal',
             nodata: 'no data',
-            defaultHabit: [
-                'Plank',
-                'Swimming',
-                'Quit smoking',
-                'Morning runs',
-                'Drink liter of water per day'
-            ]
+            defaultHabitName: 'Habit'
         },
         actions: {
             save: 'Save',
@@ -60,13 +54,7 @@ export default {
             rating: 'Оценка',
             goal: 'Цель',
             nodata: 'нет данных',
-            defaultHabit: [
-                'Планка',
-                'Плавание',
-                'Бросить курить',
-                'Бег по утрам',
-                'Пить литр воды в день'
-            ]
+            defaultHabitName: 'Название привычки'
         },
         actions: {
             save: 'Сохранить',

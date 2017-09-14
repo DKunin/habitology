@@ -14,6 +14,25 @@ Vue.use(Vuex);
 Vue.use(VueMaterial);
 Vue.use(VueI18n);
 
+Vue.material.registerTheme('default', {
+    primary: {
+        color: 'grey',
+        hue: 900
+    },
+    accent: {
+        color: 'blue-grey',
+        hue: 300
+    },
+    warn: {
+        color: 'red',
+        hue: 600
+    },
+    background: {
+        color: 'grey',
+        hue: 200
+    }
+});
+
 // Create VueI18n instance with options
 const i18n = new VueI18n({
     locale: 'ru', // set locale
