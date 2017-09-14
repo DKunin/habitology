@@ -7,7 +7,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
 import merge from 'deepmerge';
-import { SYNC_PROGRESS, SYNC_DONE, SYNC_OFF } from './config/syncStates';
+import { SYNC_PROGRESS, SYNC_DONE, SYNC_OFF, SYNC_DISCONNECTED } from './config/syncStates';
 Vue.use(Vuex);
 
 const randomId = () => parseInt(Math.random() * 1e10);
@@ -115,6 +115,10 @@ const mutations = {
     },
     syncWithCloud(state) {
         if (!firebase || !state.user || !state.user.uid) {
+            return;
+        }
+        if (!window.navigator.onLine) {
+            state.syncingState = SYNC_DISCONNECTED;
             return;
         }
         state.syncingState = SYNC_PROGRESS;
