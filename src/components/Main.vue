@@ -39,13 +39,13 @@
 </template>
 
 <script>
+
 import router from '../router';
 
 export default {
     name: 'main',
     data() {
-        return {
-        };
+        return {};
     },
     methods: {
         newHabit() {
@@ -53,7 +53,10 @@ export default {
         },
         countHabit(habitId) {
             return this.$store.state.log.reduce((newCount, currentObject) => {
-                if (currentObject.habitId === habitId && !currentObject.destroy) {
+                if (
+                    currentObject.habitId === habitId &&
+                    !currentObject.destroy
+                ) {
                     return newCount + parseInt(currentObject.amount);
                 }
                 return newCount;
@@ -63,16 +66,17 @@ export default {
             return Math.ceil(current * 100 / goal);
         },
         habitIncrement(habitId) {
-            router.push({ name: 'habit-increment', params: { habitId }});
+            router.push({ name: 'habit-increment', params: { habitId } });
         },
         editHabit(habitId) {
             router.push({ name: 'habit-add', query: { habitId } });
         },
         getHabitLog(habitId) {
-            router.push({ name: 'habit-log', query: { habitId }});
+            router.push({ name: 'habit-log', query: { habitId } });
         }
     }
 };
+
 </script>
 
 <style scoped>

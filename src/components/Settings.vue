@@ -57,6 +57,7 @@
 </template>
 
 <script>
+
 import packageJson from '../../package.json';
 
 export default {
@@ -75,23 +76,32 @@ export default {
     },
     methods: {
         signIn() {
-            window.firebase.auth().signInWithEmailAndPassword(this.email, this.password)
+            window.firebase
+                .auth()
+                .signInWithEmailAndPassword(this.email, this.password)
                 .then(user => {
                     this.$store.dispatch('logIn', user);
                 })
-                .catch((error) => {
-                    this.$set(this, 'errorCode', error.code.replace('auth/', ''));
+                .catch(error => {
+                    this.$set(
+                        this,
+                        'errorCode',
+                        error.code.replace('auth/', '')
+                    );
                     this.$refs.snackbar.open();
                 });
         },
         logOut() {
-            window.firebase.auth().signOut()
+            window.firebase
+                .auth()
+                .signOut()
                 .then(() => {
                     this.$store.dispatch('logOut');
                 });
         },
         signUp() {
-            window.firebase.auth()
+            window.firebase
+                .auth()
                 .createUserWithEmailAndPassword(this.email, this.password)
                 .then(result => {
                     console.log('signUp', result);
@@ -112,6 +122,7 @@ export default {
         }
     }
 };
+
 </script>
 
 <style scoped>

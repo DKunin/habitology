@@ -1,0 +1,18 @@
+#!/usr/bin/env node
+
+'use strict';
+
+const prettier = require('prettier');
+const options = require('../prettier.config') || '{}';
+const fs = require('fs');
+const parser = require('html-script-hook');
+const file = process.argv[2];
+const source = fs.readFileSync(file, 'utf8');
+const result = parser(source, {
+    scriptCallback: function(code) {
+        return `\n\n${prettier.format(code, options)}\n`;
+    },
+    padLineNo: true
+});
+fs.writeFileSync(file, result, { encoding: 'utf8' });
+console.log(`run prettier on ${file}`);

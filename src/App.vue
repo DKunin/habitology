@@ -57,6 +57,7 @@
 </template>
 
 <script>
+
 import router from './router';
 import Logo from '@/components/Logo';
 
@@ -65,8 +66,7 @@ export default {
     components: {
         Logo
     },
-    mounted() {
-    },
+    mounted() {},
     methods: {
         gotoMain(name) {
             this.$refs.leftSidenav.close();

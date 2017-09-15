@@ -1,7 +1,10 @@
 {
     "extends": "eslint:recommended",
     "rules": {},
-    "globals": {},
+    "globals": {
+        "exports": true,
+        "require": true
+    },
     "env": {
         "browser": true,
         "es6": true,

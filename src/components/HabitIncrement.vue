@@ -27,19 +27,18 @@
 </template>
 
 <script>
+
 import router from '../router';
 import { mapActions } from 'vuex';
-import fecha from 'fecha';
+import moment from 'moment';
 
-const actions = mapActions([
-    'incrementLog'
-]);
+const actions = mapActions(['incrementLog']);
 
 export default {
     name: 'habitIncrement',
     data() {
         return {
-            date: fecha.format(new Date(), 'YYYY-MM-DD'),
+            date: moment().format('YYYY-MM-DD'),
             amount: null,
             habitId: this.$route.params.habitId
         };
@@ -61,7 +60,7 @@ export default {
             router.push({ name: 'main' });
         },
         formatDate(dateTime) {
-            return fecha.format(dateTime, 'DD.MM.YY');
+            return moment(dateTime).format('DD.MM.YY');
         },
         cancel: function() {
             router.push({ name: 'main' });
@@ -71,6 +70,7 @@ export default {
         }
     })
 };
+
 </script>
 
 <style>

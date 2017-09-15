@@ -29,14 +29,14 @@
 </template>
 
 <script>
+
 import moment from 'moment';
 import router from '../router';
 
 export default {
     name: 'habit-log',
     data() {
-        return {
-        };
+        return {};
     },
     computed: {
         filtered() {
@@ -71,10 +71,11 @@ export default {
             router.push({ name: 'increment-edit', query: { logId } });
         },
         addHabitIncrement(habitId) {
-            router.push({ name: 'habit-increment', params: { habitId }});
+            router.push({ name: 'habit-increment', params: { habitId } });
         }
     }
 };
+
 </script>
 
 <style scoped>

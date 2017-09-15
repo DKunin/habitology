@@ -30,8 +30,9 @@
 </template>
 
 <script>
+
 import router from '../router';
-import fecha from 'fecha';
+import moment from 'moment';
 
 export default {
     name: 'increment-edit',
@@ -51,7 +52,11 @@ export default {
         if (editMode) {
             this.$set(this, 'amount', editMode.amount);
             this.$set(this, 'id', editMode.id);
-            this.$set(this, 'date', fecha.format(new Date(editMode.date), 'YYYY-MM-DD'));
+            this.$set(
+                this,
+                'date',
+                moment(new Date(editMode.date)).format('YYYY-MM-DD')
+            );
             this.$set(this, 'habitId', editMode.habitId);
         }
     },
@@ -82,6 +87,7 @@ export default {
         }
     }
 };
+
 </script>
 
 <style>
