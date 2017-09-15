@@ -96,7 +96,7 @@ export default {
 }
 .empty-card .md-card-content {
     padding: 10px;
-    border: 2px dashed #607D8B;
+    border: 2px dashed #607d8b;
 }
 .edit-log {
     float: right;

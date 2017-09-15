@@ -126,12 +126,12 @@ export default {
 </script>
 
 <style scoped>
-    .version {
-        position: fixed;
-        bottom: 20px;
-        left: 0;
-        right: 0;
-        text-align: center;
-        opacity: .3;
-    }
+.version {
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    opacity: .3;
+}
 </style>

@@ -1,0 +1,19 @@
+#!/usr/bin/env node
+
+'use strict';
+
+const Comb = require('csscomb');
+const config = require('../.csscomb.json');
+const comb = new Comb(config, 'css');
+
+const fs = require('fs');
+const file = process.argv[2];
+const source = fs.readFileSync(file, 'utf8');
+let styleInput = source.match(/<style[^>]*>([\s\S]*?)<\/style>/g);
+styleInput = styleInput[0].replace(/<style[^>]*>/g, '').replace(/<\/style>/g, '');
+
+comb.processString(styleInput).then((result) => {
+    const newSource = source.replace(styleInput, result);
+    fs.writeFileSync(file, newSource, { encoding: 'utf8' });
+});
+console.log(`run css comb on ${file}`);

@@ -80,51 +80,51 @@ export default {
 </script>
 
 <style scoped>
-    .md-card {
-        margin: 15px;
-    }
-    .md-card .md-card-header {
-        background-color: #607D8B;
-        color: white;
-    }
-    
-    .md-card .md-card-header .md-title {
-        margin-top: 0 !important;
-    }
-    .md-card-actions {
-        position: absolute;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
+.md-card {
+    margin: 15px;
+}
+.md-card .md-card-header {
+    background-color: #607d8b;
+    color: white;
+}
 
-    .md-card .md-title {
-        max-width: 90%;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-    .md-card .md-card-actions .md-button + .md-button {
-        margin: 0;
-    }
-    .md-subhead .md-icon {
-        font-size: 20px;
-    }
-    .empty-card {
-        opacity: .4;
-        text-align: center;
-        cursor: pointer;
-        box-shadow: none;
-    }
-    .empty-card .md-card-content {
-        padding: 10px;
-        border: 2px dashed #607D8B;
-    }
-    .md-theme-default.md-card .md-card-actions .md-icon-button:not(.md-primary):not(.md-warn):not(.md-accent) .md-icon {
-        color: white;
-    }
+.md-card .md-card-header .md-title {
+    margin-top: 0 !important;
+}
+.md-card-actions {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.md-card .md-title {
+    max-width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.md-card .md-card-actions .md-button + .md-button {
+    margin: 0;
+}
+.md-subhead .md-icon {
+    font-size: 20px;
+}
+.empty-card {
+    opacity: .4;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: none;
+}
+.empty-card .md-card-content {
+    padding: 10px;
+    border: 2px dashed #607d8b;
+}
+.md-theme-default.md-card .md-card-actions .md-icon-button:not(.md-primary):not(.md-warn):not(.md-accent) .md-icon {
+    color: white;
+}
 </style>

@@ -105,9 +105,11 @@ export default {
 
 <style>
 .page {
-    background-color: #eeeeee;
+    background-color: #eee;
 }
-.app, body, html {
+.app,
+body,
+html {
     height: 100%;
     overflow: hidden;
 }
@@ -124,11 +126,10 @@ export default {
 }
 
 .md-toolbar .md-title,
-.md-toolbar .md-button
-{
+.md-toolbar .md-button {
     text-shadow: 1px 1px 0 rgba(0,0,0, .3);
 }
- 
+
 .right.md-list-item > .md-list-item-container {
     justify-content: flex-end;
 }
@@ -146,28 +147,36 @@ export default {
     opacity: .8;
     z-index: 1;
 }
+
 .no-data-screen div {
     max-width: 60%;
     text-align: center;
 }
+
 .md-toolbar {
     z-index: 2;
 }
+
 .colored .no-data-screen {
-    color: #78909C;
+    color: #78909c;
 }
+
 .md-list-item-container .md-button {
     margin: 0;
 }
+
 .version {
-  position: fixed;
-  bottom: 20px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  opacity: .3;
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    opacity: .3;
 }
-p, label, [class*=-label] {
-  user-select: none;
+
+p,
+label,
+[class*=-label] {
+    user-select: none;
 }
 </style>
