@@ -22,6 +22,7 @@
           </md-list-item>
 
         </md-list>
+        <div class="version">{{ version }}</div>
     </md-sidenav>
 
     <md-toolbar>
@@ -49,7 +50,6 @@
           </md-menu-item>
         </md-menu-content>
       </md-menu>
-
     </md-toolbar>
 
     <router-view></router-view>
@@ -60,11 +60,17 @@
 
 import router from './router';
 import Logo from '@/components/Logo';
+import packageJson from '../package.json';
 
 export default {
     name: 'app',
     components: {
         Logo
+    },
+    data() {
+        return {
+            version: packageJson.version
+        };
     },
     mounted() {},
     methods: {
@@ -152,5 +158,16 @@ export default {
 }
 .md-list-item-container .md-button {
     margin: 0;
+}
+.version {
+  position: fixed;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  opacity: .3;
+}
+p, label, [class*=-label] {
+  user-select: none;
 }
 </style>

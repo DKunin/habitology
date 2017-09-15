@@ -54,7 +54,7 @@ export default {
         }
     },
     mounted() {
-        moment.locale(this.$store.state.locale);
+        moment.locale(this.$store.state.locale || 'ru');
     },
     methods: {
         formatDate(dateTime) {

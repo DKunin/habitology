@@ -15,6 +15,15 @@
             </md-input-container>
         </md-list-item>
         <md-list-item>
+            <md-checkbox name="continuingGoal" v-model="continuingGoal">{{ $t("titles.continuing-goal") }}</md-checkbox>
+        </md-list-item>
+        <md-list-item v-if="continuingGoal">
+            <md-input-container>
+                <label>{{ $t("titles.initial-value") }}</label>
+                <md-input type="number" v-model="initialValue"></md-input>
+            </md-input-container>
+        </md-list-item>
+        <md-list-item>
             <md-button v-if="id" @click="remove" class="md-raised md-accent">{{ $t("actions.remove") }}</md-button>
             <md-button @click="update" class="md-raised md-primary">{{ $t("actions.save") }}</md-button>
         </md-list-item>
@@ -32,7 +41,9 @@ export default {
         return {
             name: '',
             goal: 1000,
-            id: null
+            id: null,
+            initialValue: 0,
+            continuingGoal: false
         };
     },
     mounted() {
@@ -44,6 +55,7 @@ export default {
                 this.$set(this, 'goal', editMode.goal);
                 this.$set(this, 'id', editMode.id);
                 this.$set(this, 'name', editMode.name);
+                this.$set(this, 'initialValue', editMode.initialValue);
             }
         }
     },
@@ -54,7 +66,8 @@ export default {
         update() {
             const payload = {
                 goal: this.goal,
-                name: this.name
+                name: this.name,
+                initialValue: this.initialValue
             };
 
             if (this.id) {

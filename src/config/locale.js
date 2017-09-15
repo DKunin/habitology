@@ -12,6 +12,8 @@ export default {
             date: 'Date',
             rating: 'Rating',
             goal: 'Goal',
+            'continuing-goal': 'Have you already started this habit?',
+            'initial-value': 'Initial value',
             nodata: 'no data',
             defaultHabitName: 'Habit'
         },
@@ -59,6 +61,8 @@ export default {
             date: 'Дата',
             rating: 'Оценка',
             goal: 'Цель',
+            'continuing-goal': 'Это уже начатая привычка?',
+            'initial-value': 'Первоначальное значение',
             nodata: 'нет данных',
             defaultHabitName: 'Название привычки'
         },

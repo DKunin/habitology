@@ -15,11 +15,23 @@
                 </md-input-container>
             </md-list-item>
             <md-list-item>
-                <md-input-container>
+                <md-input-container v-if="false">
                     <md-icon>star</md-icon>
                     <label>Rating</label>
                     <md-input v-model="amount" type="number"></md-input>
                 </md-input-container>
+                <div class="radio-holder">
+                  <md-radio v-model="amount" name="amount" md-value="1">1</md-radio>
+                  <md-radio v-model="amount" name="amount" md-value="2">2</md-radio>
+                  <md-radio v-model="amount" name="amount" md-value="3">3</md-radio>
+                  <md-radio v-model="amount" name="amount" md-value="4">4</md-radio>
+                  <md-radio v-model="amount" name="amount" md-value="5">5</md-radio>
+                  <md-radio v-model="amount" name="amount" md-value="6">6</md-radio>
+                  <md-radio v-model="amount" name="amount" md-value="7">7</md-radio>
+                  <md-radio v-model="amount" name="amount" md-value="8">8</md-radio>
+                  <md-radio v-model="amount" name="amount" md-value="9">9</md-radio>
+                  <md-radio v-model="amount" name="amount" md-value="10">10</md-radio>
+                </div>
             </md-list-item>
             <md-list-item>
                 <md-button @click="remove" class="md-raised md-accent">{{ $t("actions.remove") }}</md-button>
@@ -90,6 +102,15 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
+.radio-holder {
+    width: 100%;
+}
+.md-radio {
+    display: flex;
+}
+.md-radio .md-radio-label {
+    width: 100%;
+}
 
 </style>
