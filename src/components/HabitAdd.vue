@@ -17,7 +17,7 @@
         <md-list-item>
             <md-checkbox name="continuingGoal" v-model="continuingGoal">{{ $t("titles.continuing-goal") }}</md-checkbox>
         </md-list-item>
-        <md-list-item v-if="continuingGoal">
+        <md-list-item v-if="continuingGoal || initialValue">
             <md-input-container>
                 <label>{{ $t("titles.initial-value") }}</label>
                 <md-input type="number" v-model="initialValue"></md-input>
@@ -56,6 +56,7 @@ export default {
                 this.$set(this, 'id', editMode.id);
                 this.$set(this, 'name', editMode.name);
                 this.$set(this, 'initialValue', editMode.initialValue);
+                this.$set(this, 'continuingGoal', editMode.initialValue ? true : false);
             }
         }
     },

@@ -103,13 +103,16 @@ export default {
             window.firebase
                 .auth()
                 .createUserWithEmailAndPassword(this.email, this.password)
-                .then(result => {
-                    console.log('signUp', result);
+                .then(() => {
+                    this.signIn();
                 })
-                .catch(function(error) {
-                    // const errorCode = error.code;
-                    // const errorCode = error.message;
-                    console.log(error, error.message);
+                .catch((error) => {
+                    this.$set(
+                        this,
+                        'errorCode',
+                        error.message
+                    );
+                    this.$refs.snackbar.open();
                 });
         },
         saveSettings() {
