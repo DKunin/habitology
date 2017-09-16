@@ -33,6 +33,75 @@ Vue.material.registerTheme('default', {
     }
 });
 
+Vue.material.registerTheme('reddy', {
+    primary: {
+        color: 'red',
+        hue: 200,
+        textColor: 'white'
+    },
+    background: {
+        color: 'red',
+        hue: 600,
+        textColor: 'white'
+    },
+    accent: {
+        color: 'white',
+        hue: 600,
+        textColor: 'white'
+    }
+});
+
+Vue.material.registerTheme('orangy', {
+    primary: {
+        color: 'red',
+        hue: 900
+    },
+    background: {
+        color: 'red',
+        hue: 200
+    },
+    accent: {
+        color: 'red',
+        hue: 900
+    }
+});
+
+Vue.material.registerTheme('bluey', {
+    primary: {
+        color: 'blue',
+        hue: 200,
+        textColor: 'white'
+    },
+    background: {
+        color: 'blue',
+        hue: 700,
+        textColor: 'white'
+    },
+    accent: {
+        color: 'white',
+        hue: 900,
+        textColor: 'white'
+    }
+});
+
+Vue.material.registerTheme('light-blue', {
+    primary: {
+        color: 'light-blue',
+        hue: 300
+    },
+    background: {
+        color: 'light-blue',
+        hue: 500,
+        textColor: 'white'
+    },
+    accent: {
+        color: 'white',
+        hue: 900,
+        textColor: 'white'
+    }
+});
+
+
 // Create VueI18n instance with options
 const i18n = new VueI18n({
     locale: 'ru', // set locale

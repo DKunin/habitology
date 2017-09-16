@@ -6,7 +6,7 @@
         </div>
         <div>{{ $t("text.nohabits") }}</div>
     </div>
-    <md-card v-if="$store.state.habits && !habit.destroy" v-for="habit in $store.state.habits" :key="habit.id">
+    <md-card :md-theme="habit.theme ? habit.theme : 'default'" v-if="$store.state.habits && !habit.destroy" v-for="habit in $store.state.habits" :key="habit.id">
       <md-card-header>
         <div class="md-title" @click="getHabitLog(habit.id)">
             {{ habit.name }}
@@ -18,7 +18,7 @@
       </md-card-header>
       <md-card-actions>
         <md-button @click="habitIncrement(habit.id)" class="md-icon-button md-list-action">
-            <md-icon class="white-icon">add</md-icon>
+            <md-icon class="md-accent">add</md-icon>
         </md-button>
         <md-menu
             md-size="5"
@@ -31,11 +31,11 @@
 
             <md-menu-content>
               <md-menu-item @click="editHabit(habit.id)">
-                <md-icon>create</md-icon>
+                <md-icon class="md-accent">create</md-icon>
                 <span>{{ $t('actions.edit') }}</span>
               </md-menu-item>
               <md-menu-item @click="getHabitLog(habit.id)">
-                <md-icon>update</md-icon>
+                <md-icon class="md-accent">update</md-icon>
                 <span>{{ $t('titles.log') }}</span>
               </md-menu-item>
             </md-menu-content>
@@ -116,10 +116,6 @@ export default {
 .md-card {
     margin: 15px;
 }
-.md-card .md-card-header {
-    background-color: #607d8b;
-    color: white;
-}
 
 .md-card .md-card-header .md-title {
     margin-top: 0 !important;
@@ -157,9 +153,7 @@ export default {
     padding: 10px;
     border: 2px dashed #607d8b;
 }
-.md-theme-default.md-card .md-card-actions .md-icon-button:not(.md-primary):not(.md-warn):not(.md-accent) .md-icon {
-    color: white;
-}
+
 .last-update {
     font-style: italic;
 }

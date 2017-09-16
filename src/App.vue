@@ -38,6 +38,7 @@
       </md-button>
 
       <h2 class="md-title" style="flex: 1">{{ $t(`titles.${$route.name}`) }}</h2>
+
       <md-button v-if="$store.state.user.uid" class="md-icon-button" @click="syncWithCloud">
         <md-icon>{{ $store.state.syncingState }}</md-icon>
       </md-button>
@@ -118,7 +119,6 @@ html {
 .app {
     font-family: Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
-    color: #2c3e50;
 }
 
 .page {
@@ -130,6 +130,7 @@ html {
     right: 0;
     bottom: 0;
     padding-top: 64px;
+    z-index: 1;
 }
 
 .md-toolbar .md-title,
@@ -185,5 +186,12 @@ p,
 label,
 [class*=-label] {
     user-select: none;
+}
+
+.md-theme-reddy .md-title, .md-theme-reddy .md-subhead,
+.md-theme-grey .md-title, .md-theme-grey .md-subhead,
+.md-theme-light-blue .md-title, .md-theme-light-blue .md-subhead,
+.md-theme-bluey .md-title, .md-theme-bluey .md-subhead {
+    color: white;
 }
 </style>
