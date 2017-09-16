@@ -3,8 +3,8 @@
 
     <input type="hidden" v-model="id">
     <input type="hidden" v-model="habitId">
-        <md-list class="md-double-line">
-            <md-list-item>
+        <md-list class="md-single-line">
+            <md-list-item v-if="false">
                 <span class="md-subheading">{{showHabitName(habitId)}}</span>
             </md-list-item>
             <md-list-item>
