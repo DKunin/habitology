@@ -30,7 +30,9 @@
                     {{ $t("settings.login") }}
                 </md-button>
             </md-list-item>
-            <hr />
+
+            <div class="separator"></div>
+
             <md-list-item>
                 <md-input-container>
                     <label for="locale">{{ $t("settings.locale") }}</label>

@@ -189,7 +189,8 @@ const mutations = {
                         {
                             log: cleanedLogs,
                             habits: mergedState.habits,
-                            user: state.user
+                            user: state.user,
+                            locale: state.locale
                         },
                         null,
                         4

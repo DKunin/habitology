@@ -17,6 +17,8 @@
             <md-icon>history</md-icon> <span>{{ $t('titles.habit-log') }}</span>
           </md-list-item>
 
+            <div class="separator"></div>
+
           <md-list-item @click="gotoMain('settings')" class="md-primary">
             <md-icon>settings</md-icon> <span>{{ $t('titles.settings') }}</span>
           </md-list-item>
@@ -188,10 +190,19 @@ label,
     user-select: none;
 }
 
-.md-theme-reddy .md-title, .md-theme-reddy .md-subhead,
-.md-theme-grey .md-title, .md-theme-grey .md-subhead,
-.md-theme-light-blue .md-title, .md-theme-light-blue .md-subhead,
-.md-theme-bluey .md-title, .md-theme-bluey .md-subhead {
+.md-theme-reddy .md-title,
+.md-theme-reddy .md-subhead,
+.md-theme-grey .md-title,
+.md-theme-grey .md-subhead,
+.md-theme-light-blue .md-title,
+.md-theme-light-blue .md-subhead,
+.md-theme-bluey .md-title,
+.md-theme-bluey .md-subhead {
     color: white;
+}
+.separator {
+    padding-top: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, .12);
 }
 </style>

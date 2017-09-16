@@ -105,69 +105,69 @@ export default {
 </script>
 
 <style scoped>
-    .themes {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-    }
-    .single-theme {
-        background-color: white;
-        display: block;
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        position: relative;
-    }
+.themes {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.single-theme {
+    background-color: white;
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    position: relative;
+}
 
-    .single-theme.default .md-icon {
-        color: black;
-    }
+.single-theme.default .md-icon {
+    color: black;
+}
 
-    .single-theme.reddy {
-        background-color: #c62828;
-    }
-    .single-theme.reddy .md-icon {
-        color: white;
-    }
+.single-theme.reddy {
+    background-color: #c62828;
+}
+.single-theme.reddy .md-icon {
+    color: white;
+}
 
-    .single-theme.bluey {
-        background-color: #1976D2;
-    }
-    .single-theme.bluey .md-icon {
-        color: white;
-    }
+.single-theme.bluey {
+    background-color: #1976d2;
+}
+.single-theme.bluey .md-icon {
+    color: white;
+}
 
-    .single-theme.light-blue {
-        background-color: #03A9F4;
-    }
-    .single-theme.light-blue .md-icon {
-        color: white;
-    }
+.single-theme.light-blue {
+    background-color: #03a9f4;
+}
+.single-theme.light-blue .md-icon {
+    color: white;
+}
 
-    .single-theme.greeny {
-        background-color: #388E3C;
-    }
-    .single-theme.greeny .md-icon {
-        color: white;
-    }
+.single-theme.greeny {
+    background-color: #388e3c;
+}
+.single-theme.greeny .md-icon {
+    color: white;
+}
 
-    .single-theme.orangy {
-        background-color: #b71c1c;
-    }
-    .single-theme.orangy .md-icon {
-        color: white;
-    }
+.single-theme.orangy {
+    background-color: #b71c1c;
+}
+.single-theme.orangy .md-icon {
+    color: white;
+}
 
-    .color-check {
-        display: none;
-        position: absolute;
-        top: 3px;
-        left: 3px;
-    }
-    .theme-radio {
-        display: none;
-    }
-    .theme-radio:checked + .color-check {
-        display: block;
-    }
+.color-check {
+    display: none;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+}
+.theme-radio {
+    display: none;
+}
+.theme-radio:checked + .color-check {
+    display: block;
+}
 </style>
