@@ -17,7 +17,7 @@ const persistPlugin = store => {
     let syncTimeout;
     const history = JSON.parse(
         localStorage.getItem('habitologyState') ||
-            '{"habits":{}, "log": [], "user": {}, "apiKey": "", "locale": "en"}'
+            '{"habits":{}, "log": [], "user": {}, "apiKey": "", "locale": "en", "newVersion": false}'
     );
 
     if (history) {
@@ -25,7 +25,6 @@ const persistPlugin = store => {
     }
 
     store.subscribe(mutation => {
-        console.log(mutation.type);
         if (mutationsToSaveOn.includes(mutation.type)) {
             clearTimeout(syncTimeout);
             syncTimeout = setTimeout(() => {

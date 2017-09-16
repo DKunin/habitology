@@ -41,7 +41,8 @@ export default {
         },
         text: {
             nolog: "Add rating to a habit and it'll appear right here.",
-            nohabits: "Add new habit and it'll appear here."
+            nohabits: "Add new habit and it'll appear here.",
+            newVersion: 'Version {version} is ready to update, tap here to proceed'
         },
         serverErrorMessages: {
             noerror: '',
@@ -92,7 +93,8 @@ export default {
         },
         text: {
             nolog: 'Добавьте оценку к привычке и она появится здесь',
-            nohabits: 'Добавьте новую привычку и она появится здесь'
+            nohabits: 'Добавьте новую привычку и она появится здесь',
+            newVersion: 'Версия {version} доступна для обновления, тапните здесь, для обновления'
         },
         serverErrorMessages: {
             noerror: '',

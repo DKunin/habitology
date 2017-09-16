@@ -34,7 +34,7 @@
             <md-list-item>
                 <md-input-container>
                     <label for="locale">{{ $t("settings.locale") }}</label>
-                    <md-select name="locale" id="locale" v-model="locale">
+                    <md-select name="locale" v-model="locale">
                         <md-option value="ru">Русский</md-option>
                         <md-option value="en">English</md-option>
                     </md-select>
@@ -70,9 +70,6 @@ export default {
             errorCode: 'noerror',
             version: packageJson.version
         };
-    },
-    mounted() {
-        console.log(this.$store.state.user);
     },
     methods: {
         signIn() {

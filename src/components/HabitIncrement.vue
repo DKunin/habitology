@@ -31,9 +31,6 @@
               <md-radio v-model="amount" name="amount" md-value="10">10</md-radio>
             </div>
         </md-list-item>
-        <md-list-item class="right">
-            <md-button @click="update" class="md-raised md-primary">{{ $t("actions.save") }}</md-button>
-        </md-list-item>
     </md-list>
   </div>
 </template>
@@ -55,8 +52,13 @@ export default {
             habitId: this.$route.params.habitId
         };
     },
+    watch: {
+        amount() {
+            this.update();
+        }
+    },
     methods: Object.assign(actions, {
-        update: function() {
+        update() {
             const date = new Date(this.date);
             date.setHours(new Date().getHours());
             date.setMinutes(new Date().getMinutes());

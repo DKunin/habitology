@@ -53,9 +53,6 @@ export default {
                 });
         }
     },
-    mounted() {
-        moment.locale(this.$store.state.locale || 'ru');
-    },
     methods: {
         formatDate(dateTime) {
             return moment(new Date(dateTime)).calendar();

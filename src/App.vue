@@ -22,7 +22,11 @@
           </md-list-item>
 
         </md-list>
-        <div class="version">{{ version }}</div>
+        <div class="version">
+            <div>{{ version }}</div>
+            <div @click="reloadScreen" v-if="$store.state.newVersion">{{  $t('text.newVersion', { version: $store.state.newVersion }) }}</div>
+            
+        </div>
     </md-sidenav>
 
     <md-toolbar>
@@ -72,8 +76,13 @@ export default {
             version: packageJson.version
         };
     },
-    mounted() {},
+    mounted() {
+        this.$store.dispatch('checkForUpdate');
+    },
     methods: {
+        reloadScreen() {
+            window.location.reload();
+        },
         gotoMain(name) {
             this.$refs.leftSidenav.close();
             router.push({ name });
@@ -82,14 +91,6 @@ export default {
             this.$refs.leftSidenav.toggle();
         },
         newHabit() {
-            // Notification.requestPermission(function(permission) {
-            //     if (permission === 'granted') {
-            //         setTimeout(() => {
-            //             new Notification('Hi there!');
-            //         }, 5000);
-            //     }
-            // });
-
             router.push({ name: 'habit-add' });
         },
         goBack() {
@@ -123,6 +124,12 @@ html {
 .page {
     overflow: auto;
     height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding-top: 64px;
 }
 
 .md-toolbar .md-title,

@@ -1,5 +1,5 @@
 <template>
-   <div class="page colored">
+   <div class="page">
       <div v-if="!Object.keys($store.state.habits).length" class="no-data-screen">
         <div @click="newHabit">
             <md-icon class="md-size-4x">add_circle_outline</md-icon>
@@ -9,11 +9,11 @@
     <md-card v-if="$store.state.habits && !habit.destroy" v-for="habit in $store.state.habits" :key="habit.id">
       <md-card-header>
         <div class="md-title" @click="getHabitLog(habit.id)">
-            {{habit.name}}
+            {{ habit.name }}
         </div>
         <div class="md-subhead">
-            {{countHabit(habit)}} ({{ countPercent(countHabit(habit), habit.goal) }}%) 
-            <a v-if="false" @click="editHabit(habit.id)"><md-icon class="md-primary">create</md-icon></a>
+            {{ countHabit(habit) }} ({{ countPercent(countHabit(habit), habit.goal) }}%) 
+            <div class="last-update">{{ lastTime(habit) }}</div>
         </div>
       </md-card-header>
       <md-card-actions>
@@ -42,7 +42,7 @@
       </md-menu>
 
       </md-card-actions>
-      <md-progress :md-progress="countPercent(countHabit(habit), habit.goal)"></md-progress>
+        <md-progress :md-progress="countPercent(countHabit(habit), habit.goal)"></md-progress>
     </md-card>
 
     <md-card v-if="Object.keys($store.state.habits).length" class="empty-card" >
@@ -62,6 +62,7 @@
 <script>
 
 import router from '../router';
+import moment from 'moment';
 
 export default {
     name: 'main',
@@ -82,6 +83,17 @@ export default {
                 }
                 return newCount;
             }, parseInt(habit.initialValue) || 0);
+        },
+        lastTime(habit) {
+            const currentHabitLog = this.$store.state.log
+                .filter(({ habitId }) => habit.id === habitId)
+                .sort((a, b) => {
+                    return new Date(b.date) - new Date(a.date);
+                })[0];
+            if (!currentHabitLog) {
+                return null;
+            }
+            return moment(new Date(currentHabitLog.date)).calendar();
         },
         countPercent(current, goal) {
             return Math.ceil(current * 100 / goal);
@@ -147,5 +159,8 @@ export default {
 }
 .md-theme-default.md-card .md-card-actions .md-icon-button:not(.md-primary):not(.md-warn):not(.md-accent) .md-icon {
     color: white;
+}
+.last-update {
+    font-style: italic;
 }
 </style>

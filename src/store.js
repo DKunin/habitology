@@ -2,12 +2,20 @@
 
 import Vue from 'vue';
 import Vuex from 'vuex';
+import moment from 'moment';
 import persistPlugin from './utils/persistPlugin';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
 import merge from 'deepmerge';
-import { SYNC_PROGRESS, SYNC_DONE, SYNC_OFF, SYNC_DISCONNECTED } from './config/syncStates';
+import compare from 'compare-semver';
+import packageJson from '../package.json';
+import {
+    SYNC_PROGRESS,
+    SYNC_DONE,
+    SYNC_OFF,
+    SYNC_DISCONNECTED
+} from './config/syncStates';
 Vue.use(Vuex);
 
 const randomId = () => parseInt(Math.random() * 1e10);
@@ -26,7 +34,8 @@ const basicState = {
     habits: {},
     log: [],
     user: {},
-    locale: 'ru'
+    locale: 'ru',
+    newVersion: false
 };
 
 const mutations = {
@@ -85,15 +94,12 @@ const mutations = {
         state.log = payload.log;
         state.user = payload.user;
         state.locale = payload.locale;
+        moment.locale(payload.locale || 'ru');
         firebase.initializeApp(config);
         window.firebase = firebase;
         setTimeout(() => {
             window.i18n.locale = payload.locale || 'ru';
         }, 200);
-    },
-    localeSet(state, newLocale) {
-        state.locale = newLocale;
-        window.i18n.locale = newLocale;
     },
     getUser(state, newUser) {
         state.user = {
@@ -112,6 +118,17 @@ const mutations = {
     },
     saveSettings(state, newSettings) {
         state.locale = newSettings.locale;
+        window.i18n.locale = newSettings.locale;
+        moment.locale(newSettings.locale || 'ru');
+    },
+    checkForUpdate(state) {
+        fetch('https://raw.githubusercontent.com/DKunin/habitology/master/package.json')
+            .then(res => res.json())
+            .then(result => {
+                if (compare.lt(packageJson.version, [ result.version ])) {
+                    state.newVersion = result.version;
+                }
+            });
     },
     syncWithCloud(state) {
         if (!firebase || !state.user || !state.user.uid) {
@@ -169,7 +186,11 @@ const mutations = {
                 localStorage.setItem(
                     'habitologyState',
                     JSON.stringify(
-                        { log: cleanedLogs, habits: mergedState.habits, user: state.user },
+                        {
+                            log: cleanedLogs,
+                            habits: mergedState.habits,
+                            user: state.user
+                        },
                         null,
                         4
                     )
@@ -194,9 +215,6 @@ const actions = {
     removeLogItem({ commit }, logItemId) {
         commit('removeLogItem', logItemId);
     },
-    localeSet({ commit }, newLocale) {
-        commit('localeSet', newLocale);
-    },
     getUser({ commit }, user) {
         commit('getUser', user);
     },
@@ -211,6 +229,9 @@ const actions = {
     },
     syncWithCloud({ commit }) {
         commit('syncWithCloud');
+    },
+    checkForUpdate({ commit }) {
+        commit('checkForUpdate');
     }
 };
 const store = new Vuex.Store({
