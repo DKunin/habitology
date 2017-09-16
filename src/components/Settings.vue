@@ -106,12 +106,8 @@ export default {
                 .then(() => {
                     this.signIn();
                 })
-                .catch((error) => {
-                    this.$set(
-                        this,
-                        'errorCode',
-                        error.message
-                    );
+                .catch(error => {
+                    this.$set(this, 'errorCode', error.message);
                     this.$refs.snackbar.open();
                 });
         },

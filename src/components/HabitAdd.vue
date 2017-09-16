@@ -56,7 +56,11 @@ export default {
                 this.$set(this, 'id', editMode.id);
                 this.$set(this, 'name', editMode.name);
                 this.$set(this, 'initialValue', editMode.initialValue);
-                this.$set(this, 'continuingGoal', editMode.initialValue ? true : false);
+                this.$set(
+                    this,
+                    'continuingGoal',
+                    editMode.initialValue ? true : false
+                );
             }
         }
     },
