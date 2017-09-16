@@ -13,13 +13,34 @@
         </div>
         <div class="md-subhead">
             {{countHabit(habit)}} ({{ countPercent(countHabit(habit), habit.goal) }}%) 
-            <a @click="editHabit(habit.id)"><md-icon class="md-primary">create</md-icon></a>
+            <a v-if="false" @click="editHabit(habit.id)"><md-icon class="md-primary">create</md-icon></a>
         </div>
       </md-card-header>
       <md-card-actions>
         <md-button @click="habitIncrement(habit.id)" class="md-icon-button md-list-action">
             <md-icon class="white-icon">add</md-icon>
         </md-button>
+        <md-menu
+            md-size="5"
+            md-direction="bottom left"
+            :md-close-on-select="true"
+            :md-align-trigger="true">
+            <md-button class="md-icon-button" md-menu-trigger>
+              <md-icon>more_horiz</md-icon>
+            </md-button>
+
+            <md-menu-content>
+              <md-menu-item @click="editHabit(habit.id)">
+                <md-icon>create</md-icon>
+                <span>{{ $t('actions.edit') }}</span>
+              </md-menu-item>
+              <md-menu-item @click="getHabitLog(habit.id)">
+                <md-icon>update</md-icon>
+                <span>{{ $t('titles.log') }}</span>
+              </md-menu-item>
+            </md-menu-content>
+      </md-menu>
+
       </md-card-actions>
       <md-progress :md-progress="countPercent(countHabit(habit), habit.goal)"></md-progress>
     </md-card>

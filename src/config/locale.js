@@ -8,6 +8,7 @@ export default {
             'habit-increment': 'Add habit score',
             'increment-edit': 'Edit score',
             'habit-log': 'Habit Log',
+            log: 'Log',
             name: 'Name',
             date: 'Date',
             rating: 'Rating',
@@ -21,7 +22,8 @@ export default {
             save: 'Save',
             cancel: 'Cancel',
             remove: 'Remove',
-            addHabit: 'Habit'
+            addHabit: 'Habit',
+            edit: 'Edit'
         },
         log: {
             habit: 'Habit',
@@ -57,6 +59,7 @@ export default {
             'habit-increment': 'Добавить оценку',
             'increment-edit': 'Редактировать оценку',
             'habit-log': 'Журнал привычек',
+            log: 'Журнал',
             name: 'Название',
             date: 'Дата',
             rating: 'Оценка',
@@ -70,7 +73,8 @@ export default {
             save: 'Сохранить',
             cancel: 'Отмена',
             remove: 'Удалить',
-            addHabit: 'Привычка'
+            addHabit: 'Привычка',
+            edit: 'Редактировать'
         },
         log: {
             habit: 'Привычка',
