@@ -16,6 +16,7 @@ export default {
             'continuing-goal': 'Have you already started this habit?',
             'initial-value': 'Initial value',
             nodata: 'no data',
+            share: 'Share',
             defaultHabitName: 'Habit'
         },
         actions: {
@@ -42,7 +43,8 @@ export default {
         text: {
             nolog: "Add rating to a habit and it'll appear right here.",
             nohabits: "Add new habit and it'll appear here.",
-            newVersion: 'Version {version} is ready to update, tap here to proceed'
+            newVersion: 'Version {version} is ready to update, tap here to proceed',
+            incrementSuccess: '{habitName} + {amount}!'
         },
         serverErrorMessages: {
             noerror: '',
@@ -68,6 +70,7 @@ export default {
             'continuing-goal': 'Это уже начатая привычка?',
             'initial-value': 'Первоначальное значение',
             nodata: 'нет данных',
+            share: 'Поделиться',
             defaultHabitName: 'Название привычки'
         },
         actions: {
@@ -94,7 +97,8 @@ export default {
         text: {
             nolog: 'Добавьте оценку к привычке и она появится здесь',
             nohabits: 'Добавьте новую привычку и она появится здесь',
-            newVersion: 'Версия {version} доступна для обновления, тапните здесь, для обновления'
+            newVersion: 'Версия {version} доступна для обновления, тапните здесь, для обновления',
+            incrementSuccess: '{habitName} + {amount}!'
         },
         serverErrorMessages: {
             noerror: '',

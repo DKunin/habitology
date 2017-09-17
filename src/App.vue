@@ -58,6 +58,11 @@
         </md-menu-content>
       </md-menu>
     </md-toolbar>
+    <md-dialog-alert
+      :md-content="alert.content"
+      :md-ok-text="alert.ok"
+      ref="alert-dialog">
+    </md-dialog-alert>
 
     <router-view></router-view>
   </div>
@@ -76,11 +81,26 @@ export default {
     },
     data() {
         return {
-            version: packageJson.version
+            version: packageJson.version,
+            alert: {
+                content: 'Tsest',
+                ok: 'Ok'
+            }
         };
     },
     mounted() {
         this.$store.dispatch('checkForUpdate');
+        this.$store.subscribe(mutation => {
+            if (mutation.type === 'incrementLog') {
+                const amount = mutation.payload.amount;
+                const habitName = this.$store.state.habits[mutation.payload.habitId].name;
+                this.$set(this, 'alert', {
+                    content: this.$t('text.incrementSuccess', { amount, habitName }),
+                    ok: 'ok'
+                });
+                this.openAlert();
+            }
+        });
     },
     methods: {
         reloadScreen() {
@@ -101,6 +121,12 @@ export default {
         },
         syncWithCloud() {
             this.$store.dispatch('syncWithCloud');
+        },
+        openAlert() {
+            this.$refs['alert-dialog'].open();
+        },
+        closeAlert() {
+            this.$refs['alert-dialog'].close();
         }
     }
 };
@@ -204,5 +230,8 @@ label,
     padding-top: 10px;
     margin-bottom: 10px;
     border-bottom: 1px solid rgba(0, 0, 0, .12);
+}
+.md-toolbar {
+    box-shadow: 2px 2px 2px rgba(0,0,0,.4);
 }
 </style>

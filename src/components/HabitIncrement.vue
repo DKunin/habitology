@@ -30,6 +30,9 @@
               <md-radio v-model="amount" name="amount" md-value="9">9</md-radio>
               <md-radio v-model="amount" name="amount" md-value="10">10</md-radio>
             </div>
+            <md-list-item v-if="false">
+                <md-button @click="update" class="md-raised md-primary">{{ $t("actions.save") }}</md-button>
+            </md-list-item>
         </md-list-item>
     </md-list>
   </div>

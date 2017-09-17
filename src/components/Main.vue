@@ -38,6 +38,10 @@
                 <md-icon class="md-accent">update</md-icon>
                 <span>{{ $t('titles.log') }}</span>
               </md-menu-item>
+              <md-menu-item @click="shareResult(habit)">
+                <md-icon class="md-accent">share</md-icon>
+                <span>{{ $t('titles.share') }}</span>
+              </md-menu-item>
             </md-menu-content>
       </md-menu>
 
@@ -106,6 +110,17 @@ export default {
         },
         getHabitLog(habitId) {
             router.push({ name: 'habit-log', query: { habitId } });
+        },
+        shareResult(habit) {
+            if (window.navigator.share) {
+                window.navigator
+                    .share({
+                        title: 'My habit goals',
+                        text: `I reached ${this.countPercent(this.countHabit(habit), habit.goal)} of my ${habit.name} goal!`
+                    })
+                    .then(() => console.log('Successful share'))
+                    .catch(error => console.log('Error sharing', error));
+            }
         }
     }
 };
