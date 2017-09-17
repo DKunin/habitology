@@ -7,7 +7,8 @@ module.exports = {
     sourceType: 'module'
   },
   globals: {
-    Promise: true
+    Promise: true,
+    require: true
   },
   env: {
     browser: true
