@@ -116,7 +116,10 @@ export default {
                 window.navigator
                     .share({
                         title: 'My habit goals',
-                        text: `I reached ${this.countPercent(this.countHabit(habit), habit.goal)} of my ${habit.name} goal!`
+                        text: `I reached ${this.countPercent(
+                            this.countHabit(habit),
+                            habit.goal
+                        )} of my ${habit.name} goal!`
                     })
                     .then(() => console.log('Successful share'))
                     .catch(error => console.log('Error sharing', error));

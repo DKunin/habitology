@@ -93,9 +93,14 @@ export default {
         this.$store.subscribe(mutation => {
             if (mutation.type === 'incrementLog') {
                 const amount = mutation.payload.amount;
-                const habitName = this.$store.state.habits[mutation.payload.habitId].name;
+                const habitName = this.$store.state.habits[
+                    mutation.payload.habitId
+                ].name;
                 this.$set(this, 'alert', {
-                    content: this.$t('text.incrementSuccess', { amount, habitName }),
+                    content: this.$t('text.incrementSuccess', {
+                        amount,
+                        habitName
+                    }),
                     ok: 'ok'
                 });
                 this.openAlert();
