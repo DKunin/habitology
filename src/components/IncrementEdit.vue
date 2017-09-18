@@ -77,10 +77,15 @@ export default {
             router.back();
         },
         update() {
+            const curMoment = new Date();
+            const date = new Date(this.date);
+            date.setHours(curMoment.getHours());
+            date.setMinutes(curMoment.getMinutes());
+
             const payload = {
                 amount: this.amount,
                 id: this.id,
-                date: this.date,
+                date,
                 habitId: this.habitId
             };
 

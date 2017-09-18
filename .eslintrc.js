@@ -46,10 +46,7 @@ module.exports = {
     'padded-blocks': [2, 'never'],
     'quote-props': [
       2,
-      'as-needed',
-      {
-        keywords: true
-      }
+      'as-needed'
     ],
     'key-spacing': [
       2,
