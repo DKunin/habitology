@@ -11,7 +11,8 @@
         "csscomb": "find ./src | grep .vue | while read i; do ./bin/comb $i; done",
         "publish": "npm run csscomb && npm run pretty && npm run lint && npm run build && ./bin/publish",
         "test": "npm run csscomb && npm run pretty && npm run lint",
-        "lint": "eslint --ext .js,.vue src"
+        "lint": "eslint --ext .js,.vue src",
+        "report": "npm run build --report"
     },
     "dependencies": {
         "compare-semver": "1.1.0",
@@ -81,8 +82,6 @@
         "npm": ">= 3.0.0"
     },
     "browserslist": [
-        "> 1%",
-        "last 2 versions",
-        "not ie <= 8"
+        "last 2 versions"
     ]
 }

@@ -7,6 +7,7 @@ module.exports = {
     sourceType: 'module'
   },
   globals: {
+    process: true,
     Promise: true,
     require: true
   },
