@@ -9,7 +9,7 @@
             <md-input-container>
                 <md-icon>event</md-icon>
                 <label>{{ $t("titles.date") }}</label>
-                <md-input v-model="date" type="date"></md-input>
+                <md-input v-model="date" type="datetime-local"></md-input>
             </md-input-container>
         </md-list-item>
         <md-list-item>
@@ -50,7 +50,7 @@ export default {
     name: 'habitIncrement',
     data() {
         return {
-            date: moment().format('YYYY-MM-DD'),
+            date: moment().format('YYYY-MM-DDTHH:mm'),
             amount: null,
             habitId: this.$route.params.habitId
         };
@@ -63,8 +63,6 @@ export default {
     methods: Object.assign(actions, {
         update() {
             const date = new Date(this.date);
-            date.setHours(new Date().getHours());
-            date.setMinutes(new Date().getMinutes());
             const newObject = {
                 date,
                 amount: parseInt(this.amount || 0),

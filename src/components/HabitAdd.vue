@@ -52,7 +52,7 @@ export default {
             name: '',
             goal: 1000,
             id: null,
-            initialValue: 0,
+            initialValue: null,
             continuingGoal: false,
             theme: 'default',
             themes: ['default', 'reddy', 'orangy', 'bluey', 'light-blue']
@@ -68,7 +68,7 @@ export default {
                 this.$set(this, 'id', editMode.id);
                 this.$set(this, 'name', editMode.name);
                 this.$set(this, 'theme', editMode.theme);
-                this.$set(this, 'initialValue', editMode.initialValue);
+                this.$set(this, 'initialValue', editMode.initialValue || null);
                 this.$set(
                     this,
                     'continuingGoal',

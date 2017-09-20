@@ -18,18 +18,13 @@
             </div>
         </md-list-item>
     </md-list>
-    <md-card v-if="$route.query.habitId" class="empty-card">
-        <md-card-content >
-            <div @click="addHabitIncrement($route.query.habitId)">
-                <md-icon class="md-size-2x">add_circle_outline</md-icon>
-            </div>
-        </md-card-content>
-    </md-card>
+    <EmptyCard :visibility="Boolean($route.query.habitId)" :onClick="addHabitIncrement($route.query.habitId)" />
   </div>
 </template>
 
 <script>
 
+import EmptyCard from '@/components/EmptyCard';
 import moment from 'moment';
 import router from '../router';
 
@@ -37,6 +32,9 @@ export default {
     name: 'habit-log',
     data() {
         return {};
+    },
+    components: {
+        EmptyCard
     },
     computed: {
         filtered() {
@@ -68,7 +66,9 @@ export default {
             router.push({ name: 'increment-edit', query: { logId } });
         },
         addHabitIncrement(habitId) {
-            router.push({ name: 'habit-increment', params: { habitId } });
+            return () => {
+                router.push({ name: 'habit-increment', params: { habitId } });
+            };
         }
     }
 };
@@ -85,16 +85,9 @@ export default {
     font-size: 25px;
 }
 .empty-card {
-    opacity: .4;
-    text-align: center;
-    cursor: pointer;
-    box-shadow: none;
     margin: 20px;
 }
-.empty-card .md-card-content {
-    padding: 10px;
-    border: 2px dashed #607d8b;
-}
+
 .edit-log {
     float: right;
     opacity: .4;

@@ -11,7 +11,7 @@
                 <md-input-container>
                     <md-icon>event</md-icon>
                     <label>Date</label>
-                    <md-input v-model="date" type="date"></md-input>
+                    <md-input v-model="date" type="datetime-local"></md-input>
                 </md-input-container>
             </md-list-item>
             <md-list-item>
@@ -51,7 +51,7 @@ export default {
     data() {
         return {
             amount: 0,
-            date: 100,
+            date: null,
             habitId: null,
             id: null
         };
@@ -67,7 +67,7 @@ export default {
             this.$set(
                 this,
                 'date',
-                moment(new Date(editMode.date)).format('YYYY-MM-DD')
+                moment(new Date(editMode.date)).format('YYYY-MM-DDTHH:mm')
             );
             this.$set(this, 'habitId', editMode.habitId);
         }
@@ -77,10 +77,7 @@ export default {
             router.back();
         },
         update() {
-            const curMoment = new Date();
             const date = new Date(this.date);
-            date.setHours(curMoment.getHours());
-            date.setMinutes(curMoment.getMinutes());
 
             const payload = {
                 amount: this.amount,

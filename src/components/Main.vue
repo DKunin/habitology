@@ -13,13 +13,8 @@
         :habit="habit"
         :lastTime="lastTime"
         />
-    <md-card v-if="Object.keys($store.state.habits).length" class="empty-card" >
-        <md-card-content >
-            <div @click="newHabit">
-                <md-icon class="md-size-2x">add_circle_outline</md-icon>
-            </div>
-        </md-card-content>
-    </md-card>
+
+    <EmptyCard :visibility="Boolean(Object.keys($store.state.habits).length)" :onClick="newHabit" />
 
     <md-button v-if="false" @click="newHabit" class="md-fab md-primary add-button">
         <md-icon>add</md-icon>
@@ -32,6 +27,7 @@
 import router from '../router';
 import moment from 'moment';
 import HabitCard from '@/components/HabitCard';
+import EmptyCard from '@/components/EmptyCard';
 
 export default {
     name: 'main',
@@ -39,7 +35,8 @@ export default {
         return {};
     },
     components: {
-        HabitCard
+        HabitCard,
+        EmptyCard
     },
     methods: {
         newHabit() {
@@ -62,15 +59,4 @@ export default {
 </script>
 
 <style>
-.empty-card {
-    opacity: .4;
-    text-align: center;
-    cursor: pointer;
-    box-shadow: none;
-}
-
-.empty-card .md-card-content {
-    padding: 10px;
-    border: 2px dashed #607d8b;
-}
 </style>
