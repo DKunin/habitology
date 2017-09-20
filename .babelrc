@@ -3,7 +3,13 @@
     ["env", {
       "modules": false,
       "targets": {
-        "browsers": ["last 2 versions"]
+        "browsers": [
+          'Chrome >= 60',
+          'Safari >= 10.1',
+          'iOS >= 10.3',
+          'Firefox >= 54',
+          'Edge >= 15'
+        ]
       }
     }],
     "stage-2"
