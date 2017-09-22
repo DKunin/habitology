@@ -6,13 +6,15 @@
         </div>
         <div>{{ $t("text.nohabits") }}</div>
     </div>
+    <div class="container habit-list" v-dragula="sortedHabits" bag="habits-list">
     <HabitCard
-        v-if="$store.state.habits && !habit.destroy"
-        v-for="habit in $store.state.habits"
+        v-if="sortedHabits && !habit.destroy"
+        v-for="habit in sortedHabits"
         :key="habit.id"
         :habit="habit"
         :lastTime="lastTime"
         />
+    </div>
 
     <EmptyCard :visibility="Boolean(Object.keys($store.state.habits).length)" :onClick="newHabit" />
 
@@ -32,11 +34,23 @@ import EmptyCard from '@/components/EmptyCard';
 export default {
     name: 'main',
     data() {
-        return {};
+        return {
+        };
     },
     components: {
         HabitCard,
         EmptyCard
+    },
+    computed: {
+        sortedHabits() {
+            const { sorting } = this.$store.state;
+            if (Array.isArray(sorting) && sorting.length === Object.keys(this.$store.state.habits).length) {
+                return sorting.map(singleHabitId => {
+                    return this.$store.state.habits[singleHabitId];
+                });
+            }
+            return this.$store.state.habits;
+        }
     },
     methods: {
         newHabit() {

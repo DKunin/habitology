@@ -106,6 +106,12 @@ export default {
                 this.openAlert();
             }
         });
+        window.Vue.vueDragula.eventBus.$on('dragend', () => {
+            const items = Array.from(this.$el.querySelectorAll('.habit-list .md-card')).map(singleNode => {
+                return singleNode.dataset.key;
+            });
+            this.$store.dispatch('updateSorting', items);
+        });
     },
     methods: {
         reloadScreen() {
@@ -238,5 +244,8 @@ label,
 }
 .md-toolbar {
     box-shadow: 2px 2px 2px rgba(0,0,0,.4);
+}
+.gu-transit {
+    opacity: .3;
 }
 </style>

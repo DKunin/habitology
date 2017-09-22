@@ -35,6 +35,7 @@ const basicState = {
     log: [],
     user: {},
     locale: 'ru',
+    sorting: [],
     newVersion: false
 };
 
@@ -94,6 +95,7 @@ const mutations = {
         state.log = payload.log;
         state.user = payload.user;
         state.locale = payload.locale;
+        state.sorting = payload.sorting || [];
         moment.locale(payload.locale || 'ru');
         firebase.initializeApp(config);
         window.firebase = firebase;
@@ -120,6 +122,9 @@ const mutations = {
         state.locale = newSettings.locale;
         window.i18n.locale = newSettings.locale;
         moment.locale(newSettings.locale || 'ru');
+    },
+    updateSorting(state, sortingOrder) {
+        state.sorting = sortingOrder;
     },
     checkForUpdate(state) {
         fetch('https://raw.githubusercontent.com/DKunin/habitology/master/package.json')
@@ -190,7 +195,8 @@ const mutations = {
                             log: cleanedLogs,
                             habits: mergedState.habits,
                             user: state.user,
-                            locale: state.locale
+                            locale: state.locale,
+                            sorting: state.sorting
                         },
                         null,
                         4
@@ -233,6 +239,9 @@ const actions = {
     },
     checkForUpdate({ commit }) {
         commit('checkForUpdate');
+    },
+    updateSorting({ commit }, newSort) {
+        commit('updateSorting', newSort);
     }
 };
 const store = new Vuex.Store({

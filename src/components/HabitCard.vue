@@ -1,5 +1,5 @@
 <template>
-    <md-card :md-theme="habit.theme ? habit.theme : 'default'">
+    <md-card :md-theme="habit.theme ? habit.theme : 'default'" :data-key="habit.id">
       <md-card-header>
         <div class="md-title" @click="getHabitLog(habit.id)">
             {{ habit.name }}

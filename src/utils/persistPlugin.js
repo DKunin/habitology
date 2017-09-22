@@ -5,6 +5,7 @@ const mutationsToSaveOn = [
     'updateHabit',
     'removeHabit',
     'updateLogItem',
+    'updateSorting',
     'removeLogItem',
     'restoreState',
     'saveSettings',
@@ -17,7 +18,7 @@ const persistPlugin = store => {
     let syncTimeout;
     const history = JSON.parse(
         localStorage.getItem('habitologyState') ||
-            '{"habits":{}, "log": [], "user": {}, "apiKey": "", "locale": "en", "newVersion": false}'
+            '{"habits":{}, "log": [], "user": {}, "apiKey": "", "locale": "en", "newVersion": false, "sorting": []}'
     );
 
     if (history) {
