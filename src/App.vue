@@ -107,7 +107,9 @@ export default {
             }
         });
         window.Vue.vueDragula.eventBus.$on('dragend', () => {
-            const items = Array.from(this.$el.querySelectorAll('.habit-list .md-card')).map(singleNode => {
+            const items = Array.from(
+                this.$el.querySelectorAll('.habit-list .md-card')
+            ).map(singleNode => {
                 return singleNode.dataset.key;
             });
             this.$store.dispatch('updateSorting', items);

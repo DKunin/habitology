@@ -34,8 +34,7 @@ import EmptyCard from '@/components/EmptyCard';
 export default {
     name: 'main',
     data() {
-        return {
-        };
+        return {};
     },
     components: {
         HabitCard,
@@ -44,7 +43,10 @@ export default {
     computed: {
         sortedHabits() {
             const { sorting } = this.$store.state;
-            if (Array.isArray(sorting) && sorting.length === Object.keys(this.$store.state.habits).length) {
+            if (
+                Array.isArray(sorting) &&
+                sorting.length === Object.keys(this.$store.state.habits).length
+            ) {
                 return sorting.map(singleHabitId => {
                     return this.$store.state.habits[singleHabitId];
                 });

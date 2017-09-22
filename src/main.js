@@ -121,5 +121,12 @@ new Vue({
     i18n,
     template: '<App/>',
     components: { App },
-    created() {}
+    created() {
+        Vue.vueDragula.options('habits-list', {
+            direction: 'vertical',
+            invalid: function() {
+                return false;
+            }
+        });
+    }
 });
