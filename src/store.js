@@ -36,6 +36,7 @@ const basicState = {
     user: {},
     locale: 'ru',
     sorting: [],
+    dragging: false,
     newVersion: false
 };
 
@@ -125,6 +126,9 @@ const mutations = {
     },
     updateSorting(state, sortingOrder) {
         state.sorting = sortingOrder;
+    },
+    toggleDraging(state, newState) {
+        state.dragging = newState;
     },
     checkForUpdate(state) {
         fetch('https://raw.githubusercontent.com/DKunin/habitology/master/package.json')
@@ -242,6 +246,9 @@ const actions = {
     },
     updateSorting({ commit }, newSort) {
         commit('updateSorting', newSort);
+    },
+    toggleDraging({ commit }, newState) {
+        commit('toggleDraging', newState);
     }
 };
 const store = new Vuex.Store({

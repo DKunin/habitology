@@ -125,8 +125,8 @@ new Vue({
         Vue.vueDragula.options('habits-list', {
             direction: 'vertical',
             revertOnSpill: true,
-            invalid() {
-                return window.holding !== false && window.holding !== undefined;
+            moves(el, source, handle) {
+                return handle.innerText === 'reorder';
             }
         });
     }

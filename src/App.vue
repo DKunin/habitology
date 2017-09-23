@@ -106,14 +106,16 @@ export default {
                 this.openAlert();
             }
         });
-        // window.Vue.vueDragula.eventBus.$on('dragend', () => {
-        //     const items = Array.from(
-        //         this.$el.querySelectorAll('.habit-list .md-card')
-        //     ).map(singleNode => {
-        //         return singleNode.dataset.key;
-        //     });
-        //     this.$store.dispatch('updateSorting', items);
-        // });
+        window.Vue.vueDragula.eventBus.$on('dragend', () => {
+            // const items = Array.from(
+            //     this.$el.querySelectorAll('.habit-list .md-card')
+            // ).map(singleNode => {
+            //     return singleNode.dataset.key;
+            // });
+            // setTimeout(() => {
+            //     this.$store.dispatch('updateSorting', items);
+            // }, 300);
+        });
     },
     methods: {
         reloadScreen() {

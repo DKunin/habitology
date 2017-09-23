@@ -1,6 +1,6 @@
 <template>
-    <div @mousedown="mouseDown" @mouseup="mouseUp">
     <md-card :md-theme="habit.theme ? habit.theme : 'default'" :data-key="habit.id">
+        <md-icon class="md-accent reorder-icon">reorder</md-icon>
       <md-card-header>
         <div class="md-title" @click="getHabitLog(habit.id)">
             {{ habit.name }}
@@ -42,10 +42,11 @@
       </md-card-actions>
         <md-progress :md-progress="percent"></md-progress>
     </md-card>
-        </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+const actions = mapActions(['toggleDraging']);
 
 import router from '../router';
 let holdTimeout = setTimeout(() => {});
@@ -65,7 +66,7 @@ export default {
         }
     },
     mounted() {},
-    methods: {
+    methods: Object.assign(actions, {
         habitIncrement(habitId) {
             router.push({ name: 'habit-increment', params: { habitId } });
         },
@@ -90,16 +91,15 @@ export default {
         },
         mouseDown() {
             clearTimeout(holdTimeout);
-            window.holding = false;
             holdTimeout = setTimeout(() => {
-                window.holding = true;
+                this.toggleDraging(true);
             }, 500);
         },
         mouseUp() {
             clearTimeout(holdTimeout);
-            window.holding = false;
+            // this.toggleDraging(false);
         }
-    },
+    }),
     computed: {
         count() {
             const habit = this.habit;
@@ -124,6 +124,7 @@ export default {
 <style>
 .md-card {
     margin: 15px;
+    user-select: none;
 }
 
 .md-card .md-card-header .md-title {
@@ -155,5 +156,9 @@ export default {
     align-items: center;
     justify-content: center;
 }
-
+.reorder-icon {
+    display: none;
+    width: 10px;
+    overflow: hidden;
+}
 </style>
