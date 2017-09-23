@@ -83,7 +83,7 @@ export default {
         return {
             version: packageJson.version,
             alert: {
-                content: 'Tsest',
+                content: 'Test',
                 ok: 'Ok'
             }
         };
@@ -106,14 +106,14 @@ export default {
                 this.openAlert();
             }
         });
-        window.Vue.vueDragula.eventBus.$on('dragend', () => {
-            const items = Array.from(
-                this.$el.querySelectorAll('.habit-list .md-card')
-            ).map(singleNode => {
-                return singleNode.dataset.key;
-            });
-            this.$store.dispatch('updateSorting', items);
-        });
+        // window.Vue.vueDragula.eventBus.$on('dragend', () => {
+        //     const items = Array.from(
+        //         this.$el.querySelectorAll('.habit-list .md-card')
+        //     ).map(singleNode => {
+        //         return singleNode.dataset.key;
+        //     });
+        //     this.$store.dispatch('updateSorting', items);
+        // });
     },
     methods: {
         reloadScreen() {

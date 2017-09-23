@@ -75,4 +75,7 @@ export default {
 </script>
 
 <style>
+.habit-list {
+    position: relative;
+}
 </style>

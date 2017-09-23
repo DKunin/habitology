@@ -1,5 +1,8 @@
 <template>
-    <md-card :md-theme="habit.theme ? habit.theme : 'default'" :data-key="habit.id">
+    <div v-bind:class="['md-card', `md-theme-${habit.theme || 'default'}`]" 
+        @touchstart="mouseDown" @touchend="mouseUp" 
+        @mousedown="mouseDown" @mouseup="mouseUp"
+        :data-key="habit.id">
       <md-card-header>
         <div class="md-title" @click="getHabitLog(habit.id)">
             {{ habit.name }}
@@ -39,18 +42,20 @@
       </md-menu>
 
       </md-card-actions>
-        <md-progress :md-progress="percent"></md-progress>
-    </md-card>
+      <md-progress :md-progress="percent"></md-progress>
+    </div>
 </template>
 
 <script>
 
 import router from '../router';
+let holdTimeout = setTimeout(() => {});
 
 export default {
     name: 'habit-card',
     data() {
-        return {};
+        return {
+        };
     },
     props: {
         habit: {
@@ -85,6 +90,19 @@ export default {
                     .then(() => console.log('Successful share'))
                     .catch(error => console.log('Error sharing', error));
             }
+        },
+        mouseDown() {
+            clearTimeout(holdTimeout);
+            window.holding = false;
+            holdTimeout = setTimeout(() => {
+                console.log('trigger');
+                window.holding = true;
+            }, 500);
+        },
+        mouseUp() {
+            clearTimeout(holdTimeout);
+            console.log('mu');
+            window.holding = false;
         }
     },
     computed: {

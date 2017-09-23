@@ -124,8 +124,9 @@ new Vue({
     created() {
         Vue.vueDragula.options('habits-list', {
             direction: 'vertical',
-            invalid: function() {
-                return false;
+            revertOnSpill: true,
+            invalid() {
+                return window.holding !== false && window.holding !== undefined;
             }
         });
     }
