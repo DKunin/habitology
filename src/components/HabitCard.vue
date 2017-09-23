@@ -45,6 +45,7 @@
 </template>
 
 <script>
+
 import { mapActions } from 'vuex';
 const actions = mapActions(['toggleDraging']);
 
