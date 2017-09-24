@@ -1,8 +1,9 @@
 {
     "name": "habitology",
-    "version": "1.6.4",
+    "version": "1.6.5",
     "description": "Simple app to work on habits",
     "author": "Dmitri Kunin <whitemarten@gmail.com>",
+    "github": "https://github.com/DKunin/habitology",
     "scripts": {
         "dev": "node build/dev-server.js",
         "start": "node build/dev-server.js",

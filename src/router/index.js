@@ -6,6 +6,7 @@ import HabitLog from '@/components/HabitLog';
 import HabitAdd from '@/components/HabitAdd';
 import Settings from '@/components/Settings';
 import IncrementEdit from '@/components/IncrementEdit';
+import About from '@/components/About';
 
 Vue.use(Router);
 
@@ -40,6 +41,11 @@ export default new Router({
             path: '/increment-edit',
             name: 'increment-edit',
             component: IncrementEdit
+        },
+        {
+            path: '/about',
+            name: 'about',
+            component: About
         }
     ]
 });

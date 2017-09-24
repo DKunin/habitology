@@ -17,7 +17,8 @@ export default {
             'initial-value': 'Initial value',
             nodata: 'no data',
             share: 'Share',
-            defaultHabitName: 'Habit'
+            defaultHabitName: 'Habit',
+            about: 'About'
         },
         actions: {
             save: 'Save',
@@ -71,7 +72,8 @@ export default {
             'initial-value': 'Первоначальное значение',
             nodata: 'нет данных',
             share: 'Поделиться',
-            defaultHabitName: 'Название привычки'
+            defaultHabitName: 'Название привычки',
+            about: 'О приложении'
         },
         actions: {
             save: 'Сохранить',

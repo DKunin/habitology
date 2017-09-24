@@ -23,6 +23,10 @@
             <md-icon>settings</md-icon> <span>{{ $t('titles.settings') }}</span>
           </md-list-item>
 
+          <md-list-item @click="gotoMain('about')" class="md-primary">
+            <md-icon>help_outline</md-icon> <span>{{ $t('titles.about') }}</span>
+          </md-list-item>
+
         </md-list>
         <div class="version">
             <div>{{ version }}</div>

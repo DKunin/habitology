@@ -11,7 +11,7 @@
             <md-list-item v-if="!$store.state.user.email">
                 <md-input-container>
                     <label>{{ $t("settings.email") }}</label>
-                    <md-input v-model="email"></md-input>
+                    <md-input type="email" v-model="email"></md-input>
                 </md-input-container>
             </md-list-item>
 
