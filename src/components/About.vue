@@ -29,8 +29,7 @@ export default {
             author: packageJson.author
         };
     },
-    methods: {
-    }
+    methods: {}
 };
 
 </script>
