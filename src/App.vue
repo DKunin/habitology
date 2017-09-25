@@ -256,4 +256,7 @@ label,
 .gu-transit {
     opacity: .3;
 }
+.gu-mirror {
+    position: absolute;
+}
 </style>
