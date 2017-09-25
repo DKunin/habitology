@@ -6,17 +6,15 @@
         </div>
         <div>{{ $t("text.nohabits") }}</div>
     </div>
-    <div class="container habit-list" dragula="sortedHabits" bag="habits-list">
-        <draggable v-model="sortedHabits" :move="checkMove" :options="{handle: '.reorder-icon'}">
-            <HabitCard
-                v-if="sortedHabits && !habit.destroy"
-                v-for="habit in sortedHabits"
-                :key="habit.id"
-                :habit="habit"
-                :lastTime="lastTime"
-                />
-        </draggable>
-    </div>
+    <draggable v-model="sortedHabits" :options="{handle: '.reorder-icon'}">
+        <HabitCard
+            v-if="sortedHabits && !habit.destroy"
+            v-for="habit in sortedHabits"
+            :key="habit.id"
+            :habit="habit"
+            :lastTime="lastTime"
+            />
+    </draggable>
 
     <EmptyCard :visibility="Boolean(Object.keys($store.state.habits).length)" :onClick="newHabit" />
 
@@ -71,10 +69,6 @@ export default {
     methods: {
         newHabit() {
             router.push({ name: 'habit-add' });
-        },
-        checkMove(evt) {
-            console.log(evt);
-            return (evt.draggedContext.element.name !== 'apple');
         },
         lastTime(habit) {
             const currentHabitLog = this.$store.state.log

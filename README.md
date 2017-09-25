@@ -1,8 +1,10 @@
-# habitology[alpha]
+# habitology[beta]
 
 > Simple app to work on habits
 
 ![Logo](./static/img/icons/icon-144.png)
+
+![Screen](./static/img/main-screen.png)
 
 ## Build Setup
 

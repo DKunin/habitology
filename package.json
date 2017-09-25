@@ -1,6 +1,6 @@
 {
     "name": "habitology",
-    "version": "1.6.9",
+    "version": "1.6.11",
     "description": "Simple app to work on habits",
     "author": "Dmitri Kunin <whitemarten@gmail.com>",
     "github": "https://github.com/DKunin/habitology",
@@ -21,7 +21,6 @@
         "firebase": "4.3.1",
         "moment": "2.18.1",
         "vue": "2.4.4",
-        "vue-dragula": "1.3.1",
         "vue-i18n": "7.2.0",
         "vue-material": "0.7.4",
         "vue-router": "^2.3.1",
