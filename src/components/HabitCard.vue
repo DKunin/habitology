@@ -158,7 +158,7 @@ export default {
     justify-content: center;
 }
 .reorder-icon {
-    width: 10px;
+    width: 14px;
     display: block;
     min-width: auto;
     position: absolute;

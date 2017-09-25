@@ -4,7 +4,7 @@ import Vue from 'vue';
 import VueI18n from 'vue-i18n';
 import Vuex from 'vuex';
 import VueMaterial from 'vue-material';
-import VueDragula from 'vue-dragula';
+// import VueDragula from 'vue-dragula';
 
 import App from './App';
 import router from './router';
@@ -14,7 +14,7 @@ import messages from './config/locale';
 Vue.use(Vuex);
 Vue.use(VueMaterial);
 Vue.use(VueI18n);
-Vue.use(VueDragula);
+// Vue.use(VueDragula);
 
 Vue.material.registerTheme('default', {
     primary: {
@@ -120,14 +120,14 @@ new Vue({
     store,
     i18n,
     template: '<App/>',
-    components: { App },
-    created() {
-        Vue.vueDragula.options('habits-list', {
-            direction: 'vertical',
-            revertOnSpill: true,
-            moves(el, source, handle) {
-                return handle.innerText === 'reorder';
-            }
-        });
-    }
+    components: { App } // ,
+    // created() {
+    //     Vue.vueDragula.options('habits-list', {
+    //         direction: 'vertical',
+    //         revertOnSpill: true,
+    //         moves(el, source, handle) {
+    //             return handle.innerText === 'reorder';
+    //         }
+    //     });
+    // }
 });

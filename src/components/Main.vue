@@ -6,14 +6,16 @@
         </div>
         <div>{{ $t("text.nohabits") }}</div>
     </div>
-    <div class="container habit-list" v-dragula="sortedHabits" bag="habits-list">
-    <HabitCard
-        v-if="sortedHabits && !habit.destroy"
-        v-for="habit in sortedHabits"
-        :key="habit.id"
-        :habit="habit"
-        :lastTime="lastTime"
-        />
+    <div class="container habit-list" dragula="sortedHabits" bag="habits-list">
+        <draggable v-model="sortedHabits" :move="checkMove" :options="{handle: '.reorder-icon'}">
+            <HabitCard
+                v-if="sortedHabits && !habit.destroy"
+                v-for="habit in sortedHabits"
+                :key="habit.id"
+                :habit="habit"
+                :lastTime="lastTime"
+                />
+        </draggable>
     </div>
 
     <EmptyCard :visibility="Boolean(Object.keys($store.state.habits).length)" :onClick="newHabit" />
@@ -26,10 +28,11 @@
 
 <script>
 
-import router from '../router';
+import draggable from 'vuedraggable';
 import moment from 'moment';
 import HabitCard from '@/components/HabitCard';
 import EmptyCard from '@/components/EmptyCard';
+import router from '../router';
 
 export default {
     name: 'main',
@@ -38,29 +41,40 @@ export default {
     },
     components: {
         HabitCard,
-        EmptyCard
+        EmptyCard,
+        draggable
     },
     computed: {
-        sortedHabits() {
-            const { sorting } = this.$store.state;
-            const habits = this.$store.state.habits;
-            if (
-                Array.isArray(sorting) &&
-                sorting.length === Object.keys(habits).length
-            ) {
-                return sorting.map(singleHabitId => {
-                    return habits[singleHabitId];
-                });
-            }
+        sortedHabits: {
+            get() {
+                const { sorting } = this.$store.state;
+                const habits = this.$store.state.habits;
+                if (
+                    Array.isArray(sorting) &&
+                    sorting.length === Object.keys(habits).length
+                ) {
+                    return sorting.map(singleHabitId => {
+                        return habits[singleHabitId];
+                    });
+                }
 
-            return Object.keys(habits).map(singleKeyMap => {
-                return habits[singleKeyMap];
-            });
+                return Object.keys(habits).map(singleKeyMap => {
+                    return habits[singleKeyMap];
+                });
+            },
+            set(value) {
+                const ids = value.map(({ id }) => id);
+                this.$store.dispatch('updateSorting', ids);
+            }
         }
     },
     methods: {
         newHabit() {
             router.push({ name: 'habit-add' });
+        },
+        checkMove(evt) {
+            console.log(evt);
+            return (evt.draggedContext.element.name !== 'apple');
         },
         lastTime(habit) {
             const currentHabitLog = this.$store.state.log
