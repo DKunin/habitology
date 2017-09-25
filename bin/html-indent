@@ -3,14 +3,13 @@
 'use strict';
 
 const indent = require('indent');
-
 const fs = require('fs');
 const file = process.argv[2];
 const source = fs.readFileSync(file, 'utf8');
 let templateInput = source.match(/<template[^>]*>([\s\S]*?)<\/template>/g);
 templateInput = templateInput[0].replace(/<template[^>]*>/g, '').replace(/<\/template>/g, '');
 
-const indented = indent.indentJS(templateInput, '  ');
+const indented = indent(templateInput, '  ');
 const newSource = source.replace(templateInput, indented);
 fs.writeFileSync(file, newSource, { encoding: 'utf8' });
 
