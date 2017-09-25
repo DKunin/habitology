@@ -43,15 +43,19 @@ export default {
     computed: {
         sortedHabits() {
             const { sorting } = this.$store.state;
+            const habits = this.$store.state.habits;
             if (
                 Array.isArray(sorting) &&
-                sorting.length === Object.keys(this.$store.state.habits).length
+                sorting.length === Object.keys(habits).length
             ) {
                 return sorting.map(singleHabitId => {
-                    return this.$store.state.habits[singleHabitId];
+                    return habits[singleHabitId];
                 });
             }
-            return this.$store.state.habits;
+
+            return Object.keys(habits).map(singleKeyMap => {
+                return habits[singleKeyMap];
+            });
         }
     },
     methods: {

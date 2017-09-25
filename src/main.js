@@ -126,7 +126,7 @@ new Vue({
             direction: 'vertical',
             revertOnSpill: true,
             moves(el, source, handle) {
-                return handle.innerText === 'reorder';
+                return handle.innerText.includes('reorder');
             }
         });
     }

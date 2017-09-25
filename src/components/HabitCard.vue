@@ -158,8 +158,14 @@ export default {
     justify-content: center;
 }
 .reorder-icon {
-    display: none;
     width: 10px;
+    display: block;
+    min-width: auto;
+    position: absolute;
     overflow: hidden;
+    top: 0;
+    bottom: 4px;
+    left: -3px;
+    opacity: .3;
 }
 </style>
