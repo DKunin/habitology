@@ -4,7 +4,7 @@
 
 ![Logo](./static/img/icons/icon-144.png)
 
-![Screen](./static/img/main-screen.png)
+<img src="./static/img/main-screen.png" alt="" height="200px">
 
 ## Build Setup
 
