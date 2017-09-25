@@ -91,7 +91,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue__["default"].use(__WEBPACK_IMPORTED_MODULE_1_vue
 /* 32 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"habitology","version":"1.6.10","description":"Simple app to work on habits","author":"Dmitri Kunin <whitemarten@gmail.com>","github":"https://github.com/DKunin/habitology","scripts":{"dev":"node build/dev-server.js","start":"node build/dev-server.js","build":"node build/build.js","pretty":"find ./src | grep .vue | while read i; do ./bin/pretty $i; done","csscomb":"find ./src | grep .vue | while read i; do ./bin/comb $i; done","publish":"npm run csscomb && npm run pretty && npm run lint && npm run build && ./bin/publish","test":"npm run csscomb && npm run pretty && npm run lint","lint":"eslint --ext .js,.vue src","report":"npm run build --report"},"dependencies":{"compare-semver":"1.1.0","deepmerge":"1.5.1","firebase":"4.3.1","moment":"2.18.1","vue":"2.4.4","vue-dragula":"1.3.1","vue-i18n":"7.2.0","vue-material":"0.7.4","vue-router":"^2.3.1","vuedraggable":"2.14.1","vuex":"2.3.1"},"devDependencies":{"autoprefixer":"^7.1.2","babel-core":"^6.22.1","babel-eslint":"^7.1.1","babel-loader":"^7.1.1","babel-plugin-transform-runtime":"^6.22.0","babel-preset-env":"^1.3.2","babel-preset-stage-2":"^6.22.0","babel-register":"^6.22.0","chalk":"^2.0.1","connect-history-api-fallback":"^1.3.0","copy-webpack-plugin":"^4.0.1","css-loader":"^0.28.0","csscomb":"4.2.0","cssnano":"^3.10.0","eslint":"^3.19.0","eslint-config-standard":"^6.2.1","eslint-friendly-formatter":"^3.0.0","eslint-loader":"^1.7.1","eslint-plugin-html":"^3.1.0","eslint-plugin-promise":"^3.4.0","eslint-plugin-standard":"^2.0.1","eventsource-polyfill":"^0.9.6","express":"4.15.4","extract-text-webpack-plugin":"^2.0.0","file-loader":"^0.11.1","friendly-errors-webpack-plugin":"^1.1.3","gh-pages":"1.0.0","html-script-hook":"1.0.0","html-webpack-plugin":"^2.28.0","http-proxy-middleware":"^0.17.3","indent":"0.0.2","opn":"^5.1.0","optimize-css-assets-webpack-plugin":"^2.0.0","ora":"^1.2.0","prettier":"1.7.0","puppeteer":"0.10.2","rimraf":"^2.6.0","semver":"^5.3.0","shelljs":"^0.7.6","sw-precache-webpack-plugin":"^0.11.4","uglify-es":"^3.0.25","url-loader":"^0.5.8","vue-loader":"13.0.4","vue-style-loader":"^3.0.1","vue-template-compiler":"2.4.4","webpack":"^2.6.1","webpack-bundle-analyzer":"^2.2.1","webpack-dev-middleware":"^1.10.0","webpack-hot-middleware":"^2.18.0","webpack-merge":"^4.1.0"},"engines":{"node":">= 6.0.0","npm":">= 3.0.0"},"browserslist":["Chrome >= 60","Safari >= 10.1","iOS >= 10.3","Firefox >= 54","Edge >= 15"]}
+module.exports = {"name":"habitology","version":"1.6.11","description":"Simple app to work on habits","author":"Dmitri Kunin <whitemarten@gmail.com>","github":"https://github.com/DKunin/habitology","scripts":{"dev":"node build/dev-server.js","start":"node build/dev-server.js","build":"node build/build.js","pretty":"find ./src | grep .vue | while read i; do ./bin/pretty $i; done","csscomb":"find ./src | grep .vue | while read i; do ./bin/comb $i; done","publish":"npm run csscomb && npm run pretty && npm run lint && npm run build && ./bin/publish","test":"npm run csscomb && npm run pretty && npm run lint","lint":"eslint --ext .js,.vue src","report":"npm run build --report"},"dependencies":{"compare-semver":"1.1.0","deepmerge":"1.5.1","firebase":"4.3.1","moment":"2.18.1","vue":"2.4.4","vue-i18n":"7.2.0","vue-material":"0.7.4","vue-router":"^2.3.1","vuedraggable":"2.14.1","vuex":"2.3.1"},"devDependencies":{"autoprefixer":"^7.1.2","babel-core":"^6.22.1","babel-eslint":"^7.1.1","babel-loader":"^7.1.1","babel-plugin-transform-runtime":"^6.22.0","babel-preset-env":"^1.3.2","babel-preset-stage-2":"^6.22.0","babel-register":"^6.22.0","chalk":"^2.0.1","connect-history-api-fallback":"^1.3.0","copy-webpack-plugin":"^4.0.1","css-loader":"^0.28.0","csscomb":"4.2.0","cssnano":"^3.10.0","eslint":"^3.19.0","eslint-config-standard":"^6.2.1","eslint-friendly-formatter":"^3.0.0","eslint-loader":"^1.7.1","eslint-plugin-html":"^3.1.0","eslint-plugin-promise":"^3.4.0","eslint-plugin-standard":"^2.0.1","eventsource-polyfill":"^0.9.6","express":"4.15.4","extract-text-webpack-plugin":"^2.0.0","file-loader":"^0.11.1","friendly-errors-webpack-plugin":"^1.1.3","gh-pages":"1.0.0","html-script-hook":"1.0.0","html-webpack-plugin":"^2.28.0","http-proxy-middleware":"^0.17.3","indent":"0.0.2","opn":"^5.1.0","optimize-css-assets-webpack-plugin":"^2.0.0","ora":"^1.2.0","prettier":"1.7.0","puppeteer":"0.10.2","rimraf":"^2.6.0","semver":"^5.3.0","shelljs":"^0.7.6","sw-precache-webpack-plugin":"^0.11.4","uglify-es":"^3.0.25","url-loader":"^0.5.8","vue-loader":"13.0.4","vue-style-loader":"^3.0.1","vue-template-compiler":"2.4.4","webpack":"^2.6.1","webpack-bundle-analyzer":"^2.2.1","webpack-dev-middleware":"^1.10.0","webpack-hot-middleware":"^2.18.0","webpack-merge":"^4.1.0"},"engines":{"node":">= 6.0.0","npm":">= 3.0.0"},"browserslist":["Chrome >= 60","Safari >= 10.1","iOS >= 10.3","Firefox >= 54","Edge >= 15"]}
 
 /***/ }),
 /* 33 */,
@@ -670,7 +670,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-// import VueDragula from 'vue-dragula';
 
 
 
@@ -680,7 +679,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 __WEBPACK_IMPORTED_MODULE_0_vue__["default"].use(__WEBPACK_IMPORTED_MODULE_2_vuex__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_vue__["default"].use(__WEBPACK_IMPORTED_MODULE_3_vue_material___default.a);
 __WEBPACK_IMPORTED_MODULE_0_vue__["default"].use(__WEBPACK_IMPORTED_MODULE_1_vue_i18n__["a" /* default */]);
-// Vue.use(VueDragula);
 
 __WEBPACK_IMPORTED_MODULE_0_vue__["default"].material.registerTheme('default', {
     primary: {
@@ -778,7 +776,7 @@ const i18n = new __WEBPACK_IMPORTED_MODULE_1_vue_i18n__["a" /* default */]({
 window.i18n = i18n;
 
 __WEBPACK_IMPORTED_MODULE_0_vue__["default"].config.productionTip = false;
-window.Vue = __WEBPACK_IMPORTED_MODULE_0_vue__["default"];
+
 /* eslint-disable no-new */
 new __WEBPACK_IMPORTED_MODULE_0_vue__["default"]({
     el: '#app',
@@ -786,17 +784,8 @@ new __WEBPACK_IMPORTED_MODULE_0_vue__["default"]({
     store: __WEBPACK_IMPORTED_MODULE_6__store__["a" /* default */],
     i18n,
     template: '<App/>',
-    components: { App: __WEBPACK_IMPORTED_MODULE_4__App__["a" /* default */] // ,
-        // created() {
-        //     Vue.vueDragula.options('habits-list', {
-        //         direction: 'vertical',
-        //         revertOnSpill: true,
-        //         moves(el, source, handle) {
-        //             return handle.innerText === 'reorder';
-        //         }
-        //     });
-        // }
-    } });
+    components: { App: __WEBPACK_IMPORTED_MODULE_4__App__["a" /* default */] }
+});
 
 /***/ }),
 /* 96 */
@@ -1647,8 +1636,6 @@ const actions = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_vuex__["b" /* 
 //
 //
 //
-//
-//
 
 
 
@@ -1691,10 +1678,6 @@ const actions = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_vuex__["b" /* 
     methods: {
         newHabit() {
             __WEBPACK_IMPORTED_MODULE_5__router__["a" /* default */].push({ name: 'habit-add' });
-        },
-        checkMove(evt) {
-            console.log(evt);
-            return evt.draggedContext.element.name !== 'apple';
         },
         lastTime(habit) {
             const currentHabitLog = this.$store.state.log.filter(({ habitId }) => habit.id === habitId).sort((a, b) => {
@@ -3221,15 +3204,8 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     }
   }, [_c('md-icon', {
     staticClass: "md-size-4x"
-  }, [_vm._v("add_circle_outline")])], 1), _vm._v(" "), _c('div', [_vm._v(_vm._s(_vm.$t("text.nohabits")))])]) : _vm._e(), _vm._v(" "), _c('div', {
-    staticClass: "container habit-list",
+  }, [_vm._v("add_circle_outline")])], 1), _vm._v(" "), _c('div', [_vm._v(_vm._s(_vm.$t("text.nohabits")))])]) : _vm._e(), _vm._v(" "), _c('draggable', {
     attrs: {
-      "dragula": "sortedHabits",
-      "bag": "habits-list"
-    }
-  }, [_c('draggable', {
-    attrs: {
-      "move": _vm.checkMove,
       "options": {
         handle: '.reorder-icon'
       }
@@ -3249,7 +3225,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         "lastTime": _vm.lastTime
       }
     }) : _vm._e()
-  }))], 1), _vm._v(" "), _c('EmptyCard', {
+  })), _vm._v(" "), _c('EmptyCard', {
     attrs: {
       "visibility": Boolean(Object.keys(_vm.$store.state.habits).length),
       "onClick": _vm.newHabit
@@ -3267,4 +3243,4 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 
 /***/ })
 ],[95]);
-//# sourceMappingURL=app.df9b6e9595a27d46c898.js.map
+//# sourceMappingURL=app.a9748606730a2fefe9a4.js.map
