@@ -66,9 +66,9 @@
 
 <script>
 
-import router from './router';
+import router from '../router';
 
-import packageJson from '../package.json';
+import packageJson from '../../package.json';
 
 export default {
     name: 'app',

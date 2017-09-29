@@ -6,7 +6,7 @@ import Vuex from 'vuex';
 import VueMaterial from 'vue-material';
 import 'vue-material/dist/vue-material.css';
 
-import App from './App';
+import App from './pages/App';
 import router from './router';
 import store from './store';
 import messages from './config/locale';
