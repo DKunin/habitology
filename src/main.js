@@ -10,10 +10,20 @@ import App from './App';
 import router from './router';
 import store from './store';
 import messages from './config/locale';
+import Icon from '@/components/Icon';
+import Logo from '@/components/Logo';
+import * as AllIcons from '@/components/Icons';
+
 
 Vue.use(Vuex);
 Vue.use(VueMaterial);
 Vue.use(VueI18n);
+Vue.component('Icon', Icon);
+Vue.component('Logo', Logo);
+
+for (let el in AllIcons) {
+    Vue.component(el, AllIcons[el]);
+}
 
 Vue.material.registerTheme('default', {
     primary: {

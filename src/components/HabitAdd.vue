@@ -19,7 +19,9 @@
                 <div v-for="color in themes">
                     <label :for="color" :class="'single-theme ' + color">
                         <input class="theme-radio" :id="color" type="radio" v-model="theme" name="theme" :value="color">
-                        <md-icon class="color-check">check</md-icon>
+                        <Icon className="md-icon color-check" :size="18">
+                            <IconCheck />
+                        </Icon>
                     </label>
                 </div>
             </div>
@@ -117,7 +119,13 @@ export default {
     height: 30px;
     border-radius: 50%;
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+
+
 
 .single-theme.default .md-icon {
     color: black;

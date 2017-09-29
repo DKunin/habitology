@@ -16,7 +16,7 @@
             </md-list-item>
 
             <md-list-item v-if="!$store.state.user.email">
-              <md-input-container md-has-password>
+              <md-input-container>
                 <label>{{ $t("settings.password") }}</label>
                 <md-input v-model="password" type="password"></md-input>
               </md-input-container>

@@ -8,6 +8,7 @@ module.exports = {
   },
   globals: {
     process: true,
+    module: true,
     Promise: true,
     require: true
   },

@@ -2,7 +2,9 @@
   <div class="page">
     <div v-if="!filtered.length" class="no-data-screen">
         <div>
-            <md-icon class="md-size-4x">update</md-icon>
+            <Icon className :size="50">
+                <IconUpdate />
+            </Icon>
         </div>
         <div>{{ $t("text.nolog") }}</div>
     </div>
@@ -12,7 +14,11 @@
                 <div class="log-item" @click="editHabitIncrement(log.id)">{{ log.amount }}</div>
             </md-avatar>
             <div class="md-list-text-container">
-                <span>{{ getHabitName(log.habitId) }} <a class="edit-log" @click="editHabitIncrement(log.id)"><md-icon class="md-primary">create</md-icon></a></span>
+                <span>{{ getHabitName(log.habitId) }} <a class="edit-log" @click="editHabitIncrement(log.id)">
+                    <Icon>
+                        <IconCreate />
+                    </Icon>
+                </a></span>
                 <p>{{ formatDate(log.date) }}</p>
                 
             </div>

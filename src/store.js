@@ -19,7 +19,7 @@ import {
 Vue.use(Vuex);
 
 function randomId() {
-    return parseInt(Math.random() * 10000000000, 2);
+    return parseInt(Math.random() * 10000000000);
 }
 
 const config = {

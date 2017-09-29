@@ -1,6 +1,9 @@
 <template>
     <md-card :md-theme="habit.theme ? habit.theme : 'default'" :data-key="habit.id">
-        <md-icon class="md-accent reorder-icon">reorder</md-icon>
+        <Icon className="md-icon md-accent reorder-icon" :size="18">
+            <IconReorder />
+        </Icon>
+
       <md-card-header>
         <div class="md-title" @click="getHabitLog(habit.id)">
             {{ habit.name }}
@@ -12,7 +15,9 @@
       </md-card-header>
       <md-card-actions>
         <md-button @click="habitIncrement(habit.id)" class="md-icon-button md-list-action">
-            <md-icon class="md-accent">add</md-icon>
+            <Icon :className="'md-icon md-accent md-theme-' + habit.theme" >
+                <IconAdd />
+            </Icon>
         </md-button>
         <md-menu
             md-size="5"
@@ -20,20 +25,28 @@
             :md-close-on-select="true"
             :md-align-trigger="true">
             <md-button class="md-icon-button" md-menu-trigger>
-              <md-icon>more_horiz</md-icon>
+                <Icon className="md-icon md-accent" :size="18">
+                    <IconMoreHoriz />
+                </Icon>
             </md-button>
 
             <md-menu-content>
               <md-menu-item @click="editHabit(habit.id)">
-                <md-icon class="md-accent">create</md-icon>
+                <Icon :className="'md-icon md-accent md-theme-' + habit.theme" >
+                    <IconCreate />
+                </Icon>
                 <span>{{ $t('actions.edit') }}</span>
               </md-menu-item>
               <md-menu-item @click="getHabitLog(habit.id)">
-                <md-icon class="md-accent">update</md-icon>
+                <Icon :className="'md-icon md-accent md-theme-' + habit.theme" >
+                    <IconUpdate />
+                </Icon>
                 <span>{{ $t('titles.log') }}</span>
               </md-menu-item>
               <md-menu-item @click="shareResult(habit)">
-                <md-icon class="md-accent">share</md-icon>
+                <Icon :className="'md-icon md-accent md-theme-' + habit.theme" >
+                    <IconShare />
+                </Icon>
                 <span>{{ $t('titles.share') }}</span>
               </md-menu-item>
             </md-menu-content>

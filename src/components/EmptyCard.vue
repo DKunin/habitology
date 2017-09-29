@@ -2,7 +2,9 @@
   <md-card v-if="visibility" class="empty-card" >
         <md-card-content>
             <div @click="onClick">
-                <md-icon class="md-size-2x">add_circle_outline</md-icon>
+                <Icon className :size="50">
+                    <IconAddCircleOutline />
+                </Icon>
             </div>
         </md-card-content>
     </md-card>

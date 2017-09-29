@@ -9,17 +9,14 @@
             </md-list-item>
             <md-list-item>
                 <md-input-container>
-                    <md-icon>event</md-icon>
+                    <Icon>
+                        <IconEvent />
+                    </Icon>
                     <label>Date</label>
                     <md-input v-model="date" type="datetime-local"></md-input>
                 </md-input-container>
             </md-list-item>
             <md-list-item>
-                <md-input-container v-if="false">
-                    <md-icon>star</md-icon>
-                    <label>Rating</label>
-                    <md-input v-model="amount" type="number"></md-input>
-                </md-input-container>
                 <div class="radio-holder">
                   <md-radio v-model="amount" name="amount" md-value="1">1</md-radio>
                   <md-radio v-model="amount" name="amount" md-value="2">2</md-radio>

@@ -2,7 +2,9 @@
    <div class="page">
       <div v-if="!Object.keys($store.state.habits).length" class="no-data-screen">
         <div @click="newHabit">
-            <md-icon class="md-size-4x">add_circle_outline</md-icon>
+            <Icon className :size="50">
+                <IconAddCircleOutline />
+            </Icon>
         </div>
         <div>{{ $t("text.nohabits") }}</div>
     </div>
@@ -17,10 +19,6 @@
     </draggable>
 
     <EmptyCard :visibility="Boolean(Object.keys($store.state.habits).length)" :onClick="newHabit" />
-
-    <md-button v-if="false" @click="newHabit" class="md-fab md-primary add-button">
-        <md-icon>add</md-icon>
-    </md-button>
   </div>
 </template>
 
