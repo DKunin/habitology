@@ -1,12 +1,19 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Main from '@/components/Main';
-import HabitIncrement from '@/components/HabitIncrement';
-import HabitLog from '@/components/HabitLog';
-import HabitAdd from '@/components/HabitAdd';
-import Settings from '@/components/Settings';
-import IncrementEdit from '@/components/IncrementEdit';
-import About from '@/components/About';
+
+const HabitIncrement = () => import('@/components/HabitIncrement');
+const HabitLog = () => import('@/components/HabitLog');
+const HabitAdd = () => import('@/components/HabitAdd');
+const IncrementEdit = () => import('@/components/IncrementEdit');
+const Settings = () => import('@/components/Settings');
+const About = () => import('@/components/About');
+// import HabitIncrement from '@/components/HabitIncrement';
+// import HabitLog from '@/components/HabitLog';
+// import HabitAdd from '@/components/HabitAdd';
+// import Settings from '@/components/Settings';
+// import IncrementEdit from '@/components/IncrementEdit';
+// import About from '@/components/About';
 
 Vue.use(Router);
 

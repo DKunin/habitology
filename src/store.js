@@ -18,9 +18,11 @@ import {
 } from './config/syncStates';
 Vue.use(Vuex);
 
-const randomId = () => parseInt(Math.random() * 1e10);
+function randomId() {
+    return parseInt(Math.random() * 10000000000, 2);
+}
 
-let config = {
+const config = {
     apiKey: 'AIzaSyD8-mtgEl3_PrD9mZe2iwPARtRDLen7nu4',
     authDomain: 'habitology-ffa70.firebaseapp.com',
     databaseURL: 'https://habitology-ffa70.firebaseio.com',
@@ -131,10 +133,12 @@ const mutations = {
         state.dragging = newState;
     },
     checkForUpdate(state) {
-        fetch('https://raw.githubusercontent.com/DKunin/habitology/master/package.json')
+        fetch(
+            'https://raw.githubusercontent.com/DKunin/habitology/master/package.json'
+        )
             .then(res => res.json())
             .then(result => {
-                if (compare.lt(packageJson.version, [ result.version ])) {
+                if (compare.lt(packageJson.version, [result.version])) {
                     state.newVersion = result.version;
                 }
             });
