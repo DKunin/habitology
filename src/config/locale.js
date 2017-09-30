@@ -18,7 +18,10 @@ export default {
             nodata: 'no data',
             share: 'Share',
             defaultHabitName: 'Habit',
-            about: 'About'
+            about: 'About',
+            allItems: 'All items:',
+            currentStreak: 'Current streak:',
+            lastStreak: 'Last streak:'
         },
         actions: {
             save: 'Save',
@@ -73,7 +76,10 @@ export default {
             nodata: 'нет данных',
             share: 'Поделиться',
             defaultHabitName: 'Название привычки',
-            about: 'О приложении'
+            about: 'О приложении',
+            allItems: 'Всего записей:',
+            currentStreak: 'Длина текущей серии:',
+            lastStreak: 'Длина последней серии:'
         },
         actions: {
             save: 'Сохранить',

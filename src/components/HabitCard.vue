@@ -159,6 +159,7 @@ export default {
 }
 .last-update {
     font-style: italic;
+    min-height: 12px;
 }
 .md-card .md-card-actions {
     position: absolute;

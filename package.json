@@ -1,6 +1,6 @@
 {
     "name": "habitology",
-    "version": "1.8.1",
+    "version": "1.8.2",
     "description": "Simple app to work on habits",
     "author": "Dmitri Kunin <whitemarten@gmail.com>",
     "github": "https://github.com/DKunin/habitology",
@@ -17,6 +17,7 @@
     },
     "dependencies": {
         "compare-semver": "1.1.0",
+        "date-streak": "0.0.1",
         "deepmerge": "1.5.1",
         "firebase": "4.3.1",
         "moment": "2.18.1",

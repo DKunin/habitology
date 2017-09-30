@@ -1,5 +1,18 @@
 <template>
   <div class="page">
+    <md-whiteframe v-if="filtered.length" md-tag="section" md-elevation="8">
+        <md-list>
+            <md-list-item>
+                {{ $t('titles.allItems') }} {{ filtered.length }}
+            </md-list-item>
+            <md-list-item v-if="streakInfo.isCurrentlyOnStreak">
+                {{ $t('titles.currentStreak') }} {{ streakInfo.lengthOfTheLastStreak }}
+            </md-list-item>
+            <md-list-item v-if="!streakInfo.isCurrentlyOnStreak">
+                {{ $t('titles.lastStreak') }} {{ streakInfo.lengthOfTheLastStreak }}
+            </md-list-item>
+        </md-list>
+    </md-whiteframe>
     <div v-if="!filtered.length" class="no-data-screen">
         <div>
             <Icon className :size="50">
@@ -20,11 +33,11 @@
                     </Icon>
                 </a></span>
                 <p>{{ formatDate(log.date) }}</p>
-                
             </div>
         </md-list-item>
     </md-list>
-    <EmptyCard :visibility="Boolean($route.query.habitId)" :onClick="addHabitIncrement($route.query.habitId)" />
+
+    <EmptyCard v-if="filtered.length" :visibility="Boolean($route.query.habitId)" :onClick="addHabitIncrement($route.query.habitId)" />
   </div>
 </template>
 
@@ -33,6 +46,7 @@
 import EmptyCard from '@/components/EmptyCard';
 import moment from 'moment';
 import router from '../router';
+import { determineStreak } from 'date-streak';
 
 export default {
     name: 'habit-log',
@@ -55,6 +69,10 @@ export default {
                 .sort((a, b) => {
                     return new Date(b.date) - new Date(a.date);
                 });
+        },
+        streakInfo() {
+            const dates = this.filtered.map(({ date }) => date);
+            return determineStreak(dates);
         }
     },
     methods: {
@@ -82,6 +100,9 @@ export default {
 </script>
 
 <style scoped>
+.md-whiteframe-8dp {
+    margin: 15px;
+}
 .md-avatar {
     display: flex;
     justify-content: center;
