@@ -10,7 +10,8 @@ module.exports = {
     process: true,
     module: true,
     Promise: true,
-    require: true
+    require: true,
+    __dirname: true
   },
   env: {
     browser: true

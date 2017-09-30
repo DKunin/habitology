@@ -1,4 +1,5 @@
-var fs = require('fs');
+'use strict';
+
 var path = require('path');
 var utils = require('./utils');
 var webpack = require('webpack');
@@ -33,10 +34,16 @@ var webpackConfig = merge(baseWebpackConfig, {
             'process.env': env
         }),
         new webpack.optimize.UglifyJsPlugin({
+            parallel: true,
             compress: {
                 warnings: false
             },
-            sourceMap: true
+            sourceMap: false,
+            uglifyOptions: {
+                ie8: false,
+                ecma: 7,
+                warnings: false
+            }
         }),
         // extract css into its own file
         new ExtractTextPlugin({
@@ -65,12 +72,14 @@ var webpackConfig = merge(baseWebpackConfig, {
             },
             // necessary to consistently work with multiple chunks via CommonsChunkPlugin
             chunksSortMode: 'dependency',
-            serviceWorkerLoader: `<script>${loadMinified(path.join(__dirname, './service-worker-prod.js'))}</script>`
+            serviceWorkerLoader: `<script>${loadMinified(
+                path.join(__dirname, './service-worker-prod.js')
+            )}</script>`
         }),
         // split vendor js into its own file
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor',
-            minChunks: function(module, count) {
+            minChunks: function(module) {
                 // any required modules inside node_modules are extracted to vendor
                 return (
                     module.resource &&
