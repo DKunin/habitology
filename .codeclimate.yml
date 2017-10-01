@@ -18,3 +18,4 @@ exclude_paths:
 - node_modules/
 - test/
 - dist/
+- src/config/*.js
