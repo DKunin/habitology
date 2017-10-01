@@ -112,10 +112,9 @@ Vue.material.registerTheme('light-blue', {
     }
 });
 
-// Create VueI18n instance with options
 const i18n = new VueI18n({
-    locale: 'ru', // set locale
-    messages // set locale messages
+    locale: 'ru',
+    messages
 });
 
 window.i18n = i18n;
