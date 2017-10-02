@@ -6,14 +6,24 @@ import Vuex from 'vuex';
 import VueMaterial from 'vue-material';
 import 'vue-material/dist/vue-material.css';
 
-import App from './App';
+import App from './pages/App';
 import router from './router';
 import store from './store';
 import messages from './config/locale';
+import Icon from '@/components/Icon';
+import Logo from '@/components/Logo';
+import * as AllIcons from '@/components/Icons';
+
 
 Vue.use(Vuex);
 Vue.use(VueMaterial);
 Vue.use(VueI18n);
+Vue.component('Icon', Icon);
+Vue.component('Logo', Logo);
+
+for (let el in AllIcons) {
+    Vue.component(el, AllIcons[el]);
+}
 
 Vue.material.registerTheme('default', {
     primary: {
@@ -102,10 +112,9 @@ Vue.material.registerTheme('light-blue', {
     }
 });
 
-// Create VueI18n instance with options
 const i18n = new VueI18n({
-    locale: 'ru', // set locale
-    messages // set locale messages
+    locale: 'ru',
+    messages
 });
 
 window.i18n = i18n;

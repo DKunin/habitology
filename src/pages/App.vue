@@ -10,21 +10,21 @@
 
         <md-list>
           <md-list-item @click="gotoMain('habit-add')" class="md-primary">
-            <md-icon>add</md-icon> <span>{{ $t('actions.addHabit') }}</span>
+            <Icon><IconAdd /></Icon> <span>{{ $t('actions.addHabit') }}</span>
           </md-list-item>
 
           <md-list-item @click="gotoMain('habit-log')" class="md-primary">
-            <md-icon>history</md-icon> <span>{{ $t('titles.habit-log') }}</span>
+            <Icon><IconHistory /></Icon> <span>{{ $t('titles.habit-log') }}</span>
           </md-list-item>
 
             <div class="separator"></div>
 
           <md-list-item @click="gotoMain('settings')" class="md-primary">
-            <md-icon>settings</md-icon> <span>{{ $t('titles.settings') }}</span>
+            <Icon><IconSettings /></Icon> <span>{{ $t('titles.settings') }}</span>
           </md-list-item>
 
           <md-list-item @click="gotoMain('about')" class="md-primary">
-            <md-icon>help_outline</md-icon> <span>{{ $t('titles.about') }}</span>
+            <Icon><IconHelpOutline /></Icon> <span>{{ $t('titles.about') }}</span>
           </md-list-item>
 
         </md-list>
@@ -37,30 +37,22 @@
 
     <md-toolbar>
       <md-button @click="toggleLeftSidenav" v-if="$route.name === 'main'" class="md-icon-button">
-        <md-icon >menu</md-icon>
+        <Icon :size="18"><IconMenu /></Icon>
       </md-button>
       <md-button @click="goBack" v-if="$route.name !== 'main'" class="md-icon-button">
-        <md-icon >arrow_back</md-icon>
+        <Icon :size="18"><IconArrowBack /></Icon>
       </md-button>
 
       <h2 class="md-title" style="flex: 1">{{ $t(`titles.${$route.name}`) }}</h2>
 
       <md-button v-if="$store.state.user.uid" class="md-icon-button" @click="syncWithCloud">
-        <md-icon>{{ $store.state.syncingState }}</md-icon>
+        <Icon>
+            <IconCloudQueue v-if="$store.state.syncingState === 'cloud_queue'" />
+            <IconCloudUpload v-if="$store.state.syncingState === 'cloud_upload'" />
+            <IconCloudOff v-if="$store.state.syncingState === 'cloud_off'" />
+            <IconCloud v-if="$store.state.syncingState === 'cloud'" />
+        </Icon>
       </md-button>
-      
-      <md-menu md-size="4" v-if="false">
-        <md-button class="md-icon-button" md-menu-trigger>
-          <md-icon>more_vert</md-icon>
-        </md-button>
-
-        <md-menu-content>
-          <md-menu-item @click="newHabit">
-            <md-icon>add</md-icon>
-            <span>{{ $t('actions.addHabit') }}</span>
-          </md-menu-item>
-        </md-menu-content>
-      </md-menu>
     </md-toolbar>
     <md-dialog-alert
       :md-content="alert.content"
@@ -74,15 +66,13 @@
 
 <script>
 
-import router from './router';
-import Logo from '@/components/Logo';
-import packageJson from '../package.json';
+import router from '../router';
+
+import packageJson from '../../package.json';
 
 export default {
     name: 'app',
-    components: {
-        Logo
-    },
+    components: {},
     data() {
         return {
             version: packageJson.version,
@@ -110,16 +100,6 @@ export default {
                 this.openAlert();
             }
         });
-        // window.Vue.vueDragula.eventBus.$on('dragend', () => {
-        //     const items = Array.from(
-        //         this.$el.querySelectorAll('.habit-list .md-card')
-        //     ).map(singleNode => {
-        //         return singleNode.dataset.key;
-        //     });
-        //     setTimeout(() => {
-        //         this.$store.dispatch('updateSorting', items);
-        //     }, 300);
-        // });
     },
     methods: {
         reloadScreen() {
@@ -252,6 +232,9 @@ label,
 }
 .md-toolbar {
     box-shadow: 2px 2px 2px rgba(0,0,0,.4);
+}
+.md-toolbar .md-icon {
+    margin-top: 4px;
 }
 
 </style>
