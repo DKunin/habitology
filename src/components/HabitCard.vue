@@ -15,7 +15,7 @@
       </md-card-header>
       <md-card-actions>
         <md-button @click="habitIncrement(habit.id)" class="md-icon-button md-list-action">
-            <Icon :className="'md-icon md-accent md-theme-' + habit.theme" >
+            <Icon :className="'add-increment-button md-icon md-accent md-theme-' + habit.theme" >
                 <IconAdd />
             </Icon>
         </md-button>

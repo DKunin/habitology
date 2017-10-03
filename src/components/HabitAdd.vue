@@ -5,7 +5,7 @@
         <md-list-item>
             <md-input-container>
                 <label>{{ $t("titles.name") }}</label>
-                <md-input v-model="name"></md-input>
+                <md-input v-model="name" class="habit-name-input"></md-input>
             </md-input-container>
         </md-list-item>
         <md-list-item>
@@ -27,17 +27,21 @@
             </div>
         </md-list-item>
         <md-list-item>
-            <md-checkbox name="continuingGoal" v-model="continuingGoal">{{ $t("titles.continuing-goal") }}</md-checkbox>
+            <md-checkbox
+                name="continuingGoal"
+                v-model="continuingGoal"
+                class="continuing-goal-checkbox"
+                >{{ $t("titles.continuing-goal") }}</md-checkbox>
         </md-list-item>
         <md-list-item v-if="continuingGoal || initialValue">
             <md-input-container>
                 <label>{{ $t("titles.initial-value") }}</label>
-                <md-input type="number" v-model="initialValue"></md-input>
+                <md-input type="number" v-model="initialValue" class="initial-value-input"></md-input>
             </md-input-container>
         </md-list-item>
         <md-list-item>
             <md-button v-if="id" @click="remove" class="md-raised md-accent">{{ $t("actions.remove") }}</md-button>
-            <md-button @click="update" class="md-raised md-primary">{{ $t("actions.save") }}</md-button>
+            <md-button @click="update" class="md-raised md-primary submit-habit-button">{{ $t("actions.save") }}</md-button>
         </md-list-item>
     </md-list>
   </div>

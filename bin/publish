@@ -1,8 +1,3 @@
-#!/usr/bin/env node
+#!/bin/bash
 
-const ghpages = require('gh-pages');
-
-ghpages.publish('dist', err => {
-    // eslint-disable-next-line
-    console.log(err);
-});
+scp -r ./dist deploy@$CITADEL_IP:/home/deploy/habitology

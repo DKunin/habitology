@@ -9,21 +9,21 @@
       </md-toolbar>
 
         <md-list>
-          <md-list-item @click="gotoMain('habit-add')" class="md-primary">
+          <md-list-item @click="gotoMain('habit-add')" class="md-primary add-button">
             <Icon><IconAdd /></Icon> <span>{{ $t('actions.addHabit') }}</span>
           </md-list-item>
 
-          <md-list-item @click="gotoMain('habit-log')" class="md-primary">
+          <md-list-item @click="gotoMain('habit-log')" class="md-primary log-button">
             <Icon><IconHistory /></Icon> <span>{{ $t('titles.habit-log') }}</span>
           </md-list-item>
 
             <div class="separator"></div>
 
-          <md-list-item @click="gotoMain('settings')" class="md-primary">
+          <md-list-item @click="gotoMain('settings')" class="md-primary settings-button">
             <Icon><IconSettings /></Icon> <span>{{ $t('titles.settings') }}</span>
           </md-list-item>
 
-          <md-list-item @click="gotoMain('about')" class="md-primary">
+          <md-list-item @click="gotoMain('about')" class="md-primary about-buttom">
             <Icon><IconHelpOutline /></Icon> <span>{{ $t('titles.about') }}</span>
           </md-list-item>
 
@@ -36,7 +36,7 @@
     </md-sidenav>
 
     <md-toolbar>
-      <md-button @click="toggleLeftSidenav" v-if="$route.name === 'main'" class="md-icon-button">
+      <md-button @click="toggleLeftSidenav" v-if="$route.name === 'main'" class="md-icon-button toolbar-button">
         <Icon :size="18"><IconMenu /></Icon>
       </md-button>
       <md-button @click="goBack" v-if="$route.name !== 'main'" class="md-icon-button">
@@ -133,6 +133,9 @@ export default {
 </script>
 
 <style>
+* {
+    outline: none;
+}
 .page {
     background-color: #eee;
 }
@@ -141,6 +144,7 @@ body,
 html {
     height: 100%;
     overflow: hidden;
+    outline: none;
 }
 
 .app {
