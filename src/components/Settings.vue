@@ -35,7 +35,7 @@
 
             <md-list-item>
                 <md-input-container>
-                    <label for="locale">{{ $t("settings.locale") }}</label>
+                    <label class="local-select" for="locale">{{ $t("settings.locale") }}</label>
                     <md-select name="locale" v-model="locale">
                         <md-option value="ru">Русский</md-option>
                         <md-option value="en">English</md-option>
@@ -44,7 +44,7 @@
             </md-list-item>
 
             <md-list-item>
-                <md-button @click="saveSettings" type="button" class="md-raised md-primary">
+                <md-button @click="saveSettings" type="button" class="settings-save-button md-raised md-primary">
                     {{ $t("settings.save") }}
                 </md-button>
             </md-list-item>

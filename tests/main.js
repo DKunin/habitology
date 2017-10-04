@@ -8,7 +8,7 @@ const testFiles = ['./tests/basic-check.js'];
 const express = require('express');
 const app = express();
 
-exec('echo npm run build', () => {
+exec('npm run build', () => {
     let hrend = process.hrtime(hrstart);
     console.info('Build time (hr): %ds %dms', hrend[0], hrend[1] / 1000000);
 
@@ -28,11 +28,12 @@ exec('echo npm run build', () => {
 });
 
 app.use(express.static('./dist'));
-app.listen(3000, () => {});
+app.listen(8082, () => {});
 
 function runSingleTest(file) {
     return new Promise(resolve => {
         const child = spawn('node', [file]);
+        child.on('data', console.log);
         child.on('close', resolve);
     });
 }

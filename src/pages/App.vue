@@ -39,7 +39,7 @@
       <md-button @click="toggleLeftSidenav" v-if="$route.name === 'main'" class="md-icon-button toolbar-button">
         <Icon :size="18"><IconMenu /></Icon>
       </md-button>
-      <md-button @click="goBack" v-if="$route.name !== 'main'" class="md-icon-button">
+      <md-button @click="goBack" v-if="$route.name !== 'main'" class="md-icon-button back-button">
         <Icon :size="18"><IconArrowBack /></Icon>
       </md-button>
 

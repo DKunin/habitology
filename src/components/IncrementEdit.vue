@@ -32,7 +32,7 @@
             </md-list-item>
             <md-list-item>
                 <md-button @click="remove" class="md-raised md-accent">{{ $t("actions.remove") }}</md-button>
-                <md-button @click="update" class="md-raised md-primary">{{ $t("actions.save") }}</md-button>
+                <md-button @click="update" class="save-increment-edit-button md-raised md-primary">{{ $t("actions.save") }}</md-button>
             </md-list-item>
         </md-list>
   </div>

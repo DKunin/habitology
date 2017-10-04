@@ -5,7 +5,7 @@
         </Icon>
 
       <md-card-header>
-        <div class="md-title" @click="getHabitLog(habit.id)">
+        <div class="md-title open-habit-log-button" @click="getHabitLog(habit.id)">
             {{ habit.name }}
         </div>
         <div class="md-subhead">
@@ -24,7 +24,7 @@
             md-direction="bottom left"
             :md-close-on-select="true"
             :md-align-trigger="true">
-            <md-button class="md-icon-button" md-menu-trigger>
+            <md-button class="md-icon-button habit-menu-trigger" md-menu-trigger>
                 <Icon className="md-icon md-accent" :size="18">
                     <IconMoreHoriz />
                 </Icon>
@@ -32,7 +32,7 @@
 
             <md-menu-content>
               <md-menu-item @click="editHabit(habit.id)">
-                <Icon :className="'md-icon md-accent md-theme-' + habit.theme" >
+                <Icon :className="'edit-habit-button md-icon md-accent md-theme-' + habit.theme" >
                     <IconCreate />
                 </Icon>
                 <span>{{ $t('actions.edit') }}</span>
