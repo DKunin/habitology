@@ -20,8 +20,7 @@ export default {
             defaultHabitName: 'Habit',
             about: 'About',
             allItems: 'All items:',
-            currentStreak: 'Current streak:',
-            lastStreak: 'Last streak:'
+            currentStreak: 'Current streak:'
         },
         actions: {
             save: 'Save',
@@ -78,8 +77,7 @@ export default {
             defaultHabitName: 'Название привычки',
             about: 'О приложении',
             allItems: 'Всего записей:',
-            currentStreak: 'Длина текущей серии:',
-            lastStreak: 'Длина последней серии:'
+            currentStreak: 'Текущая серия:'
         },
         actions: {
             save: 'Сохранить',

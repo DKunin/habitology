@@ -6,10 +6,7 @@
                 {{ $t('titles.allItems') }} {{ filtered.length }}
             </md-list-item>
             <md-list-item v-if="streakInfo.isCurrentlyOnStreak">
-                {{ $t('titles.currentStreak') }} {{ streakInfo.lengthOfTheLastStreak }}
-            </md-list-item>
-            <md-list-item v-if="!streakInfo.isCurrentlyOnStreak">
-                {{ $t('titles.lastStreak') }} {{ streakInfo.lengthOfTheLastStreak }}
+                {{ $t('titles.currentStreak') }} {{ streakInfo.lengthOfTheStreak }}
             </md-list-item>
         </md-list>
     </md-whiteframe>
