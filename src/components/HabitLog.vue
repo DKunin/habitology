@@ -88,7 +88,10 @@ export default {
         },
         addHabitIncrement(habitId) {
             return () => {
-                router.replace({ name: 'habit-increment', params: { habitId } });
+                router.replace({
+                    name: 'habit-increment',
+                    params: { habitId }
+                });
             };
         }
     }
