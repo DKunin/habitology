@@ -82,13 +82,13 @@ export default {
     mounted() {},
     methods: Object.assign(actions, {
         habitIncrement(habitId) {
-            router.push({ name: 'habit-increment', params: { habitId } });
+            router.replace({ name: 'habit-increment', params: { habitId } });
         },
         editHabit(habitId) {
-            router.push({ name: 'habit-add', query: { habitId } });
+            router.replace({ name: 'habit-add', query: { habitId } });
         },
         getHabitLog(habitId) {
-            router.push({ name: 'habit-log', query: { habitId } });
+            router.replace({ name: 'habit-log', query: { habitId } });
         },
         shareResult(habit) {
             if (window.navigator.share) {

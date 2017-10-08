@@ -66,7 +66,7 @@ export default {
     },
     methods: {
         newHabit() {
-            router.push({ name: 'habit-add' });
+            router.replace({ name: 'habit-add' });
         },
         lastTime(habit) {
             const currentHabitLog = this.$store.state.log

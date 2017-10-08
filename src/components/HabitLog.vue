@@ -84,11 +84,11 @@ export default {
             return habit.name;
         },
         editHabitIncrement(logId) {
-            router.push({ name: 'increment-edit', query: { logId } });
+            router.replace({ name: 'increment-edit', query: { logId } });
         },
         addHabitIncrement(habitId) {
             return () => {
-                router.push({ name: 'habit-increment', params: { habitId } });
+                router.replace({ name: 'habit-increment', params: { habitId } });
             };
         }
     }

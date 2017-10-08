@@ -69,13 +69,13 @@ export default {
             if (window.navigator) {
                 window.navigator.vibrate(100, 50);
             }
-            router.push({ name: 'main' });
+            router.replace({ name: 'main' });
         },
         formatDate(dateTime) {
             return moment(dateTime).format('DD.MM.YY');
         },
         cancel: function() {
-            router.push({ name: 'main' });
+            router.replace({ name: 'main' });
         },
         showHabitName: function(id) {
             return this.$store.state.habits[id].name;

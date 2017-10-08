@@ -64,7 +64,7 @@ const devices = require('puppeteer/DeviceDescriptors');
     await page.waitFor(400);
 
     await page.click('.toolbar-button');
-    await page.waitFor('.settings-button');
+    await page.waitFor(400);
     await page.click('.settings-button');
 
     await page.click('.local-select + div .md-select-value');

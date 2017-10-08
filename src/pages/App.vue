@@ -107,16 +107,16 @@ export default {
         },
         gotoMain(name) {
             this.$refs.leftSidenav.close();
-            router.push({ name });
+            router.replace({ name });
         },
         toggleLeftSidenav() {
             this.$refs.leftSidenav.toggle();
         },
         newHabit() {
-            router.push({ name: 'habit-add' });
+            router.replace({ name: 'habit-add' });
         },
         goBack() {
-            router.back();
+            router.replace({ name: 'main' });
         },
         syncWithCloud() {
             this.$store.dispatch('syncWithCloud');
