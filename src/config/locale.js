@@ -47,7 +47,13 @@ export default {
             nolog: "Add rating to a habit and it'll appear right here.",
             nohabits: "Add new habit and it'll appear here.",
             newVersion: 'Version {version} is ready to update, tap here to proceed',
-            incrementSuccess: '{habitName} + {amount}!'
+            incrementSuccess: '{habitName} + {amount}!',
+            pullToRefresh: {
+                error: ' ',
+                start: ' ',
+                ready: ' ',
+                loading: ' '
+            }
         },
         serverErrorMessages: {
             noerror: '',
@@ -104,7 +110,13 @@ export default {
             nolog: 'Добавьте оценку к привычке и она появится здесь',
             nohabits: 'Добавьте новую привычку и она появится здесь',
             newVersion: 'Версия {version} доступна для обновления, тапните здесь, для обновления',
-            incrementSuccess: '{habitName} + {amount}!'
+            incrementSuccess: '{habitName} + {amount}!',
+            pullToRefresh: {
+                error: ' ',
+                start: ' ',
+                ready: ' ',
+                loading: ' '
+            }
         },
         serverErrorMessages: {
             noerror: '',
