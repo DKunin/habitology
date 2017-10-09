@@ -79,7 +79,7 @@ export default {
     },
     methods: {
         onRefresh: function() {
-            return new Promise((resolve) => {
+            return new Promise(resolve => {
                 setTimeout(() => {
                     this.$store.dispatch('syncWithCloud');
                     resolve();

@@ -6,11 +6,12 @@ const devices = require('puppeteer/DeviceDescriptors');
 (async () => {
     const browser = await puppeteer.launch({
         slowMo: true,
-        // headless: false
+        headless: false
     });
     const page = await browser.newPage();
     await page.emulate(devices['iPhone 6']);
-    await page.goto('http://localhost:8082');
+    // await page.goto('http://localhost:8082');
+    await page.goto('https://habitology.life');
 
     await page.screenshot({ path: './tests/screens/01-main-screen.png' });
 
