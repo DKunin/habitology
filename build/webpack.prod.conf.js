@@ -57,9 +57,9 @@ var webpackConfig = merge(baseWebpackConfig, {
                 safe: false
             }
         }),
-        new OptimizeJsPlugin({
-            sourceMap: false
-        }),
+        // new OptimizeJsPlugin({
+        //     sourceMap: false
+        // }),
         // generate dist index.html with correct asset hash for caching.
         // you can customize output by editing /index.html
         // see https://github.com/ampedandwired/html-webpack-plugin
