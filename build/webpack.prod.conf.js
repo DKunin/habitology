@@ -8,6 +8,7 @@ var merge = require('webpack-merge');
 var baseWebpackConfig = require('./webpack.base.conf');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var OptimizeJsPlugin = require('optimize-js-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
 var SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
@@ -41,7 +42,7 @@ var webpackConfig = merge(baseWebpackConfig, {
             sourceMap: false,
             uglifyOptions: {
                 ie8: false,
-                ecma: 7,
+                ecma: 6,
                 warnings: false
             }
         }),
@@ -53,8 +54,11 @@ var webpackConfig = merge(baseWebpackConfig, {
         // duplicated CSS from different components can be deduped.
         new OptimizeCSSPlugin({
             cssProcessorOptions: {
-                safe: true
+                safe: false
             }
+        }),
+        new OptimizeJsPlugin({
+            sourceMap: false
         }),
         // generate dist index.html with correct asset hash for caching.
         // you can customize output by editing /index.html
@@ -67,8 +71,6 @@ var webpackConfig = merge(baseWebpackConfig, {
                 removeComments: true,
                 collapseWhitespace: true,
                 removeAttributeQuotes: true
-                // more options:
-                // https://github.com/kangax/html-minifier#options-quick-reference
             },
             // necessary to consistently work with multiple chunks via CommonsChunkPlugin
             chunksSortMode: 'dependency',

@@ -3,9 +3,8 @@
 import Vue from 'vue';
 import VueI18n from 'vue-i18n';
 import Vuex from 'vuex';
-import VueMaterial from 'vue-material';
+import VueMaterial from 'vue-material/dist/vue-material';
 import 'vue-material/dist/vue-material.css';
-
 import App from './pages/App';
 import router from './router';
 import store from './store';
@@ -13,7 +12,6 @@ import messages from './config/locale';
 import Icon from '@/components/Icon';
 import Logo from '@/components/Logo';
 import * as AllIcons from '@/components/Icons';
-
 
 Vue.use(Vuex);
 Vue.use(VueMaterial);
@@ -118,8 +116,6 @@ const i18n = new VueI18n({
 });
 
 window.i18n = i18n;
-
-Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
 new Vue({

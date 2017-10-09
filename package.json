@@ -63,6 +63,7 @@
         "indent": "0.0.2",
         "opn": "^5.1.0",
         "optimize-css-assets-webpack-plugin": "^2.0.0",
+        "optimize-js-plugin": "0.0.4",
         "ora": "^1.2.0",
         "prettier": "1.7.0",
         "puppeteer": "0.10.2",

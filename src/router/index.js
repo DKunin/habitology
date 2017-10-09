@@ -8,12 +8,6 @@ const HabitAdd = () => import('@/components/HabitAdd');
 const IncrementEdit = () => import('@/components/IncrementEdit');
 const Settings = () => import('@/components/Settings');
 const About = () => import('@/components/About');
-// import HabitIncrement from '@/components/HabitIncrement';
-// import HabitLog from '@/components/HabitLog';
-// import HabitAdd from '@/components/HabitAdd';
-// import Settings from '@/components/Settings';
-// import IncrementEdit from '@/components/IncrementEdit';
-// import About from '@/components/About';
 
 Vue.use(Router);
 
