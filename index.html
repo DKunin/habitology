@@ -20,7 +20,6 @@
     <!-- Add to home screen for Windows -->
     <meta name="msapplication-TileImage" content="<%= htmlWebpackPlugin.files.publicPath %>static/img/icons/msapplication-icon-144x144.png">
     <meta name="msapplication-TileColor" content="#000000">
-    <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
     <% for (var chunk of webpack.chunks) {
         for (var file of chunk.files) {
           if (file.match(/\.(js|css)$/)) { %>
@@ -52,5 +51,8 @@
     <!-- Todo: only include in production -->
     <%= htmlWebpackPlugin.options.serviceWorkerLoader %>
     <!-- built files will be auto injected -->
+    <script rel="prefetch" src="<%= htmlWebpackPlugin.files.publicPath %>static/js/firebase-app.js"></script>
+    <script rel="prefetch" src="<%= htmlWebpackPlugin.files.publicPath %>static/js/firebase-auth.js"></script>
+    <script rel="prefetch" src="<%= htmlWebpackPlugin.files.publicPath %>static/js/firebase-database.js"></script>
   </body>
 </html>

@@ -1,6 +1,6 @@
 {
     "name": "habitology",
-    "version": "1.11.1",
+    "version": "1.12.0",
     "description": "Simple app to work on habits",
     "author": "Dmitri Kunin <whitemarten@gmail.com>",
     "github": "https://github.com/DKunin/habitology",
@@ -13,6 +13,7 @@
         "publish": "npm run lint && npm run build && ./bin/publish",
         "test": "node ./tests/main.js",
         "lint": "npm run csscomb && npm run pretty && eslint --ext .js,.vue src",
+        "publish:pages": "npm run build && ./bin/pages-publish",
         "report": "npm run build --report"
     },
     "dependencies": {
