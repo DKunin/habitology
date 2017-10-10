@@ -51,5 +51,8 @@
     <!-- Todo: only include in production -->
     <%= htmlWebpackPlugin.options.serviceWorkerLoader %>
     <!-- built files will be auto injected -->
+    <script rel="prefetch" src="<%= htmlWebpackPlugin.files.publicPath %>static/js/firebase-app.js"></script>
+    <script rel="prefetch" src="<%= htmlWebpackPlugin.files.publicPath %>static/js/firebase-auth.js"></script>
+    <script rel="prefetch" src="<%= htmlWebpackPlugin.files.publicPath %>static/js/firebase-database.js"></script>
   </body>
 </html>
