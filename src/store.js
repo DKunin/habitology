@@ -4,9 +4,9 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import moment from 'moment';
 import persistPlugin from './utils/persistPlugin';
-import firebase from 'firebase/app';
-import 'firebase/auth';
-import 'firebase/database';
+// import firebase from 'firebase/app';
+// import 'firebase/auth';
+// import 'firebase/database';
 import merge from 'deepmerge';
 import compare from 'compare-semver';
 import packageJson from '../package.json';
@@ -100,8 +100,8 @@ const mutations = {
         state.locale = payload.locale;
         state.sorting = payload.sorting || [];
         moment.locale(payload.locale || 'ru');
-        firebase.initializeApp(config);
-        window.firebase = firebase;
+        window.firebase.initializeApp(config);
+        // window.firebase = firebase;
         setTimeout(() => {
             window.i18n.locale = payload.locale || 'ru';
         }, 200);
@@ -144,7 +144,7 @@ const mutations = {
             });
     },
     syncWithCloud(state) {
-        if (!firebase || !state.user || !state.user.uid) {
+        if (!window.firebase || !state.user || !state.user.uid) {
             return;
         }
         if (!window.navigator.onLine) {
@@ -153,7 +153,7 @@ const mutations = {
         }
         state.syncingState = SYNC_PROGRESS;
         const ref = 'users/' + state.user.uid;
-        firebase
+        window.firebase
             .database()
             .ref(ref)
             .once('value')
@@ -188,7 +188,7 @@ const mutations = {
                 const cleanedLogs = mergedState.log.filter(singleLogItem => {
                     return !singleLogItem.destroy;
                 }, {});
-                firebase
+                window.firebase
                     .database()
                     .ref('users/' + state.user.uid)
                     .update({ habits: cleanedHabits, log: cleanedLogs });
