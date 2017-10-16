@@ -1,28 +1,24 @@
 <template>
    <div class="page">
-      <vue-pull-refresh
-        :on-refresh="onRefresh"
-        :config="pullToRefreshConfig">
-          <div v-if="!Object.keys($store.state.habits).length" class="no-data-screen">
-            <div @click="newHabit">
-                <Icon className :size="50">
-                    <IconAddCircleOutline />
-                </Icon>
-            </div>
-            <div>{{ $t("text.nohabits") }}</div>
+    <div v-if="!Object.keys($store.state.habits).length" class="no-data-screen">
+        <div @click="newHabit">
+            <Icon className :size="50">
+                <IconAddCircleOutline />
+            </Icon>
         </div>
-        <draggable v-model="sortedHabits" :options="{handle: '.reorder-icon'}">
-            <HabitCard
-                v-if="sortedHabits && !habit.destroy"
-                v-for="habit in sortedHabits"
-                :key="habit.id"
-                :habit="habit"
-                :lastTime="lastTime"
-                />
-        </draggable>
+        <div>{{ $t("text.nohabits") }}</div>
+    </div>
+    <draggable v-model="sortedHabits" :options="{handle: '.reorder-icon'}">
+        <HabitCard
+            v-if="sortedHabits && !habit.destroy"
+            v-for="habit in sortedHabits"
+            :key="habit.id"
+            :habit="habit"
+            :lastTime="lastTime"
+            />
+    </draggable>
 
-        <EmptyCard :visibility="Boolean(Object.keys($store.state.habits).length)" :onClick="newHabit" />
-    </vue-pull-refresh>
+    <EmptyCard :visibility="Boolean(Object.keys($store.state.habits).length)" :onClick="newHabit" />
   </div>
 </template>
 
@@ -33,7 +29,6 @@ import moment from 'moment';
 import HabitCard from '@/components/HabitCard';
 import EmptyCard from '@/components/EmptyCard';
 import router from '../router';
-import VuePullRefresh from 'vue-pull-refresh';
 
 export default {
     name: 'main',
@@ -50,7 +45,6 @@ export default {
     components: {
         HabitCard,
         EmptyCard,
-        VuePullRefresh,
         draggable
     },
     computed: {
@@ -78,14 +72,6 @@ export default {
         }
     },
     methods: {
-        onRefresh: function() {
-            return new Promise(resolve => {
-                setTimeout(() => {
-                    this.$store.dispatch('syncWithCloud');
-                    resolve();
-                }, 100);
-            });
-        },
         newHabit() {
             router.replace({ name: 'habit-add' });
         },

@@ -1,6 +1,6 @@
 {
     "name": "habitology",
-    "version": "1.12.0",
+    "version": "1.13.0",
     "description": "Simple app to work on habits",
     "author": "Dmitri Kunin <whitemarten@gmail.com>",
     "github": "https://github.com/DKunin/habitology",
@@ -25,7 +25,6 @@
         "vue": "2.4.4",
         "vue-i18n": "7.2.0",
         "vue-material": "0.7.4",
-        "vue-pull-refresh": "0.2.3",
         "vue-router": "^2.3.1",
         "vuedraggable": "2.14.1",
         "vuex": "2.3.1"
