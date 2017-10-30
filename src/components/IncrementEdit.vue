@@ -84,7 +84,7 @@ export default {
             };
 
             this.$store.dispatch('updateLogItem', payload);
-            router.back();
+            router.replace({ name: 'habit-log', query: { habitId: this.habitId } });
         },
         remove() {
             this.$store.dispatch('removeLogItem', this.id);
